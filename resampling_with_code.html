@@ -83,7 +83,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./sampling_tools.html" rel="next">
+<link href="./resampling_with_code2.html" rel="next">
 <link href="./about_technology.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -211,14 +211,14 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sampling_tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tools for samples and sampling</span></span></a>
+  <a href="./resampling_with_code2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">More resampling with code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./resampling_with_code2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">More resampling with code</span></span></a>
+  <a href="./sampling_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tools for samples and sampling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -761,7 +761,7 @@ More on <code>sample</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <code>sample</code> function will be a fundamental tool for taking many kinds of samples, and we cover it in more detail in <a href="sampling_tools.html" class="quarto-xref"><span>Chapter&nbsp;6</span></a>.</p>
+<p>The <code>sample</code> function will be a fundamental tool for taking many kinds of samples, and we cover it in more detail in <a href="sampling_tools.html" class="quarto-xref"><span>Chapter&nbsp;7</span></a>.</p>
 </div>
 </div>
 <div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-38_aafb38038663f2c43b50d63a35e6d0e4">
@@ -812,7 +812,7 @@ More on <code>sample</code>
 <p>In the code above, we asked R to select a single number at random — by sending 1 as the second argument to the function.</p>
 <p>As you can imagine, we can tell <code>sample</code> to select <em>any number of values</em> at random, by changing the second argument to the function.</p>
 <p>In our case, we would like R to select 17 numbers at random from the sequence of <code>some_integers</code>.</p>
-<p>But — there is a complication here. By default, <code>sample</code> selects numbers from the first argument <em>without replacement</em>, meaning that, by default, sample cannot select the same number twice, and in our case, where we want 17 numbers, that is bad, because <code>sample</code> is going to run out of numbers. To get the result we want, we must also add an extra argument: <code>replace=TRUE</code>. <code>replace=TRUE</code> tells R to sample <code>some_integers</code> <em>with replacement</em>, where <code>sample</code> can select the same number more than once in the same sample. Sampling with and without replacement is a fundamental distinction in probability and statistics. <a href="sampling_tools.html" class="quarto-xref"><span>Chapter&nbsp;6</span></a> goes into much more detail about this, but for now, please take our word for it that using <code>replace=TRUE</code> for <code>sample</code> gives us the same effect as rolling several 10-sided dice.</p>
+<p>But — there is a complication here. By default, <code>sample</code> selects numbers from the first argument <em>without replacement</em>, meaning that, by default, sample cannot select the same number twice, and in our case, where we want 17 numbers, that is bad, because <code>sample</code> is going to run out of numbers. To get the result we want, we must also add an extra argument: <code>replace=TRUE</code>. <code>replace=TRUE</code> tells R to sample <code>some_integers</code> <em>with replacement</em>, where <code>sample</code> can select the same number more than once in the same sample. Sampling with and without replacement is a fundamental distinction in probability and statistics. <a href="sampling_tools.html" class="quarto-xref"><span>Chapter&nbsp;7</span></a> goes into much more detail about this, but for now, please take our word for it that using <code>replace=TRUE</code> for <code>sample</code> gives us the same effect as rolling several 10-sided dice.</p>
 </div>
 <div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-42_44923745add7db097cab67c60fbed265">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get 17 values from the *some_integers* vector.</span></span>
@@ -1343,8 +1343,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./sampling_tools.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tools for samples and sampling</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./resampling_with_code2.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">More resampling with code</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

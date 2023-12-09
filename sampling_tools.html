@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Resampling statistics - 6&nbsp; Tools for samples and sampling</title>
+<title>Resampling statistics - 7&nbsp; Tools for samples and sampling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./resampling_with_code2.html" rel="next">
-<link href="./resampling_with_code.html" rel="prev">
+<link href="./probability_theory_1a.html" rel="next">
+<link href="./resampling_with_code2.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sampling_tools.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tools for samples and sampling</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sampling_tools.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tools for samples and sampling</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -192,14 +192,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sampling_tools.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tools for samples and sampling</span></span></a>
+  <a href="./resampling_with_code2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">More resampling with code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./resampling_with_code2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">More resampling with code</span></span></a>
+  <a href="./sampling_tools.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tools for samples and sampling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -380,8 +380,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">6.1</span> Introduction</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6.7</span> Conclusion</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7.1</span> Introduction</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7.7</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -390,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-sampling-tools" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tools for samples and sampling</span></span></h1>
+<h1 class="title"><span id="sec-sampling-tools" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tools for samples and sampling</span></span></h1>
 </div>
 
 
@@ -405,8 +405,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="introduction" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">6.1</span> Introduction</h2>
+<section id="introduction" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
 <p>Now you have some experience with R, probabilities and resampling, it is time to introduce some useful tools for our experiments and programs.</p>
 <div class="notebook" name="sampling_tools" title="Sampling tools">
 <p>Start of <code>sampling_tools</code> notebook</p>
@@ -415,10 +415,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a class="interact-button" href="https://mybinder.org/v2/gh/resampling-stats/resampling-with/gh-pages?filepath=r-book/notebooks/sampling_tools.Rmd">Interact</a>
 </div>
 
-<section id="samples-and-labels" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="samples-and-labels"><span class="header-section-number">6.2</span> Samples and labels</h2>
-<p>Thus far we have used numbers such as 1 and 0 and 10 to represent the elements we are sampling from. For example, in <a href="resampling_with_code2.html" class="quarto-xref"><span>Chapter&nbsp;7</span></a>, we were simulating the chance of a particular juror being black, given that 26% of the eligible jurors in the county were black. We used <em>integers</em> for that task, where we started with all the integers from 0 through 99, and asked R to select values at random from those integers. When R selected an integer from 0 through 25, we chose to label the resulting simulated juror as black — there are 26 integers in the range 0 through 25, so there is a 26% chance that any one integer will be in that range. If the integer was from 26 through 99, the simulated juror was white (there are 74 integers in the range 26 through 99).</p>
-<p>Here is the process of simulating a single juror, adapted from <a href="resampling_with_code2.html#sec-random-zero-through-ninety-nine" class="quarto-xref"><span>Section&nbsp;7.3.3</span></a>:</p>
+<section id="samples-and-labels" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="samples-and-labels"><span class="header-section-number">7.2</span> Samples and labels</h2>
+<p>Thus far we have used numbers such as 1 and 0 and 10 to represent the elements we are sampling from. For example, in <a href="resampling_with_code2.html" class="quarto-xref"><span>Chapter&nbsp;6</span></a>, we were simulating the chance of a particular juror being black, given that 26% of the eligible jurors in the county were black. We used <em>integers</em> for that task, where we started with all the integers from 0 through 99, and asked R to select values at random from those integers. When R selected an integer from 0 through 25, we chose to label the resulting simulated juror as black — there are 26 integers in the range 0 through 25, so there is a 26% chance that any one integer will be in that range. If the integer was from 26 through 99, the simulated juror was white (there are 74 integers in the range 26 through 99).</p>
+<p>Here is the process of simulating a single juror, adapted from <a href="resampling_with_code2.html#sec-random-zero-through-ninety-nine" class="quarto-xref"><span>Section&nbsp;6.3.3</span></a>:</p>
 <div class="cell" data-layout-align="center" data-hash="sampling_tools_cache/html/unnamed-chunk-2_d7526959a328649b6f09b21e7237258e">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get 1 random number from 0 through 99</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># replace=TRUE is redundant here (why?), but we leave it for consistency.</span></span>
@@ -441,8 +441,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This all works as we want it to, but it’s just a little bit difficult to remember the coding (less than 26 means “black”, greater than 25 means “white”). We had to use that coding because we committed ourselves to using random numbers to simulate the outcomes.</p>
 <p>However, R can also store bits of text, called <em>strings</em>. Values that are bits of text can be very useful because the text values can be memorable labels for the entities we are sampling from, in our simulations.</p>
 </section>
-<section id="sec-intro-to-strings" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="sec-intro-to-strings"><span class="header-section-number">6.3</span> String values</h2>
+<section id="sec-intro-to-strings" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="sec-intro-to-strings"><span class="header-section-number">7.3</span> String values</h2>
 <p>So far, all the values you have seen in R vectors have been numbers. Now we get on to values that are bits of text. These are called <em>strings</em>.</p>
 <p>Here is a single R string value:</p>
 <div class="cell" data-layout-align="center" data-hash="sampling_tools_cache/html/unnamed-chunk-21_30870f5994e1bdd4445111c8f9ffc694">
@@ -494,8 +494,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="strings-in-s" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="strings-in-s"><span class="header-section-number">6.4</span> Strings in vectors</h2>
+<section id="strings-in-s" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="strings-in-s"><span class="header-section-number">7.4</span> Strings in vectors</h2>
 <p>As we can store numbers as elements in vectors, we can also store strings as vector elements.</p>
 <div class="cell" data-layout-align="center" data-hash="sampling_tools_cache/html/unnamed-chunk-31_b19e884c8a0263f958ea36fdd4d2427c">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>vector_of_strings <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'Julian'</span>, <span class="st">'Lincoln'</span>, <span class="st">'Simon'</span>)</span>
@@ -521,8 +521,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="sec-repeating" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="sec-repeating"><span class="header-section-number">6.5</span> Repeating elements</h2>
+<section id="sec-repeating" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="sec-repeating"><span class="header-section-number">7.5</span> Repeating elements</h2>
 <p>Now let us go back to the problem of selecting black and white jurors.</p>
 <p>We started with the strategy of using numbers 0 through 25 to mean “black” jurors, and 26 through 99 to mean “white” jurors. We selected values at random from 0 through 99, and then worked out whether the number meant a “black” juror (was less than 26) or a “white” juror (was greater than 25).</p>
 <p>It would be good to use strings instead of numbers to identify the potential jurors. Then we would not have to remember our coding of 0 through 25 and 26 through 99.</p>
@@ -633,11 +633,11 @@ Using the <code>size</code> argument to <code>sample</code>
 </div>
 </div>
 </section>
-<section id="resampling-with-and-without-replacement" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="resampling-with-and-without-replacement"><span class="header-section-number">6.6</span> Resampling with and without replacement</h2>
-<p>Now let us return to the details of Robert Swain’s case, that you first saw in <a href="resampling_with_code2.html" class="quarto-xref"><span>Chapter&nbsp;7</span></a>.</p>
+<section id="resampling-with-and-without-replacement" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="resampling-with-and-without-replacement"><span class="header-section-number">7.6</span> Resampling with and without replacement</h2>
+<p>Now let us return to the details of Robert Swain’s case, that you first saw in <a href="resampling_with_code2.html" class="quarto-xref"><span>Chapter&nbsp;6</span></a>.</p>
 <p>We looked at the composition of Robert Swain’s 12-person jury — but in fact, by law, that does not have to be representative of the eligible jurors. The 12-person jury is drawn from a jury <em>panel</em>, of 100 people, and this should, in turn, be drawn from the population of all eligible jurors in the county, consisting, at the time, of “all male citizens in the community over 21 who are reputed to be honest, intelligent men and are esteemed for their integrity, good character and sound judgment.” So, unless there was some bias against black jurors, we might expect the 100-person jury panel to be a plausibly random sample of the eligible jurors, of whom 26% were black. See <a href="https://supreme.justia.com/cases/federal/us/380/202">the Supreme Court case judgement</a> for details.</p>
-<p>In fact, in Robert Swain’s trial, there were 8 black members in the 100-person jury panel. We will leave it to you to adapt the simulation from <a href="resampling_with_code2.html" class="quarto-xref"><span>Chapter&nbsp;7</span></a> to ask the question — is 8% surprising as a random sample from a population with 26% black people?</p>
+<p>In fact, in Robert Swain’s trial, there were 8 black members in the 100-person jury panel. We will leave it to you to adapt the simulation from <a href="resampling_with_code2.html" class="quarto-xref"><span>Chapter&nbsp;6</span></a> to ask the question — is 8% surprising as a random sample from a population with 26% black people?</p>
 <p>But we have a different question: given that 8 out of 100 of the jury panel were black, is it surprising that none of the 12-person jury were black? As usual, we can answer that question with simulation.</p>
 <p>Let’s think about what a single simulated jury selection would look like.</p>
 <p>First we compile a representation of the actual jury panel, using the tools we have used above.</p>
@@ -759,13 +759,13 @@ With or without replacement for the original jury selection
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You may have noticed in <a href="resampling_with_code2.html" class="quarto-xref"><span>Chapter&nbsp;7</span></a> that we were sampling Robert Swain’s jury from the eligible pool of jurors, <em>with replacement</em>. You might reasonably ask whether we should have selected from the eligible jurors <em>without replacement</em>, given that the same juror cannot serve more than once in the same jury, and therefore, the same argument applies there as here.</p>
+<p>You may have noticed in <a href="resampling_with_code2.html" class="quarto-xref"><span>Chapter&nbsp;6</span></a> that we were sampling Robert Swain’s jury from the eligible pool of jurors, <em>with replacement</em>. You might reasonably ask whether we should have selected from the eligible jurors <em>without replacement</em>, given that the same juror cannot serve more than once in the same jury, and therefore, the same argument applies there as here.</p>
 <p>The trick there was that we were selecting from a very large pool of many thousand eligible jurors, of whom 26% were black. Let’s say there were 10,000 eligible jurors, of whom 2,600 were black. When selecting the first juror, there is exactly a 2,600 in 10,000 chance of getting a black juror — 26%. If we do get a black juror first, then the chance that the second juror will be black has changed slightly, 2,599 in 9,999. But these changes are very small; even if we select eleven black jurors out of eleven, when we come to the twelfth juror, we still have a 2,589 out of 9,989 chance of getting another black juror, and that works out at a 25.92% chance — hardly changed from the original 26%. So yes, you’d be right, we really should have compiled our population of 2,600 black jurors and 7,400 white jurors, and then sampled without replacement from that population, but as the resulting sample probabilities will be very similar to the simpler sampling with replacement, we chose to try and slide that one quietly past you, in the hope you would forgive us when you realized.</p>
 </div>
 </div>
 </section>
-<section id="conclusion" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6.7</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">7.7</span> Conclusion</h2>
 <p>This chapter introduced you to the idea of strings — values in R that store bits of text. Strings are very useful as labels for the entities we are sampling from, when we do our simulations. Strings are particularly useful when we use them with vectors, and one way we often do that is to build up vectors of strings to sample from, using the <span class="r"><code>rep</code></span> function.</p>
 <p>There is a fundamental distinction between two different types of sampling — sampling <em>with replacement</em>, where we draw an element from a larger pool, then put that element back before drawing again, and sampling <em>without replacement</em>, where we remove the element from the remaining pool when we draw it into the sample. As we will see later, it is often a judgment call which of these two types of sampling is a more reasonable model of the world you are trying to simulate.</p>
 
@@ -1008,13 +1008,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./resampling_with_code.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Resampling with code</span></span>
+      <a href="./resampling_with_code2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">More resampling with code</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./resampling_with_code2.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">More resampling with code</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./probability_theory_1a.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability Theory, Part 1</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

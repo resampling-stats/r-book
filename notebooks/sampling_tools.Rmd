@@ -1,7 +1,7 @@
 # Sampling tools
 
 
-## 6.2 Samples and labels
+## 7.2 Samples and labels
 
 Thus far we have used numbers such as 1 and 0 and 10 to represent the
 elements we are sampling from. For example, in
@@ -48,7 +48,7 @@ are bits of text can be very useful because the text values can be
 memorable labels for the entities we are sampling from, in our
 simulations.
 
-## 6.3 String values
+## 7.3 String values
 
 So far, all the values you have seen in R vectors have been numbers. Now
 we get on to values that are bits of text. These are called *strings*.
@@ -104,7 +104,7 @@ second_char <- substring(s, 2, 2)
 second_char
 ```
 
-## 6.4 Strings in vectors
+## 7.4 Strings in vectors
 
 As we can store numbers as elements in vectors, we can also store
 strings as vector elements.
@@ -131,7 +131,7 @@ operator, that asks whether the two strings are equal:
 middle_name == 'Lincoln'
 ```
 
-## 6.5 Repeating elements
+## 7.5 Repeating elements
 
 Now let us go back to the problem of selecting black and white jurors.
 
@@ -264,7 +264,7 @@ n_black = sum(sample(jury_pool, size=12, replace=TRUE) == 'black')
 n_black
 ```
 
-## 6.6 Resampling with and without replacement
+## 7.6 Resampling with and without replacement
 
 Now let us return to the details of Robert Swain’s case, that you first
 saw in <a href="#sec-resampling-two" class="quarto-xref"><span
