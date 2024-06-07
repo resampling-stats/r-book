@@ -455,14 +455,14 @@ div.csl-indent {
 <p><strong>Where the Benchmark Universe Mean (in this case, the Proportion) is Known, is the Mean (Proportion) of the Population Affected by the Treatment?)</strong></p>
 <p>You think you have developed a technique for irradiating the genes of fruit flies so that the sex ratio of the offspring will <em>not</em> be half males and half females. In the first twenty cases you treat, there are fourteen males and six females. Does this experimental result confirm that the irradiation does work?</p>
 <p>First convert the scientific question — whether or not the treatment affects the sex distribution — into a probability-statistical question: Is the observed sample likely to have come from a benchmark universe in which the sex ratio is one male to one female? The benchmark (null) hypothesis, then, is that the treatment makes no difference and the sample comes from the one-male-to-one-female universe. Therefore, we investigate <em>how likely a one-to-one universe is to produce a distribution of fourteen or more of just one sex</em>.</p>
-<p>A coin has a one-to-one (one out of two) chance of coming up tails. Therefore, we might flip a coin in groups of twenty flips, and count the number of heads in each twenty flips. Or we can use a random number table. The following steps will produce a sound estimate:</p>
+<p>A coin has a one-to-one (one out of two) chance of coming up tails. Therefore, we might flip a coin in groups of twenty flips, and count the number of tails in each twenty flips. Or we can use a random number table. The following steps will produce a sound estimate:</p>
 <ul>
-<li><strong>Step 1.</strong> Let heads = male, tails = female.</li>
+<li><strong>Step 1.</strong> Let tails = male, heads = female.</li>
 <li><strong>Step 2.</strong> Flip twenty coins and count the number of males. If 14 or more males occur, record “yes.” Also, if 6 or fewer males occur, record “yes” because this means we have gotten 14 or more females. Otherwise, record “no.”</li>
 <li><strong>Step 3.</strong> Repeat step 2 perhaps 100 times.</li>
 <li><strong>Step 4.</strong> Calculate the proportion “yes” in the 100 trials. This proportion estimates the probability that a fruit-fly population with a propensity to produce 50 percent males will by chance produce as many as 14 or as few as 6 males in a sample of 20 flies.</li>
 </ul>
-<div class="cell" data-layout-align="center" data-hash="testing_counts_1_cache/html/unnamed-chunk-1_04386a6f829db8ab013a7353a30d6a64">
+<div class="cell" data-layout-align="center" data-hash="testing_counts_1_cache/html/unnamed-chunk-1_cd46a8a22952ebd5cfe6b71b06e92e38">
 <div class="cell-output-display">
 <div id="tbl-fruitfly-trials" class="anchored">
 <table class="lightable-paper lightable-striped lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
@@ -470,34 +470,34 @@ div.csl-indent {
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">Trial no</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th"># of heads</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">&gt;=14 or &lt;= 6</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"># of tails</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">&gt;=14 or &lt;=6</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: right;">12</td>
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: right;">12</td>
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">3</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">8</td>
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">4</td>
-<td style="text-align: right;">9</td>
+<td style="text-align: right;">11</td>
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">5</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">8</td>
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="even">
@@ -507,17 +507,17 @@ div.csl-indent {
 </tr>
 <tr class="odd">
 <td style="text-align: right;">7</td>
-<td style="text-align: right;">9</td>
+<td style="text-align: right;">11</td>
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">8</td>
-<td style="text-align: right;">14</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;">Yes</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">9</td>
-<td style="text-align: right;">14</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;">Yes</td>
 </tr>
 <tr class="even">
@@ -527,37 +527,37 @@ div.csl-indent {
 </tr>
 <tr class="odd">
 <td style="text-align: right;">11</td>
-<td style="text-align: right;">9</td>
+<td style="text-align: right;">11</td>
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: right;">12</td>
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">13</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">Yes</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">15</td>
 <td style="text-align: right;">7</td>
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
 <td style="text-align: right;">16</td>
-<td style="text-align: right;">11</td>
+<td style="text-align: right;">9</td>
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">17</td>
-<td style="text-align: right;">11</td>
+<td style="text-align: right;">9</td>
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="even">
@@ -572,32 +572,32 @@ div.csl-indent {
 </tr>
 <tr class="even">
 <td style="text-align: right;">20</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">21</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">22</td>
 <td style="text-align: right;">9</td>
 <td style="text-align: left;">No</td>
 </tr>
 <tr class="odd">
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
 <td style="text-align: right;">23</td>
-<td style="text-align: right;">16</td>
+<td style="text-align: right;">4</td>
 <td style="text-align: left;">Yes</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">24</td>
-<td style="text-align: right;">4</td>
+<td style="text-align: right;">16</td>
 <td style="text-align: left;">Yes</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">25</td>
-<td style="text-align: right;">13</td>
+<td style="text-align: right;">7</td>
 <td style="text-align: left;">No</td>
 </tr>
 </tbody>
@@ -607,8 +607,8 @@ div.csl-indent {
 
 </div>
 </div>
-<p><a href="#tbl-fruitfly-trials" class="quarto-xref">Table&nbsp;<span>21.1</span></a> shows the results obtained in twenty-five trials of twenty flips each. In three of the twenty-five trials (12 percent) there were fourteen or more heads, which we call “males,” and in two of the twenty-five trials (8 percent) there six or fewer heads, meaning there were fourteen or more tails (“females”). We can therefore estimate that, even if the treatment does <em>not</em> affect the sex and the births over a long period really are one to one, five out of twenty-five times (20 percent) we would get fourteen or more of one sex or the other. Therefore, finding fourteen males out of twenty births is not overwhelming evidence that the treatment has any effect, even though the result is suggestive.</p>
-<p>How accurate is the estimate? Seventy-five more trials were made, and of the 100 trials eight contained fourteen or more “males” (8 percent), and 9 trials contained fourteen or more “females” (9 percent), a total of 17 percent. So the first twenty-five trials gave a fairly reliable indication. As a matter of fact, analytically-based computation (not explained here) shows that the probability of getting fourteen or more females out of twenty births is .057 and, of course, the same for fourteen or more males from a one-to-one universe, implying a total probability of .114 of getting fourteen or more males <em>or</em> females.</p>
+<p><a href="#tbl-fruitfly-trials" class="quarto-xref">Table&nbsp;<span>21.1</span></a> shows the results obtained in 25 trials of twenty flips each. In two of the twenty-five trials (8 percent) there were fourteen or more tails, which we call “males,” and in three of the 25 trials (12 percent) there six or fewer tails, meaning there were fourteen or more heads (“females”). We can therefore estimate that, even if the treatment does <em>not</em> affect the sex and the births over a long period really are one to one, five out of twenty-five times (20 percent) we would get fourteen or more of one sex or the other. Therefore, finding fourteen males out of 20 births is not overwhelming evidence that the treatment has any effect, even though the result is suggestive.</p>
+<p>How accurate is the estimate? Seventy-five more trials were made, and of the 100 trials nine contained fourteen or more “males” (9 percent), and 8 trials contained fourteen or more “females” (8 percent), a total of 17 percent. So the first twenty-five trials gave a fairly reliable indication. As a matter of fact, analytically-based computation (not explained here) shows that the probability of getting fourteen or more females out of twenty births is .057 and, of course, the same for fourteen or more males from a one-to-one universe, implying a total probability of .114 of getting fourteen or more males <em>or</em> females.</p>
 <p>Now let us obtain larger and more accurate simulation samples with the computer. The key step in the R notebook below represents male fruit flies with the string <code>'male'</code> and female fruit flies with the string <code>'female'</code>. The <span class="r"><code>sample</code></span> function is then used to generate 20 of these strings with an equal probability that either string is selected. This simulates randomly choosing 20 fruit flies on the benchmark assumption — the “null hypothesis” — that each fruit fly has an equal chance of being a male or female. Now we want to discover the chances of getting more than 13 (i.e., 14 or more) males or more than 13 females under these conditions. So we use <span class="r"><code>sum</code></span> to count the number of males in each random sample and then store this value in the <code>scores</code> vector of this number for each sample. We repeat these steps 10,000 times.</p>
 <p>After ten thousand samples have been drawn, we count (<code>sum</code>) how often there were more than 13 males and then count the number of times there were fewer than 7 males (because if there were fewer than 7 males there must have been more than 13 females). When we add the two results together we have the probability that the results obtained from the sample of irradiated fruit flies would be obtained from a random sample of fruit flies.</p>
 <div class="notebook" name="fruit_fly" title="Fruit fly simulation">
@@ -618,7 +618,7 @@ div.csl-indent {
 <a class="interact-button" href="https://mybinder.org/v2/gh/resampling-stats/resampling-with/gh-pages?filepath=r-book/notebooks/fruit_fly.Rmd">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="testing_counts_1_cache/html/unnamed-chunk-5_1ee9cb45b02b9260016040b1d8b7de06">
+<div class="cell" data-layout-align="center" data-hash="testing_counts_1_cache/html/unnamed-chunk-5_fc1859fd6af4e9fa84d5979eb4393db1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the number of trials</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -628,23 +628,25 @@ div.csl-indent {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># An empty array to store the trials</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_trials)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Do 1000 trials</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Do 10000 trials</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_trials) {</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate 20 simulated fruit flies, where each has an equal chance of being</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># male or female</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'male'</span>, <span class="st">'female'</span>), <span class="at">size =</span> sample_size, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>),</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># count the number of males in the sample</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> <span class="fu">sum</span>(a <span class="sc">==</span> <span class="st">'male'</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># store the result of this trial</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    scores[i] <span class="ot">&lt;-</span> b</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Produce a histogram of the trial results</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>title_of_plot <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Number of males in"</span>, n_trials, <span class="st">" samples of </span><span class="sc">\n</span><span class="st">"</span>, sample_size, <span class="st">" simulated fruit flies"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(scores, <span class="at">xlab =</span> <span class="st">'Number of Males'</span>, <span class="at">main =</span> title_of_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'male'</span>, <span class="st">'female'</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">size=</span>sample_size,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># count the number of males in the sample</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> <span class="fu">sum</span>(a <span class="sc">==</span> <span class="st">'male'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># store the result of this trial</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    scores[i] <span class="ot">&lt;-</span> b</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Produce a histogram of the trial results</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>title_of_plot <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Number of males in"</span>, n_trials, <span class="st">" samples of </span><span class="sc">\n</span><span class="st">"</span>, sample_size, <span class="st">" simulated fruit flies"</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(scores, <span class="at">xlab=</span><span class="st">'Number of Males'</span>, <span class="at">main=</span>title_of_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -678,7 +680,7 @@ div.csl-indent {
 <!---
 End of notebook
 -->
-<p>Notice that the strength of the evidence for the effectiveness of the radiation treatment depends upon the original question: whether or not the treatment had <em>any</em> effect on the sex of the fruit fly, which is a two-tailed question. If there were reason to believe at the start that the treatment could increase <em>only</em> the number of <em>males</em> , then we would focus our attention on the result that in only three of the twenty-five trials were fourteen or more males. There would then be only a 3/25 = 0.12 probability of getting the observed results by chance if the treatment really has no effect, rather than the weaker odds against obtaining fourteen or more of <em>either</em> males or females.</p>
+<p>Notice that the strength of the evidence for the effectiveness of the radiation treatment depends upon the original question: whether or not the treatment had <em>any</em> effect on the sex of the fruit fly, which is a two-tailed question. If there were reason to believe at the start that the treatment could increase <em>only</em> the number of <em>males</em> , then we would focus our attention on the result that in only two of the twenty-five trials were fourteen or more males. There would then be only a 2/25 = 0.08 probability of getting the observed results by chance if the treatment really has no effect, rather than the weaker odds against obtaining fourteen or more of <em>either</em> males or females.</p>
 <p>Therefore, whether you decide to figure the odds of just fourteen or more males (what is called a “one-tail test”) or the odds for fourteen or more males <em>plus</em> fourteen or more females (a “two-tail test”), depends upon your advance knowledge of the subject. If you have no reason to believe that the treatment will have an effect <em>only</em> in the direction of creating more males and if you figure the odds for the one-tail test anyway, then you will be kidding yourself. Theory comes to bear here. If you have a strong hypothesis, deduced from a strong theory, that there will be more males, then you should figure one-tail odds, but if you have no such theory you should figure the weaker two-tail odds.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>In the case of the next problem concerning calves, we shall see that a one-tail test is appropriate because we have no interest in producing more male calves. Before leaving this example, let us review our intellectual strategy in handling the problem. First we observe a result (14 males in 20 flies) which differs from the proportion of the benchmark population (50 percent males). Because we have treated this sample with irradiation and observed a result that differs from the untreated benchmark-population’s mean, we speculate that the irradiation caused the sample to differ from the untreated population. We wish to check on whether this speculation is correct.</p>
 <p>When asking whether this speculation is correct, we are implicitly asking whether future irradiation would also produce a proportion of males higher than 50 percent. That is, we are implicitly asking whether irradiated flies would produce more samples with male proportions as high as 14/20 than would occur by chance in the absence of irradiation.</p>

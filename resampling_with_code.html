@@ -409,7 +409,10 @@ div.csl-indent {
   <li><a href="#sec-named-arguments" id="toc-sec-named-arguments" class="nav-link" data-scroll-target="#sec-named-arguments"><span class="header-section-number">5.8</span> Functions and named arguments</a></li>
   <li><a href="#sec-ranges" id="toc-sec-ranges" class="nav-link" data-scroll-target="#sec-ranges"><span class="header-section-number">5.9</span> Ranges</a></li>
   <li><a href="#sec-random-choice" id="toc-sec-random-choice" class="nav-link" data-scroll-target="#sec-random-choice"><span class="header-section-number">5.10</span> Choosing values at random</a></li>
-  <li><a href="#sec-sampling-arrays" id="toc-sec-sampling-arrays" class="nav-link" data-scroll-target="#sec-sampling-arrays"><span class="header-section-number">5.11</span> Sampling into vectors</a></li>
+  <li><a href="#sec-sampling-arrays" id="toc-sec-sampling-arrays" class="nav-link" data-scroll-target="#sec-sampling-arrays"><span class="header-section-number">5.11</span> Sampling into vectors</a>
+  <ul class="collapse">
+  <li><a href="#sum-adding-all-the-values" id="toc-sum-adding-all-the-values" class="nav-link" data-scroll-target="#sum-adding-all-the-values"><span class="header-section-number">5.11.1</span> <code>sum</code> — adding all the values</a></li>
+  </ul></li>
   <li><a href="#counting-results" id="toc-counting-results" class="nav-link" data-scroll-target="#counting-results"><span class="header-section-number">5.12</span> Counting results</a>
   <ul class="collapse">
   <li><a href="#comparison" id="toc-comparison" class="nav-link" data-scroll-target="#comparison"><span class="header-section-number">5.12.1</span> Comparison</a></li>
@@ -826,49 +829,62 @@ More on <code>sample</code>
 </div>
 </div>
 <p>As you can see, the function sent back (returned) 17 numbers. Because it is sending back more than one number, the thing it sends back is a vector, where the vector has 17 elements.</p>
+<section id="sum-adding-all-the-values" class="level3" data-number="5.11.1">
+<h3 data-number="5.11.1" class="anchored" data-anchor-id="sum-adding-all-the-values"><span class="header-section-number">5.11.1</span> <code>sum</code> — adding all the values</h3>
+<p>Bear with us for a short diversion. You will see why we made this diversion soon.</p>
+<p>R has a function <span class="r"><code>sum</code></span> that will add up all the numbers in a vector.</p>
+<p>You can see the contents of <code>a</code> above.</p>
+<p><span class="r"><code>sum</code></span> adds all the numbers in the vector together, to give the <em>sum</em> of the vector. The <em>sum</em> is just the result of adding the second element to the first, then adding third element to the result, and the fourth element to the result, and so on.</p>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-44_b7ce53a133eb60229d3f57f30973d36d">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 71</code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="counting-results" class="level2" data-number="5.12">
 <h2 data-number="5.12" class="anchored" data-anchor-id="counting-results"><span class="header-section-number">5.12</span> Counting results</h2>
-<p>We now have the code to do the equivalent of throwing 17 10-sided dice. This is the basis for one simulated trial in the world of Saint Hypothetical General.</p>
+<p>We now have the code to do the equivalent of throwing 17 ten-sided dice. This is the basis for one simulated trial in the world of Saint Hypothetical General.</p>
 <p>Our next job is to get the code to count the number of numbers that are not zero in the vector <code>a</code>. That will give us the number of patients who were cured in simulated trial.</p>
 <p>Another way of asking this question, is to ask how many elements in <code>a</code> are greater than zero.</p>
 <section id="comparison" class="level3" data-number="5.12.1">
 <h3 data-number="5.12.1" class="anchored" data-anchor-id="comparison"><span class="header-section-number">5.12.1</span> Comparison</h3>
 <p>To ask whether a number is greater than zero, we use <em>comparison</em>. Here is a <em>greater than zero</em> comparison on a single number:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-44_1e103d91b447b09e1ff48f9344deb8dc">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of n greater than 0?</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>n <span class="sc">&gt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-46_36c209c3257faf60c17c6ab92f8946f1">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of n greater than 0?</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>n <span class="sc">&gt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <p><code>&gt;</code> is a <em>comparison</em> — it <em>asks a question</em> about the numbers either side of it. In this case <code>&gt;</code> is asking the question “is the value of <code>n</code> (on the left hand side) greater than 0 (on the right hand side)?” The value of <code>n</code> is 5, so the question becomes, “is 5 greater than 0?” The answer is Yes, and R represents this Yes answer as the value <code>TRUE</code>.</p>
 <p>In contrast, the comparison below boils down to “is 0 greater than 0?”, to which the answer is No, and R represents this as <code>FALSE</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-46_6717762e3eb89ad757e5052890692aab">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of p greater than 0?</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>p <span class="sc">&gt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-48_a0f96b7add311d59983245a9f839fd0a">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of p greater than 0?</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>p <span class="sc">&gt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
 </div>
 <p>So far you have seen the results of comparison on a single number. Now say we do the same comparison on a vector. For example, say we ask the question “is the value of <code>a</code> greater than 0”? Remember, <code>a</code> is a vector containing 17 values. We are comparing 17 values to one value (0). What answer do you think R will give? You may want to think a little about this before you read on.</p>
 <p>As a reminder, here is the current value for <code>a</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-48_7c74047f50f38721f4b3dc5787c6d6ec">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the current value for "a"</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-50_8edc8f3c1a8c5980713124b6d1328392">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the current value for "a"</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 5 3 5 8 4 4 7 1 6 4 4 1 5 3 1 2 8</code></pre>
 </div>
 </div>
 <p>Now you have had some time to think, here is what happens:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-50_be65c0d0bea8d2199ac1cde6c8112041">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of "a" greater than 0?</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-52_28b4f4ffe1cf9fb496240d34b59574be">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of "a" greater than 0?</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 [16] TRUE TRUE</code></pre>
@@ -876,12 +892,12 @@ More on <code>sample</code>
 </div>
 <p>There are 17 values in <code>a</code>, so the comparison to 0 means there are 17 comparisons, and 17 answers. R therefore returns <em>a vector</em> of 17 elements, containing these 17 answers. The first answer is the answer to the question “is the value of the <em>first</em> element of <code>a</code> greater than 0”, and the second is the answer to “is the value of the <em>second</em> element of <code>a</code> greater than 0”.</p>
 <p>Let us store the result of this comparison to work on:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-52_963c6e8d83c3e6d366cf773e094ec1a4">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of "a" greater than 0?</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Store as another vector "q".</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> a <span class="sc">&gt;</span> <span class="dv">0</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of q</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-54_e9e450159e42ff6faf89f88e1e70096a">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of "a" greater than 0?</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Store as another vector "q".</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> a <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of q</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 [16] TRUE TRUE</code></pre>
@@ -892,42 +908,42 @@ More on <code>sample</code>
 <section id="sec-count-with-sum" class="level2" data-number="5.13">
 <h2 data-number="5.13" class="anchored" data-anchor-id="sec-count-with-sum"><span class="header-section-number">5.13</span> Counting <code>TRUE</code> values with <code>sum</code></h2>
 <p>Notice above that there is one <code>TRUE</code> element in <code>q</code> for every element in <code>a</code> that was greater than 0. It only remains to <em>count</em> the number of <code>TRUE</code> values in <code>q</code>, to get the count of patients in our simulated trial who were cured.</p>
-<p>We can use the R function <span class="r"><code>sum</code></span> to count the number of <code>TRUE</code> elements in a vector. As you can imagine, <span class="r"><code>sum</code></span> adds up all the elements in a vector, to give a single number. This will work as we want for the <code>q</code> vector, because R counts <code>FALSE</code> as equal to 0 and <code>TRUE</code> as equal to 1:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-55_b7372a711dc84ae93d4ce3df1c89da3b">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Question: is FALSE equal to 0?</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Answer - Yes! (TRUE)</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">==</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can use the R function <span class="r"><code>sum</code></span> to count the number of <code>TRUE</code> elements in a vector. As you can saw above, <span class="r"><code>sum</code></span> adds up all the elements in a vector, to give a single number. This will work as we want for the <code>q</code> vector, because R counts <code>FALSE</code> as equal to 0 and <code>TRUE</code> as equal to 1:</p>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-57_814851f2cb1f22e0bfaa915024814598">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Question: is FALSE equal to 0?</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Answer - Yes! (TRUE)</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">==</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-56_d3315c5904cc4b594aebeee8eb79ca99">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Question: is TRUE equal to 1?</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Answer - Yes! (TRUE)</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-58_f5031b0e73d1fdcbbc968205211aa1f3">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Question: is TRUE equal to 1?</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Answer - Yes! (TRUE)</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <p>Therefore, the function <code>sum</code>, when applied to a vector of <code>TRUE</code> and <code>FALSE</code> values, will count the number of <code>TRUE</code> values in the vector.</p>
 <p>To see this in action we can make a new vector of <code>TRUE</code> and <code>FALSE</code> values, and try using <span class="r"><code>sum</code></span> on the new array.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-58_40e6264a2ac52be9e01e1bbd14e2cdb9">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A vector containing three TRUE values and two FALSE values.</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>trues_and_falses <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the new vector.</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>trues_and_falses</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-60_0cb6dc42e30fe21bb97824ee657c5f3b">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A vector containing three TRUE values and two FALSE values.</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>trues_and_falses <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the new vector.</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>trues_and_falses</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE FALSE  TRUE  TRUE FALSE</code></pre>
 </div>
 </div>
 <p>The <code>sum</code> operation adds all the elements in the vector. Because <code>TRUE</code> counts as 1, and <code>FALSE</code> counts as 0, adding all the elements in <code>trues_and_falses</code> is the same as adding up the values 1 + 0 + 1 + 1 + 0, to give 3.</p>
 <p>We can apply the same operation on <code>q</code> to count the number of <code>TRUE</code> values.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-60_5df8ed3adf461c56a1737ab86c6d3a18">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of TRUE values in "q"</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the same as the number of values in "a" that are greater than 0.</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">sum</span>(q)</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-62_c6ab235a23dc837a79b2812a0902563e">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of TRUE values in "q"</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the same as the number of values in "a" that are greater than 0.</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">sum</span>(q)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 17</code></pre>
 </div>
@@ -936,18 +952,18 @@ More on <code>sample</code>
 <section id="the-procedure-for-one-simulated-trial" class="level2" data-number="5.14">
 <h2 data-number="5.14" class="anchored" data-anchor-id="the-procedure-for-one-simulated-trial"><span class="header-section-number">5.14</span> The procedure for one simulated trial</h2>
 <p>We now have the whole procedure for one simulated trial. We can put the whole procedure in one chunk:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-62_595836d3d2540f176b129efba54b1fd0">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Procedure for one simulated trial</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get 17 values from the *some_integers* vector.</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the 17 numbers with the name "a"</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">sample</span>(some_integers, <span class="dv">17</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of "a" greater than 0?</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> a <span class="sc">&gt;</span> <span class="dv">0</span></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of TRUE values in "q"</span></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">sum</span>(q)</span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of this simulated trial.</span></span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-64_8feb832e02d52d872a2e40cd59b4553f">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Procedure for one simulated trial</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get 17 values from the *some_integers* vector.</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the 17 numbers with the name "a"</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">sample</span>(some_integers, <span class="dv">17</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of "a" greater than 0?</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> a <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of TRUE values in "q"</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">sum</span>(q)</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of this simulated trial.</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 15</code></pre>
 </div>
@@ -959,10 +975,10 @@ More on <code>sample</code>
 <p>Please forgive us as we race ahead again, as we did in the last chapter. As in the last chapter, we will use a <em>results</em> vector called <code>z</code> to store the count for each trial. As in the last chapter, we will use a <code>for</code> loop to repeat the trial procedure many times. As in the last chapter, we will not explain the counts vector of the <code>for</code> loop in any detail, because we are going to cover those in the next chapter.</p>
 <p>Let us now imagine that we want to do 100 simulated trials at Saint Hypothetical General. This will give us 100 counts. We will want to store the count for each trial.</p>
 <p>To do this, we make a vector called <code>z</code> to hold the 100 counts. We have called the vector <code>z</code>, but we could have called it anything we liked, such as <code>counts</code> or <code>results</code> or <code>cecilia</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-64_b4363f2746650790892ca037da7f0057">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A vector to hold the 100 count values.</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Later, we will fill this in with real count values from simulated trials.</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-66_7683b522b4cb6a4fa97b82f3e45a43eb">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A vector to hold the 100 count values.</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Later, we will fill this in with real count values from simulated trials.</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next we use a <code>for</code> loop to <em>repeat the single trial procedure</em>.</p>
 <p>Notice that the single trial procedure, inside this <code>for</code> loop, is the same as the single trial procedure above — the only two differences are:</p>
@@ -971,27 +987,27 @@ More on <code>sample</code>
 <li>We are storing the count for each trial as we go.</li>
 </ul>
 <p>We will go into more detail on how this works in the next chapter.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-66_9b23b67acaa5c90df2b8783379f9bcce">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Procedure for 100 simulated trials.</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A vector to store the counts for each trial.</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">100</span>)</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat the trial procedure 100 times.</span></span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get 17 values from the *some_integers* vector.</span></span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the 17 numbers with the name "a"</span></span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> <span class="fu">sample</span>(some_integers, <span class="dv">17</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Is the value of "a" greater than 0?</span></span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>    q <span class="ot">&lt;-</span> a <span class="sc">&gt;</span> <span class="dv">0</span></span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Count the number of TRUE values in "q".</span></span>
-<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> <span class="fu">sum</span>(q)</span>
-<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the result at the next position in the "z" vector.</span></span>
-<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>    z[i] <span class="ot">=</span> b</span>
-<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Now go back and do the next trial until finished.</span></span>
-<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of all 100 trials.</span></span>
-<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-68_d5d2613c9f52fe7be86af7ab46d772eb">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Procedure for 100 simulated trials.</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A vector to store the counts for each trial.</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">100</span>)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat the trial procedure 100 times.</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get 17 values from the *some_integers* vector.</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the 17 numbers with the name "a"</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> <span class="fu">sample</span>(some_integers, <span class="dv">17</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Is the value of "a" greater than 0?</span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>    q <span class="ot">&lt;-</span> a <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Count the number of TRUE values in "q".</span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> <span class="fu">sum</span>(q)</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the result at the next position in the "z" vector.</span></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>    z[i] <span class="ot">=</span> b</span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Now go back and do the next trial until finished.</span></span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of all 100 trials.</span></span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] 14 15 12 17 13 17 16 16 14 16 16 15 17 14 17 13 16 15 16 15 13 14 17 17 15
  [26] 14 13 15 13 16 17 15 15 15 15 15 13 16 15 13 17 15 16 17 15 17 16 17 17 16
@@ -1001,11 +1017,11 @@ More on <code>sample</code>
 </div>
 <p>Finally, we need to count how many of the trials results we stored in <code>z</code> gave a “cured” count of 17.</p>
 <p>We can ask the question whether a single number is equal to 17 using the <em>double equals</em> comparison: <code>==</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-68_c9a2f278bc8de9f507621fa76b002a70">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="dv">17</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of s equal to 17?</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>s <span class="sc">==</span> <span class="dv">17</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-70_44fe5f2fbc031a15d03230b02ed890b3">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="dv">17</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of s equal to 17?</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>s <span class="sc">==</span> <span class="dv">17</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -1033,11 +1049,11 @@ More on <code>sample</code>
 </div>
 </div>
 <p>We can ask this question of <em>all 100 counts</em> by asking the question: is the vector <code>z</code> equal to 17, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-70_fe8f9132b90120ff3c7825e562db9986">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of z equal to 17?</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>were_cured <span class="ot">&lt;-</span> z <span class="sc">==</span> <span class="dv">17</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>were_cured</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-72_91bda6976704a16cb7bfb6bf8e9c22ed">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of z equal to 17?</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>were_cured <span class="ot">&lt;-</span> z <span class="sc">==</span> <span class="dv">17</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>were_cured</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
  [13]  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
@@ -1051,22 +1067,22 @@ More on <code>sample</code>
 </div>
 </div>
 <p>Finally we use <code>sum</code> to count the number of <code>TRUE</code> values in the <code>were_cured</code> vector, to give the number of trials where all 17 patients were cured.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-72_532b85f94c22767d8550a2f58cecfd8c">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of TRUE values in "were_cured"</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the same as the number of values in "z" that are equal to 17.</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>n_all_cured <span class="ot">&lt;-</span> <span class="fu">sum</span>(were_cured)</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>n_all_cured</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-74_688daa5aeb5b81bf7c892352b9c7afde">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of TRUE values in "were_cured"</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the same as the number of values in "z" that are equal to 17.</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>n_all_cured <span class="ot">&lt;-</span> <span class="fu">sum</span>(were_cured)</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>n_all_cured</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 18</code></pre>
 </div>
 </div>
 <p><code>n_all_cured</code> is the number of simulated trials for which all patients were cured. It only remains to get the proportion of trials for which this was true, and to do this, we divide by the number of trials.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-74_e2dc6f0a75f3c0add5b2b1818b4abedc">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportion of trials where all patients were cured.</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> n_all_cured <span class="sc">/</span> <span class="dv">100</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result</span></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-76_c385e9f8d3c10db5b01e343ab9d9241c">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportion of trials where all patients were cured.</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> n_all_cured <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.18</code></pre>
 </div>
