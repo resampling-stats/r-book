@@ -1,0 +1,66 @@
+# Bootstrap test of birthweight difference
+
+
+We run bootstrap resampling from pooled drug and control birthweights,
+to establish the null-world distribution of the mean difference in
+weights. Then we compare the observed difference in means to the
+null-world distribution to ask if the actual value is plausible in the
+null world.
+
+Proceed with the simulation:
+
+```{r}
+# Get treatment and control values from data file.
+birth_df <- read.csv('data/birthweights.csv')
+# Birthweidhts for Drug A participants.
+treat_df <- subset(birth_df, birth_df$Treatment == 'Drug A')
+# Birthweigts as vector.
+treat <- treat_df$Birthweight
+# Control birthweights.
+control_df <- subset(birth_df, birth_df$Treatment == 'Control')
+# Birthweigts as vector.
+control <- control_df$Birthweight
+
+# Actual difference.
+actual_diff <- mean(treat) - mean(control)
+# Show the actual difference.
+actual_diff
+```
+
+Proceed with the simulation:
+
+```{r}
+# Concatenate treatment and control vectors.
+both <- c(treat, control)
+
+# Number of trials.
+n_trials <- 10000
+
+# Make vector to store results for each trial.
+results <- numeric(n_trials)
+
+# Do 10000 simulations
+for (i in 1:n_trials) {
+    # Take a resample of 15 from all birth weights.
+    fake_treat <- sample(both, size=15, replace=TRUE)
+    # Take a second, similar resample.
+    fake_control <- sample(both, size=15, replace=TRUE)
+    # Find the means of the two resamples.
+    mt <- mean(fake_treat)
+    mc <- mean(fake_control)
+    # Find the difference between the means of the two resamples.
+    diff <- mt - mc
+    # Keep score of the result.
+    results[i] <- diff
+    # End the simulation experiment, go back and repeat
+}
+# Produce a histogram of the resample differences
+hist(results, breaks=25,
+    main='Null-world distribution of treatment/control difference',
+    xlab='Null-world mean treatment - mean control')
+# How often did resample differences exceed the observed difference of
+# .82?
+k <- sum(results >= actual_diff)
+kk <- k / n_trials
+message('Proportion null-world differences >= actual difference: ', kk)
+```

@@ -1,0 +1,98 @@
+# Permutation test of public and private liquor prices
+
+
+This notebook asks the question whether the difference in the means of
+private and government-specified prices of a particular whiskey could
+plausibly have come about as a result of random sampling. It uses a
+permutation method, where we use a shuffled version of all 42 values to
+comprise our null-world samples.
+
+```{r}
+# Load the data from a data file.
+prices_df <- read.csv('data/liquor_prices.csv')
+# Show this first six rows.
+head(prices_df)
+```
+
+Take all prices from the loaded data file, and convert into a vectors
+for each category.
+
+```{r}
+# Rows for private prices.
+priv_df <- subset(prices_df, prices_df['state_type'] == 'private')
+# Convert corresponding prices to vector.
+priv <- priv_df$price
+# Show the result.
+priv
+```
+
+```{r}
+# Rows for government prices.
+govt_df <- subset(prices_df, prices_df['state_type'] == 'government')
+# Convert corresponding prices to vector.
+govt = govt_df$price
+# Show the result.
+govt
+```
+
+Calculate actual difference:
+
+```{r}
+actual_diff <- mean(priv) - mean(govt)
+actual_diff
+```
+
+Concatenate the private and government values into one vector:
+
+```{r}
+# Join the two vectors of data into one vector.
+both <- c(priv, govt)
+both
+```
+
+Do simulation:
+
+```{r}
+n_trials <- 10000
+
+# Fake differences for each trial.
+results <- numeric(n_trials)
+
+# Repeat 10000 simulation trials
+for (i in 1:10000) {
+
+    # Shuffle 42 values to a random order.
+    shuffled = sample(both)
+
+    # Take first 26 shuffled values as fake private group
+    fake_priv = shuffled[1:26]
+
+    # Remaining values (from position 27 to end, 16 values)
+    # form the fake government group.
+    fake_govt = shuffled[27:42]
+
+    # Find the mean of the "private" group.
+    p <- mean(fake_priv)
+
+    # Mean of the "govt." group
+    g <- mean(fake_govt)
+
+    # Difference in the means
+    diff <- p - g
+
+    # Keep score of the trials
+    results[i] <- diff
+}
+
+# Graph of simulation results to compare with the observed result.
+fig_title <- paste('Average price difference (Actual difference = ',
+                   round(actual_diff * 100),
+                   'cents')
+hist(results, main=fig_title, xlab='Difference in average prices (cents)')
+
+# Number of trials where fake difference >= actual.
+k = sum(results >= actual_diff)
+kk = k / n_trials
+
+message('Proportion fake differences <= actual_difference: ', kk)
+```
