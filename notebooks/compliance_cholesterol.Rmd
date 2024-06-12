@@ -1,0 +1,49 @@
+# Testing association of compliance and cholesterol values
+
+
+We have 164 rows, each representing a person taking a medication. For
+each row (each person) we have a pair of measurements. The first is
+their percent compliance in taking their prescribed medication. The
+second is the decrease of their blood cholesterol. We want to see
+whether the observed association of these values is plausible on the
+null hypothesis — that there is no association.
+
+```{r}
+# Data as vectors.
+cholost_df <- read.csv('data/cholost.csv')
+x <- cholost_df$percent_compliance
+y <- cholost_df$cholesterol_decrease
+
+# Step 1 above
+actual_prod <- x * y
+# Note: actual_sum <- 439,141
+actual_sum <- sum(actual_prod)
+# Show the result.
+actual_sum
+```
+
+```{r}
+# Set the number of trials
+n_trials <- 10000
+
+# An empty array to store the trial results.
+results <- numeric(n_trials)
+
+# Do 10,000 experiments (step 4)
+for (i in 1:n_trials) {
+    # Step 2 above.
+    y_random <- sample(y)
+    # Step 3 above.
+    fake_prod <- x * y_random
+    fake_sum <- sum(fake_prod)
+    # Step 3 above
+    results[i] <- fake_sum
+    # Step 4 above
+}
+
+# Step 5 above
+k <- sum(results >= actual_sum)
+kk <- k / n_trials
+
+message('Proportion product sums >= observed: ', kk)
+```

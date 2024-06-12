@@ -1,0 +1,97 @@
+# Do Slugs hits and misses tend to cluster?
+
+
+We will draw 100 values at random with a 25% probability of a Hit, and
+75% probability of a miss. Treat these as a sequence of Hits and Misses
+from the null-world. Do these random draws cluster more or less than
+Slug’s own sequences of hits and misses?
+
+First let us work out how to calculate the number of clusters as defined
+above.
+
+This is Slug’s record:
+
+```{r}
+slug = c(
+    'X', 'X', 'X', 'X', 'X', 'X', 'H', 'X', 'X', 'H', 'X', 'H', 'H', 'X', 'X',
+    'X', 'X', 'X', 'X', 'X', 'X', 'H', 'X', 'X', 'X', 'X', 'X', 'H', 'X', 'X',
+    'X', 'X', 'H', 'H', 'X', 'X', 'X', 'X', 'X', 'H', 'X', 'X', 'H', 'X', 'H',
+    'X', 'X', 'X', 'H', 'H', 'X', 'X', 'X', 'X', 'X', 'H', 'X', 'H', 'X', 'X',
+    'X', 'X', 'H', 'H', 'X', 'H', 'H', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
+    'X', 'X', 'H', 'X', 'X', 'X', 'H', 'X', 'X', 'H', 'X', 'X', 'H', 'X', 'H',
+    'X', 'X', 'H', 'X', 'X', 'X', 'H', 'X', 'X', 'X'
+)
+```
+
+Here’s how we can calculate the number of runs:
+
+```{r}
+slug_runs <- 0
+current_element <- 'start-marker'  # Something that is always != to the elements.
+for (element in slug) {
+    if (element != current_element) {  # The previous cluster has finished.
+        slug_runs <- slug_runs + 1  # Record we are in a new cluster.
+        current_element <- element  # Give the starting element for the new cluster.
+    }
+}
+# Show the count.
+slug_runs
+```
+
+For practice, let us count the number of clusters in the random set of
+cards above:
+
+```{r}
+random_hand = c(
+    'X', 'X', 'H', 'X', 'X', 'X', 'X', 'H', 'H', 'X', 'X', 'X', 'H', 'H', 'H',
+    'X', 'X', 'X', 'X', 'X', 'H', 'X', 'X', 'X', 'H', 'X', 'X', 'H', 'X', 'X',
+    'X', 'X', 'H', 'X', 'H', 'H', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
+    'H', 'X', 'X', 'X', 'X', 'X', 'X', 'H', 'H', 'X', 'X', 'X', 'X', 'X', 'H',
+    'H', 'H', 'X', 'X', 'X', 'X', 'X', 'X', 'H', 'X', 'H', 'X', 'H', 'X', 'X',
+    'H', 'X', 'H', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'H', 'X', 'X',
+    'X', 'X', 'X', 'X', 'X', 'H', 'H', 'H', 'X', 'X'
+)
+random_runs <- 0
+current_element <- 'start-marker'  # Something that is always != to the elements.
+for (element in random_hand) {
+    if (element != current_element) {  # The previous cluster has finished.
+        random_runs <- random_runs + 1  # Record we are in a new cluster.
+        current_element <- element  # Give the starting element for the new cluster.
+    }
+}
+# Show the result.
+random_runs
+```
+
+We will use that code in the procedure below.
+
+```{r}
+# Set the number of trials.
+n_trials <- 10000
+
+# An empty array to store the trials.
+results <- numeric(n_trials)
+
+for (i in 1:n_trials) {
+    # Sample 100 "at-bats" with Slug's own probabilities.
+    hits_misses <- sample(c('H', 'X'), size=100, replace=TRUE, prob=c(0.25, 0.75))
+    # How many runs (of any length >=1) are there in the 100 at-bats?
+    fake_runs <- 0
+    current_element <- 'start-marker'  # Something always != to the elements.
+    for (element in hits_misses) {
+        if (element != current_element) {  # The previous cluster has finished.
+            fake_runs <- fake_runs + 1  # Record we are in a new cluster.
+            current_element <- element  # Give the starting element for the new cluster.
+        }
+    }
+    # Record the result.
+    results[i] <- fake_runs
+}
+
+hist(results, breaks=25,
+    main='Distribution of number of clusters in random hit/miss arrays',
+    xlab='Number of clusters')
+```
+
+Examining the histogram, we see that 43 runs is not at all an unusual
+occurrence.
