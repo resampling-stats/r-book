@@ -1,0 +1,13 @@
+# Homeruns and strikeout correlation
+
+
+Exercise on relationship of home runs and strikeouts.
+
+```{r}
+homeruns <- c(14, 20, 0, 38, 9, 38, 22, 31, 33,
+              11, 40, 5, 15, 32, 3, 29, 5, 32)
+strikeout <- c(135, 153, 120, 161, 138, 175, 126, 200, 205,
+               147, 165, 124, 169, 156, 36, 98, 82, 131)
+
+# Exercise - complete this program.
+```
