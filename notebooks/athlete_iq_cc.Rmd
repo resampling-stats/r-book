@@ -1,0 +1,47 @@
+# Association of athletic and IQ scores with $r$
+
+
+We use random pairings of the athletic and IQ scores to find the
+null-world distribution of the correlation coefficients of these scores.
+
+```{r}
+# Read the data file containing athletic and IQ scores.
+ath_iq_df <- read.csv('data/athletic_iq.csv')
+
+# Turn athletic and IQ scores into vectors.
+ath = ath_iq_df$athletic_score
+iq = ath_iq_df$iq_score
+
+# Calculate correlation coefficient.
+actual_r <- cor(ath, iq)
+
+# Set the number of trials for the null-world simulation.
+n_trials <- 10000
+
+# An empty array to store the trial results.
+results <- numeric(n_trials)
+
+# Do 10,000 experiments.
+for (i in 1:n_trials) {
+    # Shuffle the IQ scores so we can pair them against athletic scores.
+    shuffled <- sample(iq)
+    # Calculate the correlation coefficient.
+    fake_r <- cor(ath, shuffled)
+    # Keep track of the result in results array.
+    results[i] <- fake_r
+    # End one trial, go back and repeat until 10000 trials are complete.
+}
+
+# Obtain a histogram of the trial results.
+hist(results, breaks=25,
+    main='Random correlation coefficients',
+    xlab='Observed r values from random pairing')
+
+# Determine in how many trials the random r value was greater than
+# the observed r value.
+k <- sum(results >= actual_r)
+# Convert to a proportion.
+kk <- k / n_trials
+# Print the result.
+message('Proportion of random pairings giving r >= observed: ', kk)
+```

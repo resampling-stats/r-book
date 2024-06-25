@@ -1,0 +1,25 @@
+# Correlation coefficient for compliance and cholesterol
+
+
+Calculate correlation coefficient for compliance and cholesterol.
+
+```{r}
+df <- read.csv('data/cholost.csv')
+compliance <- df$percent_compliance
+cholesterol <- df$cholesterol_decrease
+
+# Compliance as standard scores.
+dev_compliance <- compliance - mean(compliance)  # Deviations.
+stdev_compliance <- sqrt(mean(dev_compliance ** 2))  # Standard deviation.
+std_compliance <- dev_compliance / stdev_compliance  # Standard scores.
+
+# Cholesterol as standard scores.
+dev_cholesterol <- cholesterol - mean(cholesterol)  # Deviations.
+stdev_cholesterol <- sqrt(mean(dev_cholesterol ** 2))  # Standard deviation.
+std_cholesterol <- dev_cholesterol / stdev_cholesterol  # Standard scores.
+
+# r value is mean of product for standardized scores.
+r <- mean(std_compliance * std_cholesterol)
+
+message('r for compliance / cholesterol is: ', round(r, 2))
+```

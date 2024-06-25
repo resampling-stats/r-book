@@ -1,4 +1,4 @@
-# Association of atheletic and IQ scores
+# Association of athletic and IQ scores
 
 
 We use random pairings of the athletic and IQ scores to find the
@@ -7,7 +7,7 @@ null-world distribution of the sum of the products of these scores.
 We load the file containing the data:
 
 ```{r}
-# Read the data file containing pig ration data.
+# Read the data file containing athletic and IQ scores.
 ath_iq_df <- read.csv('data/athletic_iq.csv')
 # Show the data frame.
 ath_iq_df

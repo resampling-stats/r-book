@@ -10,9 +10,13 @@ null hypothesis — that there is no association.
 
 ```{r}
 # Data as vectors.
-cholost_df <- read.csv('data/cholost.csv')
-x <- cholost_df$percent_compliance
-y <- cholost_df$cholesterol_decrease
+df <- read.csv('data/cholost.csv')
+compliance <- df$percent_compliance
+cholesterol <- df$cholesterol_decrease
+
+# Rename the two sequences to match the description in the text.
+x <- compliance
+y <- cholesterol
 
 # Step 1 above
 actual_prod <- x * y
