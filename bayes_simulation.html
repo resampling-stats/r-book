@@ -437,11 +437,11 @@ Draft page partially ported from original PDF
 <p>We wish to know the probability that if the mechanic <em>says</em> a car is “OK,” it <em>really</em> is faulty. Phrased differently, what is the probability of a car being faulty if the mechanic said it was OK?</p>
 <p>We can get the desired probabilities directly by simulation without knowing Bayes’ rule, as we shall see. But one must be able to model the physical problem correctly in order to proceed with the simulation; this requirement of a clearly visualized model is a strong point in favor of simulation.</p>
 <ol type="1">
-<li><p>Note that we are only interested in outcomes where the mechanic approved a car.</p></li>
-<li><p>For each car, generate a label of either “faulty” or “working” with probabilities of 0.3 and 0.7, respectively.</p></li>
-<li><p>For each <em>faulty car</em>, we generate one of two labels, “approved” or “not approved” with probabilities 0.1 and 0.9, respectively.</p></li>
-<li><p>For each <em>working car</em>, we generate one of two labels, “approved” or “not approved” with probabilities 0.7 and 0.3, respectively.</p></li>
-<li><p>Out of all cars “approved”, count how many are “faulty”. The ratio between these numbers is our answer.</p></li>
+<li>Note that we are only interested in outcomes where the mechanic approved a car.</li>
+<li>For each car, generate a label of either “faulty” or “working” with probabilities of 0.3 and 0.7, respectively.</li>
+<li>For each <em>faulty car</em>, we generate one of two labels, “approved” or “not approved” with probabilities 0.1 and 0.9, respectively.</li>
+<li>For each <em>working car</em>, we generate one of two labels, “approved” or “not approved” with probabilities 0.7 and 0.3, respectively.</li>
+<li>Out of all cars “approved”, count how many are “faulty”. The ratio between these numbers is our answer.</li>
 </ol>
 <p>Here is the whole thing:</p>
 <p>The answer looks to be somewhere between 5 and 6%. The code clearly follows the description step by step, but it is also quite slow. If we can improve the code, we may be able to do our simulation with more cars, and get a more accurate answer.</p>
@@ -530,10 +530,7 @@ P(B \text{ GIVEN THAT } R)
 <p><span class="math display">\[
 P(B | R)
 \]</span></p>
-<p>We read this as “the probability that the car is broken given that the car is red”. Such a probability is known as a <em>conditional probability</em>. We discuss these in more details in Ch TKTK.</p>
-<!---
-**TODO: ADD REFERENCE TO CONDITIONAL PROBABILITY**
--->
+<p>We read this as “the probability that the car is broken given that the car is red”. Such a probability is known as a <em>conditional probability</em>. We discuss these in more detail in <a href="probability_theory_1a.html#sec-cond-uncond" class="quarto-xref"><span>Section&nbsp;8.13</span></a>.</p>
 <p>In our original problem, we ask what the chance is of a car being broken given that a mechanic approved it. As discussed under “Ratios of proportions”, it can be calculated with:</p>
 <p><span class="math display">\[
 P(\text{car broken | mechanic approved})
