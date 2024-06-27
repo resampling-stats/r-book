@@ -1,0 +1,185 @@
+# A problem of black and brown mice
+
+
+Solve the Box and Tao problem of parental probabilities for black and
+brown mice. See the text for full explanation.
+
+```{r}
+n_trials <- 100000
+
+# Make a vector to store results for each trial.
+# The results are strings, so use "character" type.
+# Many of these we will not set, for example, for brown mice (see below).
+parents <- character(n_trials)
+
+for (i in 1:n_trials) {
+    test_mouse <- sample(c('BB', 'Bb', 'bb'),
+                         size=1,
+                         prob=c(0.25, 0.5, 0.25))
+
+    # The test mouse is black; since we drew a brown mouse skip this trial.
+    if (test_mouse == 'bb') {
+        # "mext" has the effect of aborting this iteration of the loop
+        # and going back to start the next iteration.  If the code gets
+        # to "next", none of the rest of the loop (within the curly brackets
+        # code  will run.
+        next
+    }
+
+    # If the test mouse is 'BB', all 7 children are guaranteed to
+    # be 'Bb' black.
+    # Therefore, add 'BB' to the parent list.
+    if (test_mouse == 'BB') {
+        parents[i] <- 'BB'
+    }
+
+    # If the parent mouse is 'Bb', we draw 7 children to
+    # see whether all of them are black ('Bb').
+    # The probabilities come from the middle row of the table.
+    if (test_mouse == 'Bb') {
+        children <- sample(c('Bb', 'bb'),
+                            size=7,
+                            replace=TRUE,
+                            prob=c(0.5, 0.5))
+        if (all(children == 'Bb')) {
+            parents[i] <- 'Bb'
+        }
+    }
+}
+
+# Now, count how many parents were 'BB' vs 'Bb'
+n_parents_BB <- sum(parents == 'BB')
+n_parents_Bb <- sum(parents == 'Bb')
+n_B <- n_parents_BB + n_parents_Bb
+
+p_BB <- n_parents_BB / n_B
+p_Bb <- n_parents_Bb / n_B
+
+message('p_BB = ', round(p_BB, 3))
+```
+
+```{r}
+message('p_Bb = ', round(p_Bb, 3))
+```
+
+```{r}
+message('Ratio = ', round(p_BB / p_Bb, 1))
+```
+
+We see that all the offspring being black considerably changes the
+situation! We started with the odds being 2:1 in favor of Bb vs BB. The
+“posterior” or “after the evidence” ratio is closer to 64:1 in favor of
+*BB*! (1973, pp. 12-14)
+
+Let’s tune the code a bit to run faster. Instead of doing the trials one
+mouse at a time, we will do the whole bunch together.
+
+To do this, we will use matrices.
+
+So far, we have used one-dimensional *vectors* in R. A vector is a
+sequence of values. Let us generate a vector with `sample`, as we have
+many times in this book, and in this chapter.
+
+```{r}
+# A vector with five elements.
+a_vector <- sample(c(1, 2), size=5, replace=TRUE)
+a_vector
+```
+
+However, we can also generate *matrices* in R. Matrices have two
+dimensions; it has rows and columns, much like a data frame. Here is a
+matrix we create with `sample`, by first making a vector, and then
+reshaping the vector into a matrix.
+
+```{r}
+# A vector with 15 values.
+another_vector <- sample(c(1, 2), size=15, replace=TRUE)
+# A matrix with five rows and three columns.
+a_matrix <- matrix(another_vector, ncol=3)
+a_matrix
+```
+
+As usual, we can apply Boolean comparison operations to this matrix, to
+get a Boolean matrix:
+
+```{r}
+is_2 <- a_matrix == 2
+is_2
+```
+
+R has functions to operate over rows and columns of a matrix. In
+particular, is has a function `rowSums` that gives the sum of values in
+the row (and therefore, the sum over the columns, for each row). For
+example, to see how many of the values in each row are equal to 2, we
+can do:
+
+```{r}
+n_2s_in_rows <- rowSums(is_2)
+n_2s_in_rows
+```
+
+Notice that we get one answer for each row, where the answer is the
+`sum` across the columns, for that row.
+
+```{r}
+n_trials <- 1000000
+
+# In n_trials trials, pair two Bb mice and generate a child.
+test_mice <- sample(c('BB', 'Bb', 'bb'),
+                    size=n_trials,
+                    replace=TRUE,
+                    prob=c(0.25, 0.5, 0.25))
+
+# The resulting test mouse is black, so filter out all brown ones.
+test_mice <- test_mice[test_mice != 'bb']
+n_test_mice <- length(test_mice)
+
+# Each test mouse will now be mated with a brown mouse, producing 7 offspring.
+# We then store whether all the offspring were black or not.
+all_offspring_black <- logical(n_test_mice)
+
+# If a test mouse is 'BB', we are assured that all its offspring
+# will be black.
+all_offspring_black[test_mice == 'BB'] <- TRUE
+
+# If a test mouse is 'Bb', we have to generate its offspring and
+# see whether they are all black or not
+test_mice_Bb <- (test_mice == 'Bb')
+n_test_mice_Bb <- sum(test_mice_Bb)
+
+# Generate all offspring of all 'Bb' test mice
+# This gives 7 children for each Bb mouse.
+offspring <- sample(c('Bb', 'bb'),
+                    size=n_test_mice_Bb * 7,
+                    replace=TRUE,
+                    prob=c(0.5, 0.5))
+# This gives a 2-dimensional matrix, with one row per Bb mouse,
+# and 7 columns, one for each child.
+offspring_mat = matrix(offspring, ncol=7)
+# Check whether all 7 children (columns) are Bb, for each row.
+all_offspring_black[test_mice_Bb] <- rowSums(offspring_mat == 'Bb') == 7
+
+# Find the genetic types of the parents of all-black offspring.
+parents <- test_mice[all_offspring_black]
+
+# Calculate what fraction of parents were 'BB' vs 'Bb'.
+parents_BB <- (parents == 'BB')
+parents_Bb <- (parents == 'Bb')
+n_B <- sum(all_offspring_black)
+
+p_BB <- sum(parents_BB) / n_B
+p_Bb <- sum(parents_Bb) / n_B
+
+message('p_BB = ', round(p_BB, 3))
+```
+
+```{r}
+message('p_Bb = ', round(p_Bb, 3))
+```
+
+```{r}
+message('Ratio = ', round(p_BB / p_Bb, 1))
+```
+
+This yields a similar result, but in much shorter time — which means we
+can increase the number of trials and get a more accurate result.

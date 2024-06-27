@@ -1,0 +1,72 @@
+# Bayesian analysis for insurance premium
+
+
+A mutual insurance company charges its members according to the risk of
+having an car accident. It is known that there are two classes of people
+— 80 percent of the population with good driving judgment and with a
+probability of .06 of having an accident each year, and 20 percent with
+poor judgment and a probability of .6 of having an accident each year.
+The company’s policy is to charge \$100 for each percent of risk, i. e.,
+a driver with a probability of .6 should pay 60\*\$100 = \$6000.
+
+If nothing is known of a driver except that they had an accident last
+year, what fee should they pay?
+
+Another way to phrase this question is: given that a driver had an
+accident last year, what is the probability of them having an accident
+overall?
+
+We will proceed as follows:
+
+1.  Generate a population of N people. Label each as `good driver` or
+    `poor driver`.
+2.  Simulate the last year for each person: did they have an accident or
+    not?
+3.  Select only the ones that had an accident last year.
+4.  Among those, calculate what their average risk is of making an
+    accident. This will indicate the appropriate insurance premium.
+
+```{r}
+n_trials <- 100000
+cost_per_percent <- 100
+
+people <- sample(
+    c('good driver', 'poor driver'),
+    size=n_trials,
+    replace=TRUE,
+    prob=c(0.8, 0.2)
+)
+
+good_driver <- (people == 'good driver')
+poor_driver <- !good_driver
+
+# Did they have an accident last year?
+had_accident <- logical(n_trials)
+had_accident[good_driver] <- sample(
+    c(TRUE, FALSE),
+    size=sum(good_driver),
+    replace=TRUE,
+    prob=c(0.06, 0.94)
+)
+had_accident[poor_driver] <- sample(
+    c(TRUE, FALSE),
+    size=sum(poor_driver),
+    replace=TRUE,
+    prob=c(0.6, 0.4)
+)
+
+ppl_with_accidents <- people[had_accident]
+n_good_driver_accidents <- sum(ppl_with_accidents == 'good driver')
+n_poor_driver_accidents <- sum(ppl_with_accidents == 'poor driver')
+n_all_with_accidents <- n_good_driver_accidents + n_poor_driver_accidents
+
+avg_risk_percent <- (n_good_driver_accidents * 0.06 +
+                     n_poor_driver_accidents * 0.6) /
+                     n_all_with_accidents * 100
+
+premium <- avg_risk_percent * cost_per_percent
+
+message('Premium is: ', round(premium))
+```
+
+The answer should be around 4450 USD.

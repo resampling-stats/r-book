@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -408,22 +442,6 @@ div.csl-indent {
 
 </header>
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Draft page partially ported from original PDF
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This page is an automated and partial import from the <a href="https://resample.com/content/text/29-Chap-25.pdf">original second-edition PDF</a>.</p>
-<p>We are in the process of updating this page for formatting, and porting any code from the original <a href="http://www.statistics101.net">RESAMPLING-STATS language</a> to Python and R.</p>
-<p>Feel free to read this version for the sense, but expect there to be multiple issues with formatting.</p>
-<p>We will remove this warning when the page has adequate formatting, and we have ported the code.</p>
-</div>
-</div>
 <blockquote class="blockquote">
 <p>This branch of mathematics [probability] is the only one, I believe, in which good writers frequently get results entirely erroneous. <span class="citation" data-cites="peirce1923chance">(<a href="references.html#ref-peirce1923chance" role="doc-biblioref">Peirce 1923</a>, Doctrine of Chances, II)</span></p>
 </blockquote>
@@ -443,10 +461,124 @@ Draft page partially ported from original PDF
 <li>For each <em>working car</em>, we generate one of two labels, “approved” or “not approved” with probabilities 0.7 and 0.3, respectively.</li>
 <li>Out of all cars “approved”, count how many are “faulty”. The ratio between these numbers is our answer.</li>
 </ol>
-<p>Here is the whole thing:</p>
+<p>Here is the whole simulation of the car / mechanic problem:</p>
+<div class="notebook" name="bayes_cars" title="Bayesian analysis of cars and mechanics">
+<p>Start of <code>bayes_cars</code> notebook</p>
+<div class="nb-links">
+<a class="notebook-link" href="notebooks/bayes_cars.Rmd">Download notebook</a>
+<a class="interact-button" href="https://mybinder.org/v2/gh/resampling-stats/resampling-with/gh-pages?filepath=r-book/notebooks/bayes_cars.Rmd">Interact</a>
+</div>
+
+<div class="cell" data-layout-align="center" data-hash="bayes_simulation_cache/html/unnamed-chunk-6_6182f1f80eaa160fb030c3cffee65a48">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">10000</span>  <span class="co"># number of cars</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Counters for number of approved, number of approved and faulty</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>approved <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>approved_and_faulty <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_trials) {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Decide whether the car is faulty or working, with a probability of</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 0.3 and 0.7 respectively</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    car <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'faulty'</span>, <span class="st">'working'</span>), <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.7</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (car <span class="sc">==</span> <span class="st">'faulty'</span>) {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># What the mechanic says of a faulty car</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        mechanic_says <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'approved'</span>, <span class="st">'not approved'</span>),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                                <span class="at">size=</span><span class="dv">1</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                                <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># What the mechanic says of a working car</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        mechanic_says <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'approved'</span>, <span class="st">'not approved'</span>),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                                <span class="at">size=</span><span class="dv">1</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                                <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>))</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (mechanic_says <span class="sc">==</span> <span class="st">'approved'</span>) {</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        approved <span class="ot">&lt;-</span>  approved <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (car <span class="sc">==</span> <span class="st">'faulty'</span>) {</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            approved_and_faulty <span class="ot">&lt;-</span> approved_and_faulty <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> approved_and_faulty <span class="sc">/</span> approved</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Proportion of faulty cars of cars approved: '</span>, <span class="fu">round</span>(k, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Proportion of faulty cars of cars approved: 0.06</code></pre>
+</div>
+</div>
 <p>The answer looks to be somewhere between 5 and 6%. The code clearly follows the description step by step, but it is also quite slow. If we can improve the code, we may be able to do our simulation with more cars, and get a more accurate answer.</p>
 <p>Let’s use arrays to store the states of all cars in the lot simultaneously:</p>
+<div class="cell" data-layout-align="center" data-hash="bayes_simulation_cache/html/unnamed-chunk-8_d484b9869bae8c9a1a97c851d0561a60">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of cars; we made this number larger by a factor of 100</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">1000000</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate an array with as many entries as there are cars, each</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># being either 'working' or 'faulty'.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># We are taking a sample _with_ replacement.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'working'</span>, <span class="st">'faulty'</span>),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">size=</span>n_trials,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Count how many cars are working</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>n_working <span class="ot">&lt;-</span> <span class="fu">sum</span>(cars <span class="sc">==</span> <span class="st">'working'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># All the rest are faulty</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>n_faulty <span class="ot">&lt;-</span> n_trials <span class="sc">-</span> n_working</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new vector in which to store what a mechanic says</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># about the car: 'approved' or 'not approved'. We use</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># "character" to tell R these are strings.</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>mechanic_says <span class="ot">&lt;-</span> <span class="fu">character</span>(n_trials)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># We start with the working cars; what does the mechanic say about them?</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate 'approved' or 'not approved' labels with the given probabilities.</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>mechanic_says[cars <span class="sc">==</span> <span class="st">'working'</span>] <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">'approved'</span>, <span class="st">'not approved'</span>),</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span>n_working,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Similarly, for each faulty car, generate 'approved'/'not approved'</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># labels with the given probabilities.</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>mechanic_says[cars <span class="sc">==</span> <span class="st">'faulty'</span>] <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">'approved'</span>, <span class="st">'not approved'</span>),</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span>n_faulty,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify all cars that were approved</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co"># This produces a binary mask, an array that looks like:</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co"># [True, False, False, True, ... ]</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>approved <span class="ot">&lt;-</span> (mechanic_says <span class="sc">==</span> <span class="st">'approved'</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify cars that are faulty AND were approved</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>faulty_but_approved <span class="ot">&lt;-</span> (cars <span class="sc">==</span> <span class="st">'faulty'</span>) <span class="sc">&amp;</span> approved</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of cars that are faulty but approved, as well as</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="co"># the total number of cars that were approved</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>n_faulty_but_approved <span class="ot">&lt;-</span> <span class="fu">sum</span>(faulty_but_approved)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>n_approved <span class="ot">&lt;-</span> <span class="fu">sum</span>(approved)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the ratio, which is the answer we seek</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> n_faulty_but_approved <span class="sc">/</span> n_approved</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Proportion of faulty cars of cars approved: '</span>, <span class="fu">round</span>(k, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Proportion of faulty cars of cars approved: 0.05</code></pre>
+</div>
+</div>
 <p>The code now runs much faster, and with a larger number of cars we see that the answer is closer to a 5% chance of a car being broken after it has been approved by a mechanic.</p>
+<p>End of <code>bayes_cars</code> notebook</p>
+</div>
+<!---
+End of notebook
+-->
 </section>
 <section id="calculation-without-simulation" class="level3" data-number="31.1.2">
 <h3 data-number="31.1.2" class="anchored" data-anchor-id="calculation-without-simulation"><span class="header-section-number">31.1.2</span> Calculation without simulation</h3>
@@ -533,8 +665,10 @@ P(B | R)
 <p>We read this as “the probability that the car is broken given that the car is red”. Such a probability is known as a <em>conditional probability</em>. We discuss these in more detail in <a href="probability_theory_1a.html#sec-cond-uncond" class="quarto-xref"><span>Section&nbsp;8.13</span></a>.</p>
 <p>In our original problem, we ask what the chance is of a car being broken given that a mechanic approved it. As discussed under “Ratios of proportions”, it can be calculated with:</p>
 <p><span class="math display">\[
-P(\text{car broken | mechanic approved})
-= P(\text{car broken and mechanic approved}) / P(\text{mechanic approved})
+\begin{align*}
+P(\text{car broken | mechanic approved}) = \\
+P(\text{car broken and mechanic approved}) / P(\text{mechanic approved})
+\end{align*}
 \]</span></p>
 <p>We have already used <span class="math inline">\(B\)</span> to mean “broken” (above), so let us use <span class="math inline">\(A\)</span> to mean “mechanic approved”. Then we can write the statement above in a more compact way:</p>
 <p><span class="math display">\[
@@ -555,8 +689,77 @@ P(B | A) = P(B \text{ and } A) / P(A)
 </ul>
 <p><img src="diagrams/covid-tree.png" class="img-fluid"></p>
 <p>Again, we start with our simulation.</p>
+<div class="notebook" name="bayes_covid" title="Bayesian analysis of Covid test result">
+<p>Start of <code>bayes_covid</code> notebook</p>
+<div class="nb-links">
+<a class="notebook-link" href="notebooks/bayes_covid.Rmd">Download notebook</a>
+<a class="interact-button" href="https://mybinder.org/v2/gh/resampling-stats/resampling-with/gh-pages?filepath=r-book/notebooks/bayes_covid.Rmd">Interact</a>
+</div>
+
+<div class="cell" data-layout-align="center" data-hash="bayes_simulation_cache/html/unnamed-chunk-10_66c4f132282c02dfc2319b401ceb7d80">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The number of people.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">1000000</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For each person, generate a True or False label,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># indicating that they have / don't have COVID.</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>person_has_covid <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span>n_trials,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.015</span>, <span class="fl">0.985</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the numbers of people with and without COVID.</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>n_with_covid <span class="ot">&lt;-</span> <span class="fu">sum</span>(person_has_covid)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>n_without_covid <span class="ot">&lt;-</span> n_trials <span class="sc">-</span> n_with_covid</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># In this array, we will store, for each person, whether they</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># had a positive or a negative test.</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>test_result <span class="ot">&lt;-</span> <span class="fu">logical</span>(n_trials)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw test results for people with COVID.</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>test_result[person_has_covid] <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span>n_with_covid,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.4</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw test results for people without COVID.</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co"># !person_has_covid` flips all Boolean values from FALSE to TRUE</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co"># and from TRUE to FALSE.</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>test_result[<span class="sc">!</span>person_has_covid] <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span>n_without_covid,</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.005</span>, <span class="fl">0.995</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the COVID statuses of all those with negative tests</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co"># (`test_result` is a Boolean mask, like `[TRUE, FALSE, FALSE, TRUE, ...]`,</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co"># and `!test_result` flips all Boolean values to `[FALSE, TRUE, TRUE, FALSE, ...]`.</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>covid_status_negative_test <span class="ot">&lt;-</span> person_has_covid[<span class="sc">!</span>test_result]</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, count how many with COVID had a negative test results.</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>n_with_covid_and_negative_test <span class="ot">&lt;-</span> <span class="fu">sum</span>(covid_status_negative_test)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="co"># And how many people, overall, had negative test results.</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>n_with_negative_test <span class="ot">&lt;-</span> <span class="fu">length</span>(covid_status_negative_test)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> n_with_covid_and_negative_test <span class="sc">/</span> n_with_negative_test</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Proportion with Covid of those with negative test: '</span>, <span class="fu">round</span>(k, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Proportion with Covid of those with negative test: 0.0061</code></pre>
+</div>
+</div>
 <p>This gives around 0.006 or 0.6%.</p>
-<p>Now that we have a rough indication of what the answer should be, let’s try and calculate it directly, based on the tree of informatiom shown earlier.</p>
+<p>End of <code>bayes_covid</code> notebook</p>
+</div>
+<!---
+End of notebook.
+-->
+<p>Now that we have a rough indication of what the answer should be, let’s try and calculate it directly, based on the tree of information shown earlier.</p>
 <p>We will use these abbreviations:</p>
 <ul>
 <li><span class="math inline">\(C^+\)</span> means Covid positive (you do actually have Covid).</li>
@@ -591,6 +794,13 @@ P(T^-) = P(T^- | C^-) * P(C^-) + P(T^- | C^+) * P(C^+)
 <section id="estimating-driving-risk-for-insurance-purposes" class="level3" data-number="31.2.4">
 <h3 data-number="31.2.4" class="anchored" data-anchor-id="estimating-driving-risk-for-insurance-purposes"><span class="header-section-number">31.2.4</span> Estimating Driving Risk for Insurance Purposes</h3>
 <p>Another sort of introductory problem, following after <span class="citation" data-cites="feller1968introduction">(<a href="references.html#ref-feller1968introduction" role="doc-biblioref">Feller 1968</a>, p 122)</span>:</p>
+<div class="notebook" name="bayes_accidents" title="Bayesian analysis for insurance premium">
+<p>Start of <code>bayes_accidents</code> notebook</p>
+<div class="nb-links">
+<a class="notebook-link" href="notebooks/bayes_accidents.Rmd">Download notebook</a>
+<a class="interact-button" href="https://mybinder.org/v2/gh/resampling-stats/resampling-with/gh-pages?filepath=r-book/notebooks/bayes_accidents.Rmd">Interact</a>
+</div>
+
 <p>A mutual insurance company charges its members according to the risk of having an car accident. It is known that there are two classes of people — 80 percent of the population with good driving judgment and with a probability of .06 of having an accident each year, and 20 percent with poor judgment and a probability of .6 of having an accident each year. The company’s policy is to charge $100 for each percent of risk, i. e., a driver with a probability of .6 should pay 60*$100 = $6000.</p>
 <p>If nothing is known of a driver except that they had an accident last year, what fee should they pay?</p>
 <p>Another way to phrase this question is: given that a driver had an accident last year, what is the probability of them having an accident overall?</p>
@@ -601,7 +811,57 @@ P(T^-) = P(T^- | C^-) * P(C^-) + P(T^- | C^+) * P(C^+)
 <li>Select only the ones that had an accident last year.</li>
 <li>Among those, calculate what their average risk is of making an accident. This will indicate the appropriate insurance premium.</li>
 </ol>
+<div class="cell" data-layout-align="center" data-hash="bayes_simulation_cache/html/unnamed-chunk-12_9a6cfa12acc070244208d19455212569">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>cost_per_percent <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>people <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">'good driver'</span>, <span class="st">'poor driver'</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span>n_trials,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>good_driver <span class="ot">&lt;-</span> (people <span class="sc">==</span> <span class="st">'good driver'</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>poor_driver <span class="ot">&lt;-</span> <span class="sc">!</span>good_driver</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Did they have an accident last year?</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>had_accident <span class="ot">&lt;-</span> <span class="fu">logical</span>(n_trials)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>had_accident[good_driver] <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span><span class="fu">sum</span>(good_driver),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.06</span>, <span class="fl">0.94</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>had_accident[poor_driver] <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span><span class="fu">sum</span>(poor_driver),</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.4</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>ppl_with_accidents <span class="ot">&lt;-</span> people[had_accident]</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>n_good_driver_accidents <span class="ot">&lt;-</span> <span class="fu">sum</span>(ppl_with_accidents <span class="sc">==</span> <span class="st">'good driver'</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>n_poor_driver_accidents <span class="ot">&lt;-</span> <span class="fu">sum</span>(ppl_with_accidents <span class="sc">==</span> <span class="st">'poor driver'</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>n_all_with_accidents <span class="ot">&lt;-</span> n_good_driver_accidents <span class="sc">+</span> n_poor_driver_accidents</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>avg_risk_percent <span class="ot">&lt;-</span> (n_good_driver_accidents <span class="sc">*</span> <span class="fl">0.06</span> <span class="sc">+</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                     n_poor_driver_accidents <span class="sc">*</span> <span class="fl">0.6</span>) <span class="sc">/</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>                     n_all_with_accidents <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>premium <span class="ot">&lt;-</span> avg_risk_percent <span class="sc">*</span> cost_per_percent</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Premium is: '</span>, <span class="fu">round</span>(premium))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Premium is: 4418</code></pre>
+</div>
+</div>
 <p>The answer should be around 4450 USD.</p>
+<p>End of <code>bayes_accidents</code> notebook</p>
+</div>
+<!---
+End of notebook.
+-->
 </section>
 <section id="screening-for-disease" class="level3" data-number="31.2.5">
 <h3 data-number="31.2.5" class="anchored" data-anchor-id="screening-for-disease"><span class="header-section-number">31.2.5</span> Screening for Disease</h3>
@@ -615,7 +875,7 @@ P(T^-) = P(T^- | C^-) * P(C^-) + P(T^- | C^+) * P(C^+)
 <p>Tversky and Kahneman note that among the respondents — students and staff at Harvard Medical School — “the most common response, given by almost half of the participants, was 95%” — very much the wrong answer.</p>
 <p>To obtain an answer by simulation, we may rephrase the question above with (hypothetical) absolute numbers as follows:</p>
 <p>If a test to detect a disease whose prevalence has been estimated to be about 100,000 in the population of 100 million persons over age 40 (that is, about 1 in a thousand) has been observed to have a false positive rate of 60 in 1200 observations, and never gives a negative result if a person really has the disease, what is the chance that a person found to have a positive result actually has the disease, assuming you know nothing about the person’s symptoms or signs?</p>
-<p>If the raw numbers are not available, the problem can be phrased in such terms as “about 1 case in 1000” and “about 5 false positives in 100 cases.”)</p>
+<p>If the raw numbers are not available, the problem can be phrased in such terms as “about 1 case in 1000” and “about 5 false positives in 100 cases.”</p>
 <p>One may obtain an answer as follows:</p>
 <ol type="1">
 <li><p>Construct bucket A with 999 white beads and 1 black bead, and bucket B with 95 green beads and 5 red beads. A more complete problem that also discusses false negatives would need a third bucket.</p></li>
@@ -633,9 +893,10 @@ P(T^-) = P(T^- | C^-) * P(C^-) + P(T^- | C^+) * P(C^+)
 <blockquote class="blockquote">
 <p>…there are mice of two colors, black and brown. The black mice are of two genetic kinds, homozygotes (<em>BB</em>) and heterozygotes (<em>Bb</em>), and the brown mice are of one kind (<em>bb</em>). It is known from established genetic theory that the probabilities associated with offspring from various matings are as listed in <a href="#tbl-mice-genetics" class="quarto-xref">Table&nbsp;<span>31.1</span></a>.</p>
 </blockquote>
+<p>(See <span class="citation" data-cites="box1992bayesian">(<a href="references.html#ref-box1992bayesian" role="doc-biblioref">Box and Tiao 1992, 12–14</a>)</span>).</p>
 <div id="tbl-mice-genetics" class="anchored">
 <table class="table">
-<caption>Table&nbsp;31.1: Probabilities for Genetic Character of Mice Offspring <span class="citation" data-cites="box1992bayesian">(<a href="references.html#ref-box1992bayesian" role="doc-biblioref">Box and Tiao 1992, 12–14</a>)</span></caption>
+<caption>Table&nbsp;31.1: Probabilities for Genetic Character of Mice Offspring</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -680,13 +941,204 @@ P(T^-) = P(T^- | C^-) * P(C^-) + P(T^- | C^+) * P(C^+)
 <li><p>Now, out of all parents count the numbers of “BB” vs “Bb”.</p></li>
 </ol>
 <p>We will do a naïve implementation that closely follows the logic described above, followed by a slightly optimized version.</p>
-<p>We see that all the offspring being black considerably changes the situation! We started with the odds being 2:1 in favor of Bb vs BB. The “posterior” or “after the evidence” ratio is closer to 64:1 in favor of <em>BB</em>! (1973, pp.&nbsp;12-14)</p>
+<!---
+TODO - explain continue in more detail?  Have we covered `np.all`?
+-->
+<div class="notebook" name="box_tao_mice" title="A problem of black and brown mice">
+<p>Start of <code>box_tao_mice</code> notebook</p>
+<div class="nb-links">
+<a class="notebook-link" href="notebooks/box_tao_mice.Rmd">Download notebook</a>
+<a class="interact-button" href="https://mybinder.org/v2/gh/resampling-stats/resampling-with/gh-pages?filepath=r-book/notebooks/box_tao_mice.Rmd">Interact</a>
+</div>
+
+<div class="cell" data-layout-align="center" data-hash="bayes_simulation_cache/html/unnamed-chunk-14_1521e10c7ed13379cb450f84b6d8802a">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a vector to store results for each trial.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The results are strings, so use "character" type.</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Many of these we will not set, for example, for brown mice (see below).</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>parents <span class="ot">&lt;-</span> <span class="fu">character</span>(n_trials)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_trials) {</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    test_mouse <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'BB'</span>, <span class="st">'Bb'</span>, <span class="st">'bb'</span>),</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">size=</span><span class="dv">1</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The test mouse is black; since we drew a brown mouse skip this trial.</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (test_mouse <span class="sc">==</span> <span class="st">'bb'</span>) {</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># "mext" has the effect of aborting this iteration of the loop</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># and going back to start the next iteration.  If the code gets</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># to "next", none of the rest of the loop (within the curly brackets</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># code  will run.</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">next</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If the test mouse is 'BB', all 7 children are guaranteed to</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># be 'Bb' black.</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Therefore, add 'BB' to the parent list.</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (test_mouse <span class="sc">==</span> <span class="st">'BB'</span>) {</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        parents[i] <span class="ot">&lt;-</span> <span class="st">'BB'</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If the parent mouse is 'Bb', we draw 7 children to</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># see whether all of them are black ('Bb').</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The probabilities come from the middle row of the table.</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (test_mouse <span class="sc">==</span> <span class="st">'Bb'</span>) {</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        children <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'Bb'</span>, <span class="st">'bb'</span>),</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                            <span class="at">size=</span><span class="dv">7</span>,</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                            <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>                            <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">all</span>(children <span class="sc">==</span> <span class="st">'Bb'</span>)) {</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>            parents[i] <span class="ot">&lt;-</span> <span class="st">'Bb'</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, count how many parents were 'BB' vs 'Bb'</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>n_parents_BB <span class="ot">&lt;-</span> <span class="fu">sum</span>(parents <span class="sc">==</span> <span class="st">'BB'</span>)</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>n_parents_Bb <span class="ot">&lt;-</span> <span class="fu">sum</span>(parents <span class="sc">==</span> <span class="st">'Bb'</span>)</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>n_B <span class="ot">&lt;-</span> n_parents_BB <span class="sc">+</span> n_parents_Bb</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>p_BB <span class="ot">&lt;-</span> n_parents_BB <span class="sc">/</span> n_B</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>p_Bb <span class="ot">&lt;-</span> n_parents_Bb <span class="sc">/</span> n_B</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'p_BB = '</span>, <span class="fu">round</span>(p_BB, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>p_BB = 0.985</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'p_Bb = '</span>, <span class="fu">round</span>(p_Bb, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>p_Bb = 0.015</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Ratio = '</span>, <span class="fu">round</span>(p_BB <span class="sc">/</span> p_Bb, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Ratio = 64.8</code></pre>
+</div>
+</div>
+<p>We see that all the offspring being black considerably changes the situation! We started with the odds being 2:1 in favor of Bb vs BB. The “posterior” or “after the evidence” ratio is closer to 64:1 in favor of <em>BB</em>! (1973, pp. 12-14)</p>
 <p>Let’s tune the code a bit to run faster. Instead of doing the trials one mouse at a time, we will do the whole bunch together.</p>
+<p>To do this, we will use <span class="r">matrices</span>.</p>
+<div class="r">
+<p>So far, we have used one-dimensional <em>vectors</em> in R. A vector is a sequence of values. Let us generate a vector with <code>sample</code>, as we have many times in this book, and in this chapter.</p>
+<div class="cell" data-layout-align="center" data-hash="bayes_simulation_cache/html/unnamed-chunk-19_c021e7430596238e8c85fd5c8da17904">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A vector with five elements.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>a_vector <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">size=</span><span class="dv">5</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>a_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 2 1 2 1</code></pre>
+</div>
+</div>
+<p>However, we can also generate <em>matrices</em> in R. Matrices have two dimensions; it has rows and columns, much like a data frame. Here is a matrix we create with <code>sample</code>, by first making a vector, and then reshaping the vector into a matrix.</p>
+<div class="cell" data-layout-align="center" data-hash="bayes_simulation_cache/html/unnamed-chunk-20_76930dc7b317f8975e149f9acd12a6b1">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A vector with 15 values.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>another_vector <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">size=</span><span class="dv">15</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A matrix with five rows and three columns.</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>a_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(another_vector, <span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>a_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    1    1
+[2,]    1    1    2
+[3,]    2    2    2
+[4,]    1    1    1
+[5,]    2    2    2</code></pre>
+</div>
+</div>
+<p>As usual, we can apply Boolean comparison operations to this matrix, to get a Boolean matrix:</p>
+<div class="cell" data-layout-align="center" data-hash="bayes_simulation_cache/html/unnamed-chunk-21_7dd6d3fb92b9b37b78649440e003b114">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>is_2 <span class="ot">&lt;-</span> a_matrix <span class="sc">==</span> <span class="dv">2</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>is_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      [,1]  [,2]  [,3]
+[1,] FALSE FALSE FALSE
+[2,] FALSE FALSE  TRUE
+[3,]  TRUE  TRUE  TRUE
+[4,] FALSE FALSE FALSE
+[5,]  TRUE  TRUE  TRUE</code></pre>
+</div>
+</div>
+<p>R has functions to operate over rows and columns of a matrix. In particular, is has a function <code>rowSums</code> that gives the sum of values in the row (and therefore, the sum over the columns, for each row). For example, to see how many of the values in each row are equal to 2, we can do:</p>
+<div class="cell" data-layout-align="center" data-hash="bayes_simulation_cache/html/unnamed-chunk-22_8e0a8651d2474265e3232171eb42731f">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>n_2s_in_rows <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(is_2)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>n_2s_in_rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 1 3 0 3</code></pre>
+</div>
+</div>
+<p>Notice that we get one answer for each row, where the answer is the <code>sum</code> across the columns, for that row.</p>
+</div>
+<div class="cell" data-layout-align="center" data-hash="bayes_simulation_cache/html/unnamed-chunk-24_47b5841a625a969ef9b28ad52bf7de7f">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">1000000</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># In n_trials trials, pair two Bb mice and generate a child.</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>test_mice <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'BB'</span>, <span class="st">'Bb'</span>, <span class="st">'bb'</span>),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">size=</span>n_trials,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>))</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The resulting test mouse is black, so filter out all brown ones.</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>test_mice <span class="ot">&lt;-</span> test_mice[test_mice <span class="sc">!=</span> <span class="st">'bb'</span>]</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>n_test_mice <span class="ot">&lt;-</span> <span class="fu">length</span>(test_mice)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Each test mouse will now be mated with a brown mouse, producing 7 offspring.</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># We then store whether all the offspring were black or not.</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>all_offspring_black <span class="ot">&lt;-</span> <span class="fu">logical</span>(n_test_mice)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co"># If a test mouse is 'BB', we are assured that all its offspring</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co"># will be black.</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>all_offspring_black[test_mice <span class="sc">==</span> <span class="st">'BB'</span>] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co"># If a test mouse is 'Bb', we have to generate its offspring and</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co"># see whether they are all black or not</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>test_mice_Bb <span class="ot">&lt;-</span> (test_mice <span class="sc">==</span> <span class="st">'Bb'</span>)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>n_test_mice_Bb <span class="ot">&lt;-</span> <span class="fu">sum</span>(test_mice_Bb)</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate all offspring of all 'Bb' test mice</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="co"># This gives 7 children for each Bb mouse.</span></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>offspring <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'Bb'</span>, <span class="st">'bb'</span>),</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>                    <span class="at">size=</span>n_test_mice_Bb <span class="sc">*</span> <span class="dv">7</span>,</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>                    <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="co"># This gives a 2-dimensional matrix, with one row per Bb mouse,</span></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="co"># and 7 columns, one for each child.</span></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>offspring_mat <span class="ot">=</span> <span class="fu">matrix</span>(offspring, <span class="at">ncol=</span><span class="dv">7</span>)</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Check whether all 7 children (columns) are Bb, for each row.</span></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>all_offspring_black[test_mice_Bb] <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(offspring_mat <span class="sc">==</span> <span class="st">'Bb'</span>) <span class="sc">==</span> <span class="dv">7</span></span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the genetic types of the parents of all-black offspring.</span></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>parents <span class="ot">&lt;-</span> test_mice[all_offspring_black]</span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate what fraction of parents were 'BB' vs 'Bb'.</span></span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>parents_BB <span class="ot">&lt;-</span> (parents <span class="sc">==</span> <span class="st">'BB'</span>)</span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>parents_Bb <span class="ot">&lt;-</span> (parents <span class="sc">==</span> <span class="st">'Bb'</span>)</span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a>n_B <span class="ot">&lt;-</span> <span class="fu">sum</span>(all_offspring_black)</span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>p_BB <span class="ot">&lt;-</span> <span class="fu">sum</span>(parents_BB) <span class="sc">/</span> n_B</span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>p_Bb <span class="ot">&lt;-</span> <span class="fu">sum</span>(parents_Bb) <span class="sc">/</span> n_B</span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'p_BB = '</span>, <span class="fu">round</span>(p_BB, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>p_BB = 0.985</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'p_Bb = '</span>, <span class="fu">round</span>(p_Bb, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>p_Bb = 0.015</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Ratio = '</span>, <span class="fu">round</span>(p_BB <span class="sc">/</span> p_Bb, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Ratio = 64.3</code></pre>
+</div>
+</div>
 <p>This yields a similar result, but in much shorter time — which means we can increase the number of trials and get a more accurate result.</p>
+<p>End of <code>box_tao_mice</code> notebook</p>
+</div>
+<!---
+End of notebook.
+-->
 <!---
 XXX TODO: How can we show how to derive this quantity using a filter tree type approach? XXX
 -->
-<p>Creating the correct simulation procedure is not trivial, because Bayesian reasoning is subtle — a reason it has been the cause of controversy for more than two centuries. But it certainly is not easier to create a correct procedure using analytic tools (except in the cookbook sense of plug-and-pray). And the difficult mathematics that underlie the analytic method (see e.g. <span class="citation" data-cites="box1992bayesian">(<a href="references.html#ref-box1992bayesian" role="doc-biblioref">Box and Tiao 1992</a>, Appendix A1.1)</span> make it almost impossible for the statistician to fully understand the procedure from beginning to end. If one is interested in insight, the simulation procedure might well be preferred.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Creating the correct simulation procedure is not trivial, because Bayesian reasoning is subtle — a reason it has been the cause of controversy for more than two centuries. But it certainly is not easier to create a correct procedure using analytic tools (except in the cookbook sense of plug-and-pray). And the difficult mathematics that underlie the analytic method (see e.g. <span class="citation" data-cites="box1992bayesian">(<a href="references.html#ref-box1992bayesian" role="doc-biblioref">Box and Tiao 1992</a>, Appendix A1.1)</span>) make it almost impossible for the statistician to fully understand the procedure from beginning to end. If one is interested in insight, the simulation procedure might well be preferred.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </section>
 <section id="problems-based-on-normal-and-other-distributions" class="level2" data-number="31.4">
 <h2 data-number="31.4" class="anchored" data-anchor-id="problems-based-on-normal-and-other-distributions"><span class="header-section-number">31.4</span> Problems based on normal and other distributions</h2>
@@ -699,8 +1151,7 @@ XXX TODO: How can we show how to derive this quantity using a filter tree type a
 <h3 data-number="31.4.1" class="anchored" data-anchor-id="an-intermediate-problem-in-conditional-probability"><span class="header-section-number">31.4.1</span> An Intermediate Problem in Conditional Probability</h3>
 <p>Schlaifer employs a quality-control problem for his leading example of Bayesian estimation with Normal sampling. A chemical manufacturer wants to estimate the amount of yield of a crucial ingredient X in a batch of raw material in order to decide whether it should receive special handling. The yield ranges between 2 and 3 pounds (per gallon), and the manufacturer has compiled the distribution of the last 100 batches.</p>
 <p>The manufacturer currently uses the decision rule that if the mean of nine samples from the batch (which vary only because of measurement error, which is the reason that he takes nine samples rather than just one) indicates that the batch mean is greater than 2.5 gallons, the batch is accepted. The first question Schlaifer asks, as a sampling-theory waystation to the more general question, is the likelihood that a given batch with any given yield — say 2.3 gallons — will produce a set of samples with a mean as great or greater than 2.5 gallons.</p>
-<p>We are told that the manufacturer has in hand nine samples from a given batch; they are 1.84, 1.75, 1.39, 1.65, 3.53, 1.03,</p>
-<p>2.73, 2.86, and 1.96, with a mean of 2.08. Because we are also told that the manufacturer considers the extent of sample variation to be the same at all yield levels, we may — if we are again working with 2.3 as our example of a possible universe — therefore add (2.3 minus 2.08 =) 0.22 to each of these nine observations, so as to constitute a bootstrap-type universe; we do this on the grounds that this is our best guess about the constitution of that distribution with a mean at (say) 2.3.</p>
+<p>We are told that the manufacturer has in hand nine samples from a given batch; they are 1.84, 1.75, 1.39, 1.65, 3.53, 1.03, 2.73, 2.86, and 1.96, with a mean of 2.08. Because we are also told that the manufacturer considers the extent of sample variation to be the same at all yield levels, we may — if we are again working with 2.3 as our example of a possible universe — therefore add (2.3 minus 2.08 =) 0.22 to each of these nine observations, so as to constitute a bootstrap-type universe; we do this on the grounds that this is our best guess about the constitution of that distribution with a mean at (say) 2.3.</p>
 <p>We then repeatedly draw samples of nine observations from this distribution (centered at 2.3) to see how frequently its mean exceeds 2.5. This work is so straightforward that we need not even state the steps in the procedure.</p>
 </section>
 <section id="estimating-the-posterior-distribution" class="level3" data-number="31.4.2">
