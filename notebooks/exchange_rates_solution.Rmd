@@ -1,0 +1,36 @@
+# Exchange rates and money supply
+
+
+Solution notebook for exercise on exchange rates and money supply.
+
+```{r}
+exchange_df <- read.csv('data/exchange_rates.csv')
+exchange_rates <- exchange_df$exchange_rate
+money_supply <- exchange_df$money_supply
+```
+
+```{r}
+# Correlation.
+actual_r <- cor(exchange_rates, money_supply)
+actual_r
+```
+
+```{r}
+n_trials <- 10000
+results <- numeric(n_trials)
+
+for (i in 1:n_trials) {
+    shuffled_rates <- sample(exchange_rates)
+    fake_r <- cor(shuffled_rates, money_supply)
+    results[i] <- fake_r
+}
+
+hist(results, breaks=25,
+     main='Distribution of shuffled exchange rates r values',
+     xlab='r for shuffled exchange rate')
+
+k <- sum(results >= actual_r)
+kk <- k / n_trials
+
+message('p shuffled r >= actual: ', round(kk, 3))
+```

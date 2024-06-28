@@ -1,0 +1,97 @@
+# Paired differences solution
+
+
+```{r}
+df <- read.csv('data/hamilton.csv')
+before <- df$score_before
+after <- df$score_after
+
+observed_diff <- mean(after) - mean(before)
+
+# Let us start with a permutation test.
+both <- c(before, after)
+n_before <- length(before)
+
+# Samples in the null world.
+n_trials <- 10000
+results <- numeric(n_trials)
+for (i in 1:n_trials) {
+    shuffled <- sample(both)
+    fake_before <- shuffled[1:n_before]
+    fake_after <- shuffled[(n_before + 1):length(both)]
+    fake_diff <- mean(fake_after) - mean(fake_before)
+    results[i] <- fake_diff
+}
+
+# We are interested in fake differences that are larger
+# in magnitude than the observed difference (hence "abs").
+# Here we have no prior hypothesis about which direction the difference
+# will go.
+k <- sum(abs(results) >= abs(observed_diff))
+kk <- k / n_trials
+message('Permutation p null-world abs >= abs observed: ', kk)
+```
+
+```{r}
+# Next a bootstrap test.
+n_after <- length(after)  # Of course, in our case, this will be == n_before
+results <- numeric(n_trials)
+for (i in 1:n_trials) {
+    fake_before <- sample(both, size=n_before, replace=TRUE)
+    fake_after <- sample(both, size=n_after, replace=TRUE)
+    fake_diff <- mean(fake_after) - mean(fake_before)
+    results[i] <- fake_diff
+}
+
+k <- sum(abs(results) >= abs(observed_diff))
+kk <- k / n_trials
+message('Bootstrap p null-world abs >= abs observed: ', kk)
+```
+
+Finally we consider the pairs. Here we *do* take the pairs into account.
+We have some reason to think that the patients or cars vary in some
+substantial way in their level of depression, or their tendency to break
+down, but we believe that the patients’ *response* to treatment or the
+difference between the mechanics is the value of interest.
+
+In that case, we are interested in the *differences* between the pairs.
+In the null world, these before / after (mechanic A / mechanic B)
+differences are randomly — if there is no difference, then we can flip
+the before / after (A / B) pairs and be in the same world.
+
+Notice though the flipping the before / after or A / B in the pair just
+changes the sign of the difference.
+
+So we will simulate that effect, of flipping the values in the pair, by
+choosing a random sign for the pair, where -1 means pair is flipped, and
+1 means pair is in original order. We recalculated the mean difference
+with these random signs (flips) applied, and these will be our values in
+the null-world.
+
+```{r}
+# A test of paired difference with sign flips for the null world.
+differences <- after - before
+observed_mdiff <- mean(differences)
+n_both <- length(differences)
+
+results <- numeric(n_trials)
+for (i in 1:n_trials) {
+    # Choose random signs to perform random flips of the pairs.
+    signs <- sample(c(-1, 1), size=n_both, replace=TRUE)
+    # Do flips.
+    fake_differences <- signs * differences
+    # Calculate mean difference and store result.
+    results[i] <- mean(fake_differences)
+}
+
+k <- sum(abs(results) >= abs(observed_mdiff))
+kk <- k / n_trials
+message('Sign-flip p null-world abs >= abs observed: ', kk)
+```
+
+Notice that the sign-flip test, in which we preserve the information
+about the patients / cars, is much more convincing than the permutation
+or bootstrap tests above, where we choose to ignore that information.
+
+This can occur when the values within the pairs (rows) are similar to
+each other, but less similar across different pairs (rows).

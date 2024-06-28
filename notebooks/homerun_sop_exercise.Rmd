@@ -1,7 +1,8 @@
-# Homeruns and strikeout correlation
+# Homeruns and strikeout sum of products.
 
 
-Exercise on relationship of home runs and strikeouts.
+Exercise on relationship of home runs and strikeouts, using sum of
+products.
 
 ```{r}
 homeruns <- c(14, 20, 0, 38, 9, 38, 22, 31, 33,

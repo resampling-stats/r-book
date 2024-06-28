@@ -1,0 +1,10 @@
+# Paired differences exercise
+
+
+```{r}
+df <- read.csv('data/hamilton.csv')
+before <- df$score_before
+after <- df$score_after
+
+# Your code here.
+```
