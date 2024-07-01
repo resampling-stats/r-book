@@ -56,13 +56,14 @@ difference between the mechanics is the value of interest.
 
 In that case, we are interested in the *differences* between the pairs.
 In the null world, these before / after (mechanic A / mechanic B)
-differences are randomly — if there is no difference, then we can flip
-the before / after (A / B) pairs and be in the same world.
+differences are random. In the null-world, where there is no difference
+between before/after or mechanics 1 and 2, we can flip the before /
+after (A / B) pairs and be in the same world.
 
-Notice though the flipping the before / after or A / B in the pair just
+Notice that flipping the before / after or A / B in the pair just
 changes the sign of the difference.
 
-So we will simulate that effect, of flipping the values in the pair, by
+So we will simulate the effect of flipping the values in the pair, by
 choosing a random sign for the pair, where -1 means pair is flipped, and
 1 means pair is in original order. We recalculated the mean difference
 with these random signs (flips) applied, and these will be our values in
