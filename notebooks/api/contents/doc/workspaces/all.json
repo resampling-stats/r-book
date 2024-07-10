@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2024-07-10T21:44:02.232406Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2024-07-10T21:44:00.952408Z",
+      "mimetype": "text/html",
+      "name": "index.html",
+      "path": "doc/workspaces/index.html",
+      "size": 295,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2024-07-10T21:44:02.232406Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2024-07-10T21:44:02.232406Z",
+  "mimetype": null,
+  "name": "workspaces",
+  "path": "doc/workspaces",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}
