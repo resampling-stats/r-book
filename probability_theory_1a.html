@@ -200,7 +200,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./about_technology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducing R and the Jupyter notebook</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducing R and the RStudio notebook</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -632,7 +632,7 @@ P(A) + P(\ \hat{} A) = 1
 <p>Start of <code>fine_win</code> notebook</p>
 <div class="nb-links">
 <a class="notebook-link" href="notebooks/fine_win.Rmd">Download notebook</a>
-<a class="interact-button" href="https://resampling-stats.github.io/python-book/notebooks/lab/index.html?path=notebooks/fine_win.Rmd">Interact</a>
+<a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=fine_win.ipynb">Interact</a>
 </div>
 
 <div class="cell" data-layout-align="center" data-hash="probability_theory_1a_cache/html/unnamed-chunk-3_2189685809165529fc6a8b0673cc311a">
@@ -792,7 +792,7 @@ P(A) + P(\ \hat{} A) = 1
 </div>
 </div>
 <p>The above procedure gives us the probability that it will be a nice day and the Commanders will win — about 46.1%.</p>
-<p>End of <code>fine_win</code> notebook</p>
+<p>End of <code>fine_win.Rmd</code> notebook</p>
 </div>
 <p>Let’s say that we think that the Commanders have a 0.55 (55%) chance of winning on a not-nice day. With the aid of a bucket with a different composition — one made by substituting 55 green and 45 yellow balls in Step 4 — a similar procedure yields the chance that it will be a <em>nasty</em> day and the Commanders will win. With a similar substitution and procedure we could also estimate the probabilities that it will be a nasty day and the Commanders will lose, and a nice day and the Commanders will lose. The sum of these probabilities should come close to unity, because the sum includes all the possible outcomes. But it will not <em>exactly</em> equal unity because of what we call “sampling variation” or “sampling error.”</p>
 <p>Please notice that each trial of the procedure begins with the same numbers of balls in the buckets as the previous trial. That is, you must replace the balls you draw after each trial in order that the probabilities remain the same from trial to trial. Later we will discuss the general concept of replacement versus non-replacement more fully.</p>
@@ -885,7 +885,7 @@ P(\text{nice day and win}) = P(\text{nice day}) * P(\text{winning | nice day})
 <p>Start of <code>cards_pennies</code> notebook</p>
 <div class="nb-links">
 <a class="notebook-link" href="notebooks/cards_pennies.Rmd">Download notebook</a>
-<a class="interact-button" href="https://resampling-stats.github.io/python-book/notebooks/lab/index.html?path=notebooks/cards_pennies.Rmd">Interact</a>
+<a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=cards_pennies.ipynb">Interact</a>
 </div>
 
 <div class="cell" data-layout-align="center" data-hash="probability_theory_1a_cache/html/unnamed-chunk-37_a8543e0ed8ca92e94aec2e9dd8f84500">
@@ -957,7 +957,7 @@ P(\text{nice day and win}) = P(\text{nice day}) * P(\text{winning | nice day})
 <pre><code>0.5059</code></pre>
 </div>
 </div>
-<p>End of <code>cards_pennies</code> notebook</p>
+<p>End of <code>cards_pennies.Rmd</code> notebook</p>
 </div>
 <p>Why do you get different results in the two cases? Let’s ask the question differently: What is the probability of first picking a black card? Clearly, it is 50-50, or 0.5. Now, if you first pick a black card, what is the probability in the first game above of getting a second black card? There are two red and one black cards left, so now p = 1/3.</p>
 <p>But in the second game, what is the probability of picking a second black card if the first one you pick is black? It is still 0.5 because we are <em>sampling with replacement.</em></p>
