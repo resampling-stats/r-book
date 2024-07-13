@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.51">
+<meta name="generator" content="quarto-1.6.1">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Resampling statistics - 16&nbsp; Ranks, Quantiles and Standard Scores</title>
+<title>16&nbsp; Ranks, Quantiles and Standard Scores – Resampling statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -100,7 +101,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -109,22 +116,49 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
-
 <script type="text/javascript">
   $(document).ready(function() {
     $("table").addClass('lightable-paper lightable-striped lightable-hover')
   });
 </script>
-
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="font-awesome.min.css">
@@ -136,12 +170,12 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./standard_scores.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Ranks, Quantiles and Standard Scores</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./standard_scores.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Ranks, Quantiles and Standard Scores</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -151,7 +185,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Resampling statistics</a> 
@@ -395,7 +429,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -443,7 +477,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <p>Imagine we have a set of measures, in some particular units. We may want some way to see quickly how these measures compare to one another, and how they may compare to other measures, in different units.</p>
 <p>Ranks are one way of having an implicit comparison between values.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Is the value large in terms of the other values (with high rank) — or is it small (low rank)?</p>
@@ -452,11 +488,15 @@ div.csl-indent {
 <section id="household-income-and-congressional-districts" class="level2" data-number="16.1">
 <h2 data-number="16.1" class="anchored" data-anchor-id="household-income-and-congressional-districts"><span class="header-section-number">16.1</span> Household income and congressional districts</h2>
 <p>Democratic <a href="https://en.wikipedia.org/wiki/Marcy_Kaptur">congresswoman Marcy Kaptur</a> has represented the 9th district of Ohio since 1983. Ohio’s 9th district is relatively working class, and the Democratic party has, traditionally, represented people with lower income. However, Kaptur has pointed out that this pattern appears to be changing; more of the high-income congressional districts now lean Democrat, and the Republican party is now more likely to represent lower-income districts. The French economist <a href="https://en.wikipedia.org/wiki/Thomas_Piketty">Thomas Piketty</a> has described this phenomenon across several Western countries. Voters for left parties are now more likely to be highly educated and wealthy. He terms this shift “Brahmin Left Vs Merchant Right” <span class="citation" data-cites="piketty2018brahmin">(<a href="references.html#ref-piketty2018brahmin" role="doc-biblioref">Piketty 2018</a>)</span>. The data below come from a <a href="https://s3.documentcloud.org/documents/23726766/rep-kaptur-district-chart.pdf">table Kaptur prepared</a> that shows this pattern in the 2023 US congress. The table lists the top 20 districts by the median income of the households in that district, along with their representatives and their party.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-2_2febf71028ce07d67ab3090949dc545a">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-district_income" class="anchored">
-<table class="lightable-paper lightable-striped lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;16.1: 20 most wealthy 2023 Congressional districts by household income</caption>
+<div id="tbl-district_income" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-district_income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;16.1: 20 most wealthy 2023 Congressional districts by household income
+</figcaption>
+<div aria-describedby="tbl-district_income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-paper lightable-striped lightable-hover caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -631,17 +671,23 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 
 
 </div>
 </div>
 <p>You may notice right away that many of the 20 richest districts have Democratic Party representatives.</p>
 <p>In fact, if we look at all 441 congressional districts in Kaptur’s table, we find a large difference in the average median household income for Democrat and Republican districts; the Democrat districts are, on average, about 14% richer (<a href="#tbl-party_means" class="quarto-xref">Table&nbsp;<span>16.2</span></a>).</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-4_22fcbb477ea749a091af5b25dab39a5a">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-party_means" class="anchored">
-<table class="lightable-paper lightable-striped lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;16.2: Means for median household income by party</caption>
+<div id="tbl-party_means" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-party_means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;16.2: Means for median household income by party
+</figcaption>
+<div aria-describedby="tbl-party_means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-paper lightable-striped lightable-hover caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -660,12 +706,14 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 
 
 </div>
 </div>
-<p>Next we are going to tip our hand, and show how we got these data. In previous chapters, we had chunks like this in which we enter the values we will analyze. These values come from the example we introduced in <a href="probability_theory_3.html#sec-public-liquor" class="quarto-xref"><span>Section&nbsp;12.16</span></a>:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-6_1cd79d3eb3bcba13498e5799dfdba431">
+<p>Next we are going to tip our hand, and show how we got these data. In previous chapters, we had chunks like this in which we enter the values we will analyze. These values come from the example we introduced in <a href="probability_theory_3.html#sec-public-liquor" class="quarto-xref"><span>Section 12.16</span></a>:</p>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Liquor prices for US states with private market.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>priv <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.82</span>, <span class="fl">5.29</span>, <span class="fl">4.89</span>, <span class="fl">4.95</span>, <span class="fl">4.55</span>, <span class="fl">4.90</span>, <span class="fl">5.25</span>, <span class="fl">5.30</span>, <span class="fl">4.29</span>, <span class="fl">4.85</span>, <span class="fl">4.54</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>          <span class="fl">4.75</span>, <span class="fl">4.85</span>, <span class="fl">4.85</span>, <span class="fl">4.50</span>, <span class="fl">4.75</span>, <span class="fl">4.79</span>, <span class="fl">4.85</span>, <span class="fl">4.79</span>, <span class="fl">4.95</span>, <span class="fl">4.95</span>, <span class="fl">4.75</span>,</span>
@@ -676,7 +724,7 @@ div.csl-indent {
 <h3 data-number="16.1.1" class="anchored" data-anchor-id="sec-csv-format"><span class="header-section-number">16.1.1</span> Comma-separated-values (CSV) format</h3>
 <p>The data we will load is in a file on disk called <code>data/congress_2023.csv</code>. These are data from Kaptur’s table in a comma-separated-values (CSV) format file. We refer to this file with its <em>filename</em>, containing the directory (<code>data/</code>) followed by the name of the file (<code>congress_2023.csv</code>), giving a filename of <code>data/congress_2023.csv</code>.</p>
 <p>The <em>CSV format</em> is a very simple text format for storing table data. Usually, the first line of the CSV file contains the column names of the table, and the rest of the lines contain the row values. As the name suggests, commas (<code>,</code>) separate the column names in the first line, and the row values in the following lines. If you opened the <code>data/congress_2023.csv</code> file in some editor, such as Notepad on Windows or TextEdit on Mac, you would find that the first few lines looked like this:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-7_b5100c514d1a3d75d08ff722d097b12b">
+<div class="cell" data-layout-align="center">
 <pre><code>Ascending_Rank,District,Median_Income,Representative,Party
 1,PR-At Large,22237,J. González-Colón,Republican
 2,AS-At Large,28352,A. Coleman,Republican
@@ -685,7 +733,7 @@ div.csl-indent {
 5,MS-2,37933,B. G. Thompson,Democrat</code></pre>
 </div>
 <p>We are particularly interested in the column named <code>Median_Income</code>.</p>
-<p>You may remember the idea of <em>indexing</em>, introduced in <a href="resampling_with_code2.html#sec-array-indexing" class="quarto-xref"><span>Section&nbsp;6.6</span></a>. Indexing occurs when we fetch data from within a container, such as a string or an array. We do this by putting square brackets <code>[]</code> after the value we want to index into, and put something inside the brackets to say what we want.</p>
+<p>You may remember the idea of <em>indexing</em>, introduced in <a href="resampling_with_code2.html#sec-array-indexing" class="quarto-xref"><span>Section 6.6</span></a>. Indexing occurs when we fetch data from within a container, such as a string or an array. We do this by putting square brackets <code>[]</code> after the value we want to index into, and put something inside the brackets to say what we want.</p>
 <p>For example, to get the <em>first</em> element of the <code>priv</code> array above, we use indexing:</p>
 <p>As you can index into strings and Numpy arrays, by using square brackets, so you can index into Pandas data frames. Instead of putting the <em>position</em> between the square brackets, we can put the <em>column name</em>. This fetches the data from that column, returning a new type of value called a Pandas <em>Series</em>.</p>
 <p>We want to go straight to our familiar Numpy arrays, so we convert the column of data into a Numpy array, using the <code>np.array</code> function you have already seen:</p>
@@ -698,18 +746,18 @@ Need to introduce indexing with slices.
 <h3 data-number="16.1.2" class="anchored" data-anchor-id="introducing-r-data-frames"><span class="header-section-number">16.1.2</span> Introducing R data frames</h3>
 <p>R is a data analysis language, so, as you would expect, it is particularly good at loading data files, and presenting them to us as a useful table-like structure, called a <em>data frame</em>.</p>
 <p>We start by using R to load our data file. R has a special function to do this, called <code>read.csv</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-17_19678a03432e63cd6fac532f503c816b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>district_income <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/congress_2023.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We have thus far done many operations that returned R <em>vectors</em>. <code>read.csv</code> returns a new type of value, called a <em>data frame</em>:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-18_a8832771eec7ffbc1b6d05abf972075e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(district_income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "data.frame"</code></pre>
 </div>
 </div>
 <p>A data frame is R’s own way of representing a table, with columns and rows. You can think of it as R’s version of a spreadsheet. Data frames are a fundamental type in R, and there are many functions that operate on them. Among them is the function <code>head</code> which selects (by default) the first six rows of whatever you send it. Here we select the first six rows of the data frame.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-19_41a59c307892de081850c255905304a9">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first six rows in the data frame</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(district_income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -726,7 +774,7 @@ Need to introduce indexing with slices.
 <p>We are particularly interested in the column named <code>Median_Income</code>.</p>
 <p>You can fetch columns of data from a data frame by using R’s <code>$</code> syntax. The <code>$</code> syntax means “fetch the thing named on the right of the <code>$</code> attached to the value given to the left of the <code>$</code>”.</p>
 <p>So, to get the data for the <code>Median_Income</code> column, we can write:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-20_ce6cc1f3c6d6c4089dfff610e07af18c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use $ syntax to get a column of data from a data frame.</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># "fetch the Median_Income thing from district_income".</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>incomes <span class="ot">=</span> district_income<span class="sc">$</span>Median_Income</span>
@@ -742,14 +790,14 @@ Need to introduce indexing with slices.
 <h3 data-number="16.1.3" class="anchored" data-anchor-id="incomes-and-ranks"><span class="header-section-number">16.1.3</span> Incomes and Ranks</h3>
 <p>We now have the <code>incomes</code> values as a vector.</p>
 <p>There are 441 values in the whole vector, one of each congressional district:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-22_bf8dc5efe892424ec5b888c2dbb7a5a8">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(incomes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 441</code></pre>
 </div>
 </div>
 <p>While we are at it, let us also get the values from the “Ascending_Rank” column, with the same procedure. These are ranks from low to high, meaning 1 is the lowest median income, and 441 is the highest median income.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-24_ed2471363e20cd2f053a25ff3b15f8f1">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lo_to_hi_ranks <span class="ot">&lt;-</span> district_income<span class="sc">$</span>Ascending_Rank</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first five values, by indexing with a slice.</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>lo_to_hi_ranks[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -763,7 +811,7 @@ Need to introduce indexing with slices.
 <h3 data-number="16.1.4" class="anchored" data-anchor-id="calculating-ranks"><span class="header-section-number">16.1.4</span> Calculating ranks</h3>
 <p>As you might expect <span class="r"><code>rank</code></span> accepts a vector as an input argument. Let’s say that there are <span class="r"><code>n &lt;- length(data)</code></span> values in the vector that we pass to <span class="r"><code>rank</code></span>. The function returns a vector, length <span class="math inline">\(n\)</span>, where the elements are the ranks of each corresponding element in the input <code>data</code> vector. A rank value of 1 corresponds the lowest value in <code>data</code> (closest to negative infinity), and a rank of <span class="math inline">\(n\)</span> corresponds to the highest value (closest to positive infinity).</p>
 <p>Here’s an example <code>data</code> vector to show how <span class="r"><code>rank</code></span> works.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-28_fd9e4e40be972c5f0a4ae700bb5dc096">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The data.</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">5</span>, <span class="sc">-</span><span class="dv">2</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Corresponding ranks for the data.</span></span>
@@ -773,7 +821,7 @@ Need to introduce indexing with slices.
 </div>
 </div>
 <p>We can use <span class="r"><code>rank</code></span> to recalculate the ranks for the congressional median household income values.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-30_1958114aed16942f4a98beefc643144b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recalculate the ranks.</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>recalculated_ranks <span class="ot">&lt;-</span> <span class="fu">rank</span>(incomes)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first 5 ranks.</span></span>
@@ -788,11 +836,15 @@ Need to introduce indexing with slices.
 <h2 data-number="16.2" class="anchored" data-anchor-id="comparing-two-values-in-the-district-income-data"><span class="header-section-number">16.2</span> Comparing two values in the district income data</h2>
 <p>Let us say that we have taken an interest in two particular members of Congress: the Speaker of the House of Representatives, Republican <a href="https://en.wikipedia.org/wiki/Kevin_McCarthy">Kevin McCarthy</a>, and the progressive activist and Democrat <a href="https://en.wikipedia.org/wiki/Alexandria_Ocasio-Cortez">Alexandria Ocasio-Cortez</a>. We will refer to both using their initials: KM for Kevin Owen McCarthy and AOC for Alexandra Ocasio-Cortez.</p>
 <p>By scrolling through the CSV file, or (in our case) using some simple <span class="r">R</span> code that we won’t cover now, we find the rows corresponding to McCarthy (KM) and Ocasio-Cortez (AOC) — <a href="#tbl-rows-of-interest" class="quarto-xref">Table&nbsp;<span>16.3</span></a>.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-32_a723f3e7316699a09ab8f6fc93d9c2c5">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-rows-of-interest" class="anchored">
-<table class="lightable-paper lightable-striped lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;16.3: Rows for Kevin McCarthy and Alexandra Ocasio-Cortez </caption>
+<div id="tbl-rows-of-interest" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rows-of-interest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;16.3: Rows for Kevin McCarthy and Alexandra Ocasio-Cortez
+</figcaption>
+<div aria-describedby="tbl-rows-of-interest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-paper lightable-striped lightable-hover caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">Ascending_Rank</th>
@@ -820,12 +872,14 @@ Need to introduce indexing with slices.
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 
 
 </div>
 </div>
 <p>The rows show the <em>rank</em> of each congressional district in terms of median household income. The districts are ordered by this rank, so we can get their respective <em>indices</em> (positions) in the <code>incomes</code> vector from their rank. </p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-34_dcc4d3223cd75aabec4c7acb46d7ee51">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rank of McCarthy's district in terms of median household income.</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>km_rank <span class="ot">=</span> <span class="dv">295</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Index (position) of McCarthy's value in the "incomes" vector.</span></span>
@@ -833,7 +887,7 @@ Need to introduce indexing with slices.
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>km_index <span class="ot">=</span> km_rank</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we have the index (position) of KM’s value, we can find the household income for his district from the <code>incomes</code> vector:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-36_887cc030552c9f6e677afa5bd567455e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the median household income from McCarthy's district</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># by indexing into the "incomes" vector:</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>km_income <span class="ot">&lt;-</span> incomes[km_index]</span>
@@ -843,7 +897,7 @@ Need to introduce indexing with slices.
 </div>
 </div>
 <p>Here is the corresponding index and <code>incomes</code> value for AOC:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-38_610fe36517365f637c01637767832976">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Index (position) of AOC's value in the "incomes" array.</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>aoc_rank <span class="ot">=</span> <span class="dv">81</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>aoc_index <span class="ot">=</span> aoc_rank</span>
@@ -870,7 +924,7 @@ Need to introduce indexing with slices.
 <p>So, if the rank was <span class="math inline">\(1\)</span>, then the value is at the start of the line. It has got <span class="math inline">\(\frac{0}{440}\)</span> of the way along the line, and the QP is <span class="math inline">\(0\)</span>. If the rank is <span class="math inline">\(441\)</span>, the value is at the end of the line, it has got <span class="math inline">\(\frac{440}{440}\)</span> of the way along the line and the QP is <span class="math inline">\(1\)</span>.</p>
 <p>Now consider the rank of <span class="math inline">\(100\)</span>. It has got <span class="math inline">\(\frac{(100 - 1)}{440}\)</span> of the way along the line, and the QP position is 0.22.</p>
 <p>More generally, we can translate the high-to-low ranks to QPs with:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-40_d7a594ebd939499149b413ce021ab406">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Length of the line defining quantile positions.</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Start of line is rank 1 (quantile position 0).</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># End of line is rank 441 (quantile position 1).</span></span>
@@ -883,24 +937,24 @@ Need to introduce indexing with slices.
 </div>
 </div>
 <p>Let’s plot the ranks and the QPs together on the x-axis:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-41_174670db8543bca33167af885e3e8949">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The QPs for KM and AOC tell us where their districts’ incomes are in the ranks, on a 0 to 1 scale:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-43_43c53e920f282e45154af92e2b00e3d5">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>km_quantile_position <span class="ot">&lt;-</span> quantile_positions[km_index]</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>km_quantile_position</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.668</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-45_12b58734cb04c5258143217b59cbfe1d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>aoc_quantile_position <span class="ot">&lt;-</span> quantile_positions[aoc_index]</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>aoc_quantile_position</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -908,7 +962,7 @@ Need to introduce indexing with slices.
 </div>
 </div>
 <p>If we multiply the QP by 100, we get the <em>percentile positions</em> — so the percentile position ranges from 0 through 100.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-47_06cf23b7e8518b2f5f649e0a10eb9b60">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Percentile positions are just quantile positions * 100</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'KM percentile position: '</span>, km_quantile_position <span class="sc">*</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -920,7 +974,7 @@ Need to introduce indexing with slices.
 </div>
 </div>
 <p>Now consider one particular QP: <span class="math inline">\(0.5\)</span>. The <span class="math inline">\(0.5\)</span> QP is exactly half-way along the line from rank <span class="math inline">\(1\)</span> to rank <span class="math inline">\(441\)</span>. In our case this corresponds to rank <span class="math inline">\(\frac{441 - 1}{2} + 1 = 221\)</span>.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-49_826e776c606aec9930c8be153fd37516">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Middle rank: '</span>, lo_to_hi_ranks[<span class="dv">221</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Middle rank: 221</code></pre>
@@ -931,7 +985,7 @@ Need to introduce indexing with slices.
 </div>
 </div>
 <p>The <em>value</em> corresponding to any particular QP is the <em>quantile value</em>, or just the <em>quantile</em> for short. For a QP of 0.5, the <em>quantile</em> (quantile value) is:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-51_ff5d9b727c7997726a9861895cd47da2">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quantile value for 0.5</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Quantile value for QP of 0.5: '</span>, incomes[<span class="dv">221</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -939,7 +993,7 @@ Need to introduce indexing with slices.
 </div>
 </div>
 <p>In fact we can ask R for this <em>value</em> (quantile) directly, using the <code>quantile</code> function:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-53_87eae2fbe299bbd9caa38c8ec3a8a6c5">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(incomes, <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  50% 
@@ -958,7 +1012,7 @@ Need to introduce indexing with slices.
 <div class="callout-body-container callout-body">
 <p>In our case, the <code>incomes</code> data is already sorted from lowest (at position <span class="r">1</span> in the vector to highest (at position <span class="r">441</span> in the vector). The <code>quantile</code> function does not need the data to be sorted; it does its own internal sorting to do the calculation.</p>
 <p>For example, we could shuffle <code>incomes</code> into a random order, and still get the same values from <code>quantile</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-55_f483f7328afc01989a8d8d0f81e39cd3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>shuffled_incomes <span class="ot">&lt;-</span> <span class="fu">sample</span>(incomes)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Quantile still gives the same value.</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(incomes, <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -972,14 +1026,14 @@ Need to introduce indexing with slices.
 <p>Above we have the 0.5 <em>quantile</em> — the value corresponding to the QP of 0.5.</p>
 <p>The 0.5 quantile is an interesting value. By the definition of QP, exactly half of the remaining values (after excluding the 0.5 quantile value) have lower rank, and are therefore less than the 0.5 quantile value. Similarly exactly half of the remaining values are greater than the 0.5 quantile. You may recognize this as the <em>median</em> value. This is such a common quantile value that R has a function <span class="r"><code>median</code></span> as a shortcut for <span class="r"><code>quantile(data, 0.5)</code></span>.</p>
 <p>Another interesting QP is 0.25. We find the QP of 0.25 at rank:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-58_eef9c6e46283ac50c0881471e55472c1">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>qp25_rank <span class="ot">&lt;-</span> (<span class="dv">441</span> <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fl">0.25</span> <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>qp25_rank</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 111</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-60_0ddfecd25dfa7c9e3de0a455ed066f4e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Rank corresponding to QP 0.25: '</span>, qp25_rank)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rank corresponding to QP 0.25: 111</code></pre>
@@ -993,18 +1047,18 @@ Need to introduce indexing with slices.
 <pre><code>0.25 quantile value using quantile: 58961</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-61_34d9f191ff18128d98df9bb76c61fa34">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Call the 0.25 quantile value <span class="math inline">\(V\)</span>. <span class="math inline">\(V\)</span> is the number such that 25% of the <em>remaining</em> values are less than <span class="math inline">\(V\)</span>, and 75% are greater.</p>
 <p>Now let’s think about the 0.01 quantile. We don’t have an <em>income value</em> exactly corresponding to this QP, because there is no rank exactly corresponding to the 0.01 QP.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-63_bce202fc8d30a75268b6ac5997244989">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>rank_for_qp001 <span class="ot">&lt;-</span> (<span class="dv">441</span> <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fl">0.01</span> <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>rank_for_qp001</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1012,26 +1066,26 @@ Need to introduce indexing with slices.
 </div>
 </div>
 <p>Let’s have a look at the first 10 values for rank / QP and incomes:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-64_9263795e18a21ec876293b3f984e8ba3">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-64-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-64-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>What then, is the quantile value for QP = 0.01? There are various ways to answer that question <span class="citation" data-cites="hyndman1996sample">(<a href="references.html#ref-hyndman1996sample" role="doc-biblioref">Hyndman and Fan 1996</a>)</span>, but one obvious way, and the default for R, is to draw a straight line up from the matching rank — or equivalently, down from the QP — then note where that line crosses the lines joining the values to the left and right of the QP on the graph above, and look across to the y-axis for the corresponding value:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-65_ede1f3e14ab04af66ed5e0a2744320cc">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-65-3.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-65-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-67_1b51b055c596017f999a50fef68a8b22">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(incomes, <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   1% 
@@ -1050,7 +1104,7 @@ Calculating quantiles using the linear method
 </div>
 <div class="callout-body-container callout-body">
 <p>We gave a graphical explanation of how to calculate the quantile for a QP that does not correspond to whole-number rank in the data. A more formal way of getting the value using the numerical equivalent of the graphical method is <a href="https://en.wikipedia.org/wiki/Linear_interpolation">linear interpolation</a>. Linear interpolation calculates the quantile value as a <em>weighted average</em> of the quantile values for the QPs of the whole number ranks just less than, and just greater than the QP we are interested in. For example, let us return to the QP of <span class="math inline">\(0.01\)</span>. Let us remind ourselves of the QPs, whole-number ranks and corresponding values either side of the QP <span class="math inline">\(0.01\)</span>:</p>
-<table class="table">
+<table class="caption-top table">
 <caption>Ranks, QPs and corresponding values around QP of 0.01</caption>
 <thead>
 <tr class="header">
@@ -1077,7 +1131,9 @@ Calculating quantiles using the linear method
 </tr>
 </tbody>
 </table>
-<p>What value should we should give <span class="math inline">\(V\)</span> in the table? One answer is to take the average of the two values either side of the desired QP — in this case <span class="math inline">\((37933 + 40319) / 2\)</span>. We could write this same calculation as <span class="math inline">\(37933 * 0.5 + 40319 * 0.5\)</span> — showing that we are giving equal weight (<span class="math inline">\(0.5\)</span>) to the two values either side.</p>
+<p>What value should we should give <span class="math inline">\(V\)</span> in the table? One answer is to take the average of the two values either side of the desired QP — in this case <span class="math inline">\((37933
++ 40319) / 2\)</span>. We could write this same calculation as <span class="math inline">\(37933 * 0.5
++ 40319 * 0.5\)</span> — showing that we are giving equal weight (<span class="math inline">\(0.5\)</span>) to the two values either side.</p>
 <p>But giving both values equal weight doesn’t seem quite right, because the QP we want is closer to the QP for rank 5 (and corresponding value 37933) than it is to the QP for rank 6 (and corresponding value 40319). We should give more weight to the rank 5 value than the rank 6 value. Specifically the lower value is 0.4 rank units away from the QP rank we want, and the higher is 0.6 rank units away. So we give higher weight for shorter distance, and multiply the rank 5 value by <span class="math inline">\(1 - 0.4 = 0.6\)</span>, and the rank 6 value by <span class="math inline">\(1 - 0.6 = 0.4\)</span>. Therefore the weighted average is <span class="math inline">\(37933 * 0.6 + 40319 * 0.4 = 38887.4\)</span>. This is a mathematical way to get the value we described graphically, of tracking up from the rank of 5.4 to the line drawn between the values for rank 5 and 6, and reading off the y-value at which this track crosses that line.</p>
 </div>
 </div>
@@ -1088,24 +1144,24 @@ Calculating quantiles using the linear method
 <p>To answer that question, we have to think about the <em>distribution</em> of values. Are either AOC’s or KM’s district outside the <em>typical spread</em> of values for districts?</p>
 <p>The rest of this section is an attempt to answer what we could mean by <em>outside</em> and <em>typical spread</em>.</p>
 <p>Let us start with a histogram of the district incomes, marking the position of the KM and AOC districts.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-68_2c4603dc4734396595d5b3ee5b634314">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-68-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-68-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>What could we mean by “outside” the “typical spread”. By outside, we mean somewhere away from the center of the distribution. Let us take the mean of the distribution to be its center, and add that to the plot.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-70_160e1bf41e38b6f2c291edcdaaa7d5eb">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>mean_income <span class="ot">&lt;-</span> <span class="fu">mean</span>(incomes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-71_d4afb9304f580c014d3e844730b7f541">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-71-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-71-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -1115,21 +1171,21 @@ Calculating quantiles using the linear method
 <h2 data-number="16.5" class="anchored" data-anchor-id="on-deviations"><span class="header-section-number">16.5</span> On deviations</h2>
 <p>Now let us ask what we could mean by <em>typical spread</em>. By <em>spread</em> we mean deviation either side of the center.</p>
 <p>We can calculate how far away each income is away from the mean, by subtracting the mean from all the income values. Call the result — the <em>deviations</em> from the mean, or <em>deviations</em> for short.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-73_891638c2aa9cf7c6a1e6e4b0d29fd538">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>deviations <span class="ot">&lt;-</span> incomes <span class="sc">-</span> <span class="fu">mean</span>(incomes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The deviation values give, for each district, how far that district’s income is from the mean. Values near the mean will have small (positive or negative) values, and values further from the mean will have large (positive and negative) values. Here is a histogram of the <em>deviation</em> values.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-74_387dcddf4d3645b2168ab93babcce498">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-74-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-74-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Notice that the shape of the distribution has not changed — all that changed is the position of the distribution on the x-axis. In fact, the distribution of deviations centers on zero — the deviations have a mean of (as near as the computer can accurately calculate) zero:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-76_5fd3fa17e8df414ee6667b2c143bc108">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the mean of the deviations, rounded to 8 decimal places.</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(deviations), <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1140,7 +1196,7 @@ Calculating quantiles using the linear method
 <section id="the-mean-absolute-deviation" class="level2" data-number="16.6">
 <h2 data-number="16.6" class="anchored" data-anchor-id="the-mean-absolute-deviation"><span class="header-section-number">16.6</span> The mean absolute deviation</h2>
 <p>Now let us consider the deviation value for KM and AOC:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-78_9bee7112b6b33ff12ddcb89f69747ac7">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Deviation for KM: '</span>, deviations[km_index])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Deviation for KM: 5098.03628117914</code></pre>
@@ -1155,14 +1211,14 @@ Calculating quantiles using the linear method
 <p>You have just seen above that we cannot use the literal average (mean) of the deviations for this purpose because the positive and negative deviations will exactly cancel out, and the mean deviation will always be as near as the computer can calculate to zero.</p>
 <p>To stop the negatives canceling the positives, we can simply knock the minus signs off all the negative deviations.</p>
 <p>This is the job of the R <code>abs</code> function — where <code>abs</code> is short for <em>absolute</em>. The <code>abs</code> function will knock minus signs off negative values, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-80_e2b2045db2fb2d41af93278e4902fd4a">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 0 1 2</code></pre>
 </div>
 </div>
 <p>To get an average of the deviations, <em>regardless of whether they are positive or negative</em>, we can take the mean of the absolute deviations, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-82_abc682d68983cda301ca41981db69a4d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The Mean Absolute Deviation (MAD)</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>abs_deviations <span class="ot">&lt;-</span> <span class="fu">abs</span>(deviations)</span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>mad <span class="ot">&lt;-</span> <span class="fu">mean</span>(abs_deviations)</span>
@@ -1174,7 +1230,7 @@ Calculating quantiles using the linear method
 </div>
 <p>This is the Mean Absolute Deviation (MAD). It is one measure of the typical spread. MAD is the average distance (regardless of positive or negative) of a value from the mean of the values.</p>
 <p>We can get an idea of how typical a particular deviation is by dividing the deviation by the MAD value, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-84_7852915ba22c26a923e1d83954f9e41e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Deviation in MAD units for KM: '</span>, deviations[km_index] <span class="sc">/</span> mad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Deviation in MAD units for KM: 0.337581239498037</code></pre>
@@ -1192,7 +1248,7 @@ Calculating quantiles using the linear method
 <section id="sec-squared-arrays" class="level3" data-number="16.7.1">
 <h3 data-number="16.7.1" class="anchored" data-anchor-id="sec-squared-arrays"><span class="header-section-number">16.7.1</span> Squares of vectors</h3>
 <p>Another very popular way of solving the same problem is to precede the calculation by squaring all the deviations. R has an operator for the operation of taking values to the power of another value: it is <code>**</code>. For example, to square a single number, we take the number <em>to the power of</em> 2, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-86_a187993aab7b9010c60570d1af334074">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 10 to the power of 2.</span></span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">**</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1200,7 +1256,7 @@ Calculating quantiles using the linear method
 </div>
 </div>
 <p>You can also use the power of <code>**</code> operator on a vector, and, as usual, that works <em>elementwise</em>. The array you get back is the result of applying the to-the-power-of operation to all elements of the vector in turn:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-88_ea96782e5bbc80b9426bf9c6e8c88786">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>a_vector <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">12</span>)</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co"># All the elements in the vector, to the power of 2.</span></span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>a_vector <span class="sc">**</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1212,7 +1268,7 @@ Calculating quantiles using the linear method
 <section id="calculating-the-standard-deviation" class="level3" data-number="16.7.2">
 <h3 data-number="16.7.2" class="anchored" data-anchor-id="calculating-the-standard-deviation"><span class="header-section-number">16.7.2</span> Calculating the standard deviation</h3>
 <p>We can therefore square the deviations we calculated above, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-90_7171810aa0b4ef25176488c3c78f18df">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>squared_deviations <span class="ot">&lt;-</span> deviations <span class="sc">**</span> <span class="dv">2</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first five values.</span></span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>squared_deviations[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1237,7 +1293,7 @@ m * 10^n
 \]</span></p>
 <p><span class="math inline">\(m\)</span> is a floating point number with one digit before the decimal point — so it can be any value from 1.0 through 9.9999… <span class="math inline">\(n\)</span> is an integer (positive or negative whole number).</p>
 <p>For example, the median household income of KM’s district is 77205 (dollars). We can express that same number in E-notation as <span class="math inline">\(7.7205 * 10^4\)</span> . R writes this as <code>7.7205e4</code>, where the number before the <code>e</code> is <span class="math inline">\(m\)</span> and the number after the <code>e</code> is the exponent value <span class="math inline">\(n\)</span>. E-notation is another way of writing the number, because <span class="math inline">\(7.7205 * 10^4 = 77205\)</span>.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-92_ba4058e897cc809cd28bdd3e069641c8">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fl">7.7205e4</span> <span class="sc">==</span> <span class="dv">77205</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
@@ -1249,7 +1305,7 @@ m * 10^n
 </div>
 <p>The process of squaring the deviations turns all the negative values into positive values.</p>
 <p>We can then take the average (mean) of the <em>squared deviations</em> to give a measure of the typical <em>squared</em> deviation:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-94_52d9415d3b8114fefc3dd21b8cd74b92">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>mean_squared_deviation <span class="ot">&lt;-</span> <span class="fu">mean</span>(squared_deviations)</span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>mean_squared_deviation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1257,7 +1313,7 @@ m * 10^n
 </div>
 </div>
 <p>Rather confusingly, the field of statistics uses the term <em>variance</em> to refer to mean squared deviation value. Just to emphasize that naming, let’s do the same calculation but using “variance” as the variable name.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-96_099d52e24ed8e1345376ccf7066561a5">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistics calls the mean squared deviation - the "variance"</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>variance <span class="ot">&lt;-</span> <span class="fu">mean</span>(squared_deviations)</span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1267,7 +1323,7 @@ m * 10^n
 </div>
 <p>The variance is the typical (in the sense of the mean) <em>squared</em> deviation. The units for the variance, in our case, would be <em>squared dollars</em>. But we are more interested in the typical <em>deviation</em>, in our original units – dollars rather than squared dollars.</p>
 <p>So we take the square root of the mean squared deviation (the square root of the variance), to get the <em>standard deviation</em>. It is the <em>standard</em> deviation in the sense that it a measure of <em>typical</em> deviation, in the specific sense of the square root of the mean squared deviations.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-99_679241c0dd5a24b7d2c891acb6e2372b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The standard deviation is the square root of the mean squared deviation.</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (and therefore, the square root of the variance).</span></span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>standard_deviation <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(mean_squared_deviation)</span>
@@ -1278,18 +1334,22 @@ m * 10^n
 </div>
 <p>The <em>standard deviation</em> (the square root of the mean squared deviation) is a popular alternative to the Mean Absolute Deviation, as a measure of typical spread.</p>
 <p><a href="#fig-mean-stds" class="quarto-xref">Figure&nbsp;<span>16.1</span></a> shows another histogram of the <code>income</code> values, marking the mean, the mean plus or minus one standard deviation, and the mean plus or minus two standard deviations. You can see that the mean plus or minus one standard deviation includes a fairly large proportion of the data. The mean plus or minus two standard deviation includes much larger proportion.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/fig-mean-stds_c69740eef070ae221037612a8ab0799a">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-mean-stds" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="standard_scores_files/figure-html/fig-mean-stds-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;16.1: Income histogram plus or minus 1 and 2 standard deviations</figcaption>
+<div id="fig-mean-stds" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mean-stds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="standard_scores_files/figure-html/fig-mean-stds-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mean-stds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.1: Income histogram plus or minus 1 and 2 standard deviations
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Now let us return to the question of how unusual our two congressional districts are in terms of the distribution. First we calculate the number of standard deviations of each district from the mean:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-103_70ffeeae840979df7a30f7f099bde6cd">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>km_std_devs <span class="ot">&lt;-</span> deviations[km_index] <span class="sc">/</span> standard_deviation</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Deviation in standard deviation units for KM: '</span>,</span>
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(km_std_devs, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1315,12 +1375,12 @@ m * 10^n
 </ul>
 <p>Let’s apply that procedure to all the <code>incomes</code> values.</p>
 <p>First we calculate the standard deviation:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-105_1566ec5daf3bb76b1ff52f2ebb8eb5c3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>deviations <span class="ot">&lt;-</span> incomes <span class="sc">-</span> <span class="fu">mean</span>(incomes)</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>income_std <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(deviations <span class="sc">**</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then we calculate standard scores:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-107_a154783be1584f878a4c8f92baff46dd">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>deviations_in_stds <span class="ot">&lt;-</span> deviations <span class="sc">/</span> income_std</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first five values.</span></span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>deviations_in_stds[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1330,17 +1390,17 @@ m * 10^n
 </div>
 <p>This procedure converts the original data (here <code>incomes</code>) to deviations from the mean in terms of the standard deviation. The resulting values are called <a href="https://en.wikipedia.org/wiki/Standard_score">standard scores</a> or <em>z-scores</em>. One name for this procedure is “z-scoring”.</p>
 <p>If you plot a histogram of the standard scores, you will see they have a mean of (actually exactly) 0, and a standard deviation of (actually exactly) 1.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-108_1a80bd4375de9f30008c516d2e34a987">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-108-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-108-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>With all this information — what should we conclude about the two districts in question? KM’s district is 0.26 standard deviations <em>above</em> the mean, but that’s not enough to conclude that it is unusual. We see from the histogram that a large proportion of the districts are at least this distance from the mean. We can calculate that proportion directly.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-110_1a9666e680a24637fad93be05968fb17">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distances (negative or positive) from the mean.</span></span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>abs_std_devs <span class="ot">&lt;-</span> <span class="fu">abs</span>(deviations_in_stds)</span>
 <span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Number where distance greater than KM distance.</span></span>
@@ -1354,7 +1414,7 @@ m * 10^n
 </div>
 <p>A full 82% of districts are further from the mean than is KM’s district. KM’s district is richer than average, but not unusual. The benefit of the standard deviation distance is that we can see this directly from the value, without doing the calculation of proportions, because the standard deviation is a measure of typical spread, and KM’s district is well-within this measure.</p>
 <p>AOC’s district is -0.81 standard deviations from the mean. This is a little more unusual than KM’s score.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-112_b02253a47a9d26deb55cc24164a8bf87">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number where distance greater than AOC distance.</span></span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make AOC's distance positive to correspond to distance from the mean.</span></span>
 <span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>n_gt_aoc <span class="ot">&lt;-</span> <span class="fu">sum</span>(abs_std_devs <span class="sc">&gt;</span> <span class="fu">abs</span>(aoc_std_devs))</span>
@@ -1371,11 +1431,15 @@ m * 10^n
 <h2 data-number="16.9" class="anchored" data-anchor-id="sec-standard-scores"><span class="header-section-number">16.9</span> Standard scores to compare values on different scales</h2>
 <p>Why are standard scores so useful? They allow us to compare values on very different scales.</p>
 <p>Consider the values in <a href="#tbl-epl-points-wages" class="quarto-xref">Table&nbsp;<span>16.4</span></a>. Each row of the table corresponds to a team competing in the English Premier League (EPL) for the 2021-2022 season. For those of you with absolutely no interest in sports, the EPL is the league of the top 20 teams in English football, or <em>soccer</em> to our North American friends. The <code>points</code> column of the table gives the total number of points at the end of the 2021 season (from 38 games). The team gets 3 points for a win, and 1 point for a draw, so the maximum possible points from 38 games are <span class="math inline">\(3 * 38 = 114\)</span>. The <code>wages</code> column gives the estimated total wage bill in thousands of British Pounds (£1000).</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-114_ab259c1858781721297f5793b8b87b01">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-epl-points-wages" class="anchored">
-<table class="lightable-paper lightable-striped lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;16.4: 2021 points and wage bills (£1000s) for EPL teams </caption>
+<div id="tbl-epl-points-wages" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-epl-points-wages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;16.4: 2021 points and wage bills (£1000s) for EPL teams
+</figcaption>
+<div aria-describedby="tbl-epl-points-wages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-paper lightable-striped lightable-hover caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">team</th>
@@ -1487,6 +1551,8 @@ m * 10^n
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 
 
 </div>
@@ -1495,11 +1561,11 @@ m * 10^n
 <p>One thing we might like to know is whether there is an association between the wage bill and the points scored.</p>
 <p>To look at that, we can do a scatter plot. This is a plot with — say — wages on the x-axis, and points on the y-axis. For each team we have a pair of values — their wage bill and their points scored. For each team, we put a marker on the scatter plot at the coordinates given by the wage value (on the x-axis) and the points value (on the y-axis).</p>
 <p>Here is that plot for our EPL data in <a href="#tbl-epl-points-wages" class="quarto-xref">Table&nbsp;<span>16.4</span></a>, with the Crystal Palace marker picked out in red.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-115_a72dce446582d753cd35ee0aeaef50bd">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-115-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-115-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -1508,13 +1574,13 @@ m * 10^n
 <p>At the moment, the points and wages are in very different units. Points are on a possible scale of 0 (lose every game) to 38 * 3 = 114 (win every game). Wages are in thousands of pounds. Maybe we are not interested in the values in these units, but in how unusual the values are, in terms of wages, and in terms of points.</p>
 <p>This is a good application of standard scores. Standard scores convert the original values to values on a standard scale, where 0 corresponds to an average value, 1 to a value one standard deviation above the mean, and -1 to a value one standard deviation below the mean. If we follow the standard score process for both points and wages, the values will be in the same standard units.</p>
 <p>To do this calculation, we need the values from the table. We follow the same recipe as before, in loading the data with <span class="r">R</span>.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-117_df190800b42b82587684ce68d6f4f23b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>points_wages <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">'data/premier_league.csv'</span>)</span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>points <span class="ot">=</span> points_wages<span class="sc">$</span>points</span>
 <span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>wages <span class="ot">=</span> points_wages<span class="sc">$</span>wages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As you recall, the standard deviation is the square root of the mean squared deviation. In code:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-119_8cb451b25d4407538926e6b04ffcf238">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The standard deviation is the square root of the</span></span>
 <span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mean squared deviation.</span></span>
 <span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>wage_deviations <span class="ot">&lt;-</span> wages <span class="sc">-</span> <span class="fu">mean</span>(wages)</span>
@@ -1525,27 +1591,27 @@ m * 10^n
 </div>
 </div>
 <p>Now we can apply the standard score procedure to wages. We divide the deviations by the standard deviation.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-121_8d25e35419bc8211af9f75d8c935585a">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>standard_wages <span class="ot">&lt;-</span> (wages <span class="sc">-</span> <span class="fu">mean</span>(wages)) <span class="sc">/</span> wage_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We apply the same procedure to the points:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-123_8e86da0136f2d5563d4fb5dfd351d8ea">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>point_deviations <span class="ot">&lt;-</span> points <span class="sc">-</span> <span class="fu">mean</span>(points)</span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>point_std <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(point_deviations <span class="sc">**</span> <span class="dv">2</span>))</span>
 <span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>standard_points <span class="ot">=</span> point_deviations <span class="sc">/</span> point_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, when we plot the standard score version of the points against the standard score version of the wages, we see that they are in comparable units, each with a mean of 0, and a spread (a standard deviation) of 1.</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-124_99aa1fe520f63bcaba6d5d3ad659c742">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-124-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-124-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Let us go back to our concerns as the owners of Crystal Palace. Counting down from the top in the table above, we see that Crystal Palace is the 12th row. Therefore, we can get the Crystal Palace wage value with:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-126_c7507d43f63a841cd1e8423c99edf87e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>cp_index <span class="ot">&lt;-</span> <span class="dv">12</span></span>
 <span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>cp_wages <span class="ot">&lt;-</span> wages[cp_index]</span>
 <span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>cp_wages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1554,7 +1620,7 @@ m * 10^n
 </div>
 </div>
 <p>We can get our wage bill in standard units in the same way:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-128_21107bb9ddcd404bd738e6596e6acf5b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>cp_standard_wages <span class="ot">&lt;-</span> standard_wages[cp_index]</span>
 <span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>cp_standard_wages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1564,9 +1630,9 @@ m * 10^n
 <p>Our wage bill is a below average, but its still within striking distance of the mean.</p>
 <p>We know that we are comparing ourselves against the other teams, so perhaps we want to increase our wage bill by one standard deviation, to push us above the mean, and somewhat away from the center of the pack. If we add one standard deviation to our wage bill, that increases the standard score of our wages by 1.</p>
 <p>But — if we increase our wages by one standard deviation — how much can we expect that to increase our points — in standard units.</p>
-<p>That is question about the strength of the association between two measures — here wages and points — and we will cover that topic in much more detail in <a href="correlation_causation.html" class="quarto-xref"><span>Chapter&nbsp;29</span></a>. But, racing ahead — here is the answer to the question we have just posed — the amount we expect to gain in points, in standard units, if we increase our wages by one standard deviation (and therefore, 1 in standard units).</p>
+<p>That is question about the strength of the association between two measures — here wages and points — and we will cover that topic in much more detail in <a href="correlation_causation.html" class="quarto-xref"><span>Chapter 29</span></a>. But, racing ahead — here is the answer to the question we have just posed — the amount we expect to gain in points, in standard units, if we increase our wages by one standard deviation (and therefore, 1 in standard units).</p>
 <p>For reasons we won’t justify now, we calculate the <span class="math inline">\(r\)</span> value of association between wages and points, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="standard_scores_cache/html/unnamed-chunk-130_cefbc0de05380a4e1557fa7356b4c785">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>standards_multiplied <span class="ot">&lt;-</span> standard_wages <span class="sc">*</span> standard_points</span>
 <span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">=</span> <span class="fu">mean</span>(standards_multiplied)</span>
 <span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1581,7 +1647,7 @@ m * 10^n
 <p>When we look at a set of values, we often ask questions about whether individual values are unusual or surprising. One way of doing that is to look at where the values are in the sorted order — for example, using the raw rank of values, or the proportion of values below this value — the quantiles or percentiles of a value. Another measure of interest is where a value is in comparison to the spread of all values either side of the mean. We use the term “deviations” to refer to the original values after we have subtracted the mean of the values. We can measure spread either side of the mean with metrics such as the mean of the absolute deviations (MAD) and the square root of the mean squared deviations (the standard deviation). One common use of the deviations and the standard deviation is to transform values into <em>standard scores</em>. These are the deviations divided by the standard deviation, and they transform values to have a standard mean (zero) and spread (standard deviation of 1). This can make it easier to compare sets of values with very different ranges and means.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-hyndman1996sample" class="csl-entry" role="listitem">
 Hyndman, Rob J, and Yanan Fan. 1996. <span>“Sample Quantiles in Statistical Packages.”</span> <em>The American Statistician</em> 50 (4): 361–65. <a href="https://www.jstor.org/stable/pdf/2684934.pdf">https://www.jstor.org/stable/pdf/2684934.pdf</a>.
 </div>
@@ -1590,13 +1656,13 @@ Piketty, Thomas. 2018. <span>“Brahmin Left Vs Merchant Right: Rising Inequalit
 </div>
 </div>
 </section>
-<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn1"><p>To get ranks we have to be able to sort our values in some reasonable way from low to high. This usually makes sense for measured data, where the measurement gives a number in the same unit for each observation, but may not make sense for other data, such as names or labels. For example, it may or may not be meaningful to rank names alphabetically. As usual, this is a matter of judgment.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>For now, let us define the median value <span class="math inline">\(M\)</span> as the value such that (as close as possible to) half of the households in the district have a lower income than <span class="math inline">\(M\)</span>, and (as close as possible to) half have a higher income. We will give more detail on the median later in the chapter.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</aside>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1634,18 +1700,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1677,11 +1732,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1691,8 +1785,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1704,7 +1807,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1748,6 +1974,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1773,6 +2000,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1834,17 +2087,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./monte_carlo.html" class="pagination-link">
+      <a href="./monte_carlo.html" class="pagination-link" aria-label="The Procedures of Monte Carlo Simulation (and Resampling)">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">The Procedures of Monte Carlo Simulation (and Resampling)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./inference_ideas.html" class="pagination-link">
+      <a href="./inference_ideas.html" class="pagination-link" aria-label="The Basic Ideas in Statistical Inference">
         <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The Basic Ideas in Statistical Inference</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

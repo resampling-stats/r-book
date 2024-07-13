@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.51">
+<meta name="generator" content="quarto-1.6.1">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Resampling statistics - 29&nbsp; Correlation and Causation</title>
+<title>29&nbsp; Correlation and Causation – Resampling statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -100,7 +101,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -109,22 +116,49 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
-
 <script type="text/javascript">
   $(document).ready(function() {
     $("table").addClass('lightable-paper lightable-striped lightable-hover')
   });
 </script>
-
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="font-awesome.min.css">
@@ -136,12 +170,12 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./correlation_causation.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Correlation and Causation</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./correlation_causation.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Correlation and Causation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -151,7 +185,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Resampling statistics</a> 
@@ -395,7 +429,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -453,16 +487,18 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <section id="preview" class="level2" data-number="29.1">
 <h2 data-number="29.1" class="anchored" data-anchor-id="preview"><span class="header-section-number">29.1</span> Preview</h2>
-<p>The correlation (speaking in a loose way for now) between two variables measures the strength of the relationship between them. A positive “linear” correlation between two variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> implies that high values of <span class="math inline">\(x\)</span> are associated with high values of <span class="math inline">\(y\)</span>, and that low values of <span class="math inline">\(x\)</span> are associated with low values of <span class="math inline">\(y\)</span>. A negative correlation implies the opposite; high values of <span class="math inline">\(x\)</span> are associated with <em>low</em> values of <span class="math inline">\(y\)</span>. By definition a “correlation coefficient” (<a href="#sec-correlation-coefficient" class="quarto-xref"><span>Section&nbsp;29.5</span></a>) close to zero indicates little or no linear relationship between two variables; correlation coefficients close to 1 and -1 denote a strong positive or negative relationship. We will start by using a simpler measure of correlation than the correlation coefficient, however.</p>
-<p>One way to measure correlation with the resampling method is to rank both variables from highest to lowest, and investigate how often in randomly-generated samples the rankings of the two variables are as close to each other as the rankings in the observed variables. A better approach, because it uses more of the quantitative information contained in the data — though it requires more computation — is to multiply the values for the corresponding pairs of values for the two variables, and compare the sum of the resulting products to the analogous sum for randomly-generated pairs of the observed variable values (<a href="#sec-sum-products" class="quarto-xref"><span>Section&nbsp;29.4</span></a>). The last section of the chapter (<a href="#sec-counted-association" class="quarto-xref"><span>Section&nbsp;29.6</span></a>) shows how the strength of a relationship can be determined when the data are counted, rather than measured. First comes some discussion of the philosophical issues involved in correlation and causation.</p>
+<p>The correlation (speaking in a loose way for now) between two variables measures the strength of the relationship between them. A positive “linear” correlation between two variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> implies that high values of <span class="math inline">\(x\)</span> are associated with high values of <span class="math inline">\(y\)</span>, and that low values of <span class="math inline">\(x\)</span> are associated with low values of <span class="math inline">\(y\)</span>. A negative correlation implies the opposite; high values of <span class="math inline">\(x\)</span> are associated with <em>low</em> values of <span class="math inline">\(y\)</span>. By definition a “correlation coefficient” (<a href="#sec-correlation-coefficient" class="quarto-xref"><span>Section 29.5</span></a>) close to zero indicates little or no linear relationship between two variables; correlation coefficients close to 1 and -1 denote a strong positive or negative relationship. We will start by using a simpler measure of correlation than the correlation coefficient, however.</p>
+<p>One way to measure correlation with the resampling method is to rank both variables from highest to lowest, and investigate how often in randomly-generated samples the rankings of the two variables are as close to each other as the rankings in the observed variables. A better approach, because it uses more of the quantitative information contained in the data — though it requires more computation — is to multiply the values for the corresponding pairs of values for the two variables, and compare the sum of the resulting products to the analogous sum for randomly-generated pairs of the observed variable values (<a href="#sec-sum-products" class="quarto-xref"><span>Section 29.4</span></a>). The last section of the chapter (<a href="#sec-counted-association" class="quarto-xref"><span>Section 29.6</span></a>) shows how the strength of a relationship can be determined when the data are counted, rather than measured. First comes some discussion of the philosophical issues involved in correlation and causation.</p>
 </section>
 <section id="introduction-to-correlation-and-causation" class="level2" data-number="29.2">
 <h2 data-number="29.2" class="anchored" data-anchor-id="introduction-to-correlation-and-causation"><span class="header-section-number">29.2</span> Introduction to correlation and causation</h2>
-<p>The questions in examples <a href="probability_theory_3.html#sec-birthday-problem" class="quarto-xref"><span>Section&nbsp;12.1</span></a> to <a href="probability_theory_4_finite.html#sec-fifteen-bridge" class="quarto-xref"><span>Section&nbsp;13.3.3</span></a> have been stated in the following form: Does the independent variable (say, irradiation; or type of pig ration) have an effect upon the dependent variable (say, sex of fruit flies; or weight gain of pigs)? This is another way to state the following question: Is there a <em>causal relationship</em> between the independent variable(s) and the dependent variable? (“Independent” or “control” is the name we give to the variable(s) the researcher believes is (are) responsible for changes in the other variable, which we call the “dependent” or “response” variable.)</p>
+<p>The questions in examples <a href="probability_theory_3.html#sec-birthday-problem" class="quarto-xref"><span>Section 12.1</span></a> to <a href="probability_theory_4_finite.html#sec-fifteen-bridge" class="quarto-xref"><span>Section 13.3.3</span></a> have been stated in the following form: Does the independent variable (say, irradiation; or type of pig ration) have an effect upon the dependent variable (say, sex of fruit flies; or weight gain of pigs)? This is another way to state the following question: Is there a <em>causal relationship</em> between the independent variable(s) and the dependent variable? (“Independent” or “control” is the name we give to the variable(s) the researcher believes is (are) responsible for changes in the other variable, which we call the “dependent” or “response” variable.)</p>
 <p>A causal relationship cannot be defined perfectly neatly. Even an experiment does not determine perfectly whether a relationship deserves to be called “causal” because, among other reasons, the independent variable may not be clear-cut. For example, even if cigarette smoking experimentally produces cancer in rats, it might be the paper and not the tobacco that causes the cancer. Or consider the fabled gentlemen who got experimentally drunk on bourbon and soda on Monday night, scotch and soda on Tuesday night, and brandy and soda on Wednesday night — and stayed sober on Thursday night by drinking nothing. With a vast inductive leap of scientific imagination, they treated their experience as an empirical demonstration that soda, the common element each evening, was the cause of the inebriated state they had experienced. Notice that their deduction was perfectly sound, given only the recent evidence they had. Other knowledge of the world is necessary to set them straight. That is, even in a controlled experiment there is often no way except subject-matter knowledge to avoid erroneous conclusions about causality. Nothing except substantive knowledge or scientific intuition would have led them to the recognition that it is the alcohol rather than the soda that made them drunk, <em>as long as they always took soda with their drinks</em> . And no statistical procedure can suggest to them that they ought to experiment with the presence and absence of soda. If this is true for an experiment, it must also be true for an uncontrolled study.</p>
 <p>Here are some tests that a relationship usually must pass to be called causal. That is, a working definition of a particular causal relationship is expressed in a statement that has these important characteristics:</p>
 <ol type="1">
@@ -489,11 +525,15 @@ div.csl-indent {
 <p>A more specific version of our question: <strong>is there correlation between the two variables or are they independent?</strong></p>
 <p>A scientist often wants to know whether or not two characteristics go together, that is, whether or not they are correlated (that is, related or associated). For example, do young adults with high athletic ability tend to also have high I.Q.s?</p>
 <p>Hypothetical physical-education scores of a group of ten high-school boys are shown in <a href="#tbl-physical-mental" class="quarto-xref">Table&nbsp;<span>29.1</span></a>, ordered from high to low, along with the I.Q. score for each boy. The ranks for each student’s athletic and I.Q. scores are then shown in the third and fourth columns:</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-1_1cae9a7e4f0c91084bd9c2fa6d6a2ad6">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-physical-mental" class="anchored">
-<table class="lightable-paper lightable-striped lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;29.1: Hypothetical athletic and I.Q. scores for high school boys </caption>
+<div id="tbl-physical-mental" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-physical-mental-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;29.1: Hypothetical athletic and I.Q. scores for high school boys
+</figcaption>
+<div aria-describedby="tbl-physical-mental-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-paper lightable-striped lightable-hover caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">Athletic Score</th>
@@ -566,17 +606,23 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 
 
 </div>
 </div>
 <p><a href="#fig-ath-iq-scatter" class="quarto-xref">Figure&nbsp;<span>29.1</span></a> is a <em>scatterplot</em> with “Athletic Score” on the x-axis and “I.Q. Score” on the y-axis. Each point on the plot corresponds to one row of <a href="#tbl-physical-mental" class="quarto-xref">Table&nbsp;<span>29.1</span></a> (and therefore one boy); in particular each point is at the <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> coordinate given by the values in “Athletic Score” and “I.Q. Score”. For example the point for the first boy is at position x=97, y=114.</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/fig-ath-iq-scatter_384825e8f42e63f47304ddac72d1e437">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-ath-iq-scatter" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="correlation_causation_files/figure-html/fig-ath-iq-scatter-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;29.1: Scatter plot of I.Q. Score as a function of Athletic Score</figcaption>
+<div id="fig-ath-iq-scatter" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ath-iq-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="correlation_causation_files/figure-html/fig-ath-iq-scatter-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ath-iq-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;29.1: Scatter plot of I.Q. Score as a function of Athletic Score
+</figcaption>
 </figure>
 </div>
 </div>
@@ -592,9 +638,13 @@ div.csl-indent {
 <li><strong>Step 5.</strong> Calculate the proportion “yes.” This estimates the probability sought.</li>
 </ul>
 <p>In <a href="#tbl-ability-trials" class="quarto-xref">Table&nbsp;<span>29.2</span></a> we see that the observed sum (17) is lower than the sum of the top 5 ranks in all but one (shown in bold) of the ten random trials (trial 5), which suggests that there is a good chance (9 in 10) that the five best athletes will not have I.Q. scores that high by chance. But it might be well to deal some more to get a more reliable average. We add thirty hands, and thirty-nine of the total forty hands exceed the observed rank value, so the probability that the observed correlation of athletic and I.Q. scores would occur by chance is about .025. In other words, if there is no real association between the variables, the probability that the top 5 ranks would sum to a number this low or lower is only 1 in 40, and it therefore seems reasonable to believe that high athletic ability tends to accompany a high I.Q.</p>
-<div id="tbl-ability-trials" class="anchored">
-<table class="table">
-<caption>Table&nbsp;29.2: 40 random trials of the athletic / IQ problem</caption>
+<div id="tbl-ability-trials" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ability-trials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;29.2: 40 random trials of the athletic / IQ problem
+</figcaption>
+<div aria-describedby="tbl-ability-trials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Trial</th>
@@ -806,6 +856,8 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p>In fact we can apply an even simpler procedure to get the same result, by reasoning about the individual trial.</p>
 <p>One trial in our procedure is:</p>
 <ul>
@@ -822,7 +874,7 @@ div.csl-indent {
 
 <p>To simulate this problem in R, we first create a vector containing the I.Q. rankings of the top 5 students in athletics. The <code>sum</code> of these I.Q. rankings constitutes the observed result to be tested against randomly-drawn samples. We observe that the actual I.Q. rankings of the top five athletes sums to 17. The more frequently that the sum of 5 randomly-generated rankings (out of 10) is as low as this observed number, the higher is the probability that there is no relationship between athletic performance and I.Q. based on these data.</p>
 <p>First we record the 1 through 10 into vector <code>iq_ranks</code>. Then we shuffle the numbers so the rankings are in a random order. Then select the first 5 of these numbers and put them in another vector, <code>top_5</code>, and <code>sum</code> them, putting the result in <code>top_5_sum</code>. We repeat this procedure <code>N = 10000</code> times, recording each result in a scorekeeping vector: <code>z</code>. Graphing <code>z</code>, we get a histogram that shows us how often our randomly assigned sums are equal to or below 17.</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-4_0ed0dbb5e5b6c9fb3fea29ffc32e044e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of repeats.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The IQ ranks, ready for shuffling.</span></span>
@@ -848,13 +900,13 @@ div.csl-indent {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_causation_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="correlation_causation_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>We see that in only about 2 % of the trials did random selection of ranks produce a total of 17 or lower. R can calculate this for us directly:</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-7_0a430921ec79c91303591b13eec5326d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine how many trials produced sums of ranks &lt;= 17 by chance.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">sum</span>(results <span class="sc">&lt;=</span> <span class="dv">17</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The proportion.</span></span>
@@ -872,9 +924,13 @@ End of notebook
 -->
 <p>Why do we sum the ranks of the first <em>five</em> athletes rather than taking the sum of the top three, say? Indeed, we could have looked at the top three, two, four, or even six or seven. The first reason for splitting the group in half is that an even split uses the available information more fully, and therefore we obtain greater efficiency. (I cannot prove this formally here, but perhaps it makes intuitive sense to you.) A second reason is that getting into the habit of always looking at an even split reduces the chances that you will pick and choose in such a manner as to fool yourself. For example, if the I.Q. ranks of the top five athletes were 3, 2, 1, 10, and 9, we would be deceiving ourselves if, after looking the data over, we drew the line between athletes 3 and 4. (More generally, choosing an appropriate measure before examining the data will help you avoid fooling yourself in such matters.)</p>
 <p>A simpler but less efficient approach to this same problem is to classify the top-half athletes by whether or not they were also in the top half of the I.Q. scores. Of the first five athletes actually observed, <em>four</em> were in the top five I.Q. scores. We can then shuffle five black and five red cards and see how often four or more (that is, four or five) blacks come up with the first five cards. The proportion of times that four or more blacks occurs in the trial is the probability that an association as strong as that observed might occur by chance even if there is no association. <a href="#tbl-top-rank-counts" class="quarto-xref">Table&nbsp;<span>29.3</span></a> shows a proportion of five trials out of twenty.</p>
-<div id="tbl-top-rank-counts" class="anchored">
-<table class="table">
-<caption>Table&nbsp;29.3: Results of 20 random trials of the top-5 rank counts</caption>
+<div id="tbl-top-rank-counts" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-top-rank-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;29.3: Results of 20 random trials of the top-5 rank counts
+</figcaption>
+<div aria-describedby="tbl-top-rank-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Trial</th>
@@ -986,6 +1042,8 @@ End of notebook
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <div class="notebook" name="athlete_iq_rank_count" title="Athletic ability and IQ using rank counts">
 <p>Start of <code>athlete_iq_rank_count</code> notebook</p>
 <div class="nb-links">
@@ -994,7 +1052,7 @@ End of notebook
 </div>
 
 <p>In the R code below, we first note that the top 5 athletes had 4 of the top 5 I.Q. scores. So we constitute the set of 10 IQ rankings vector <code>iq_ranks</code>. We then shuffle <code>iq_ranks</code> and select the first 5 I.Q. rankings (out of 10). We count (<code>sum</code>) how many are in the top 5, and keep track of the result. After repeating 10,000 times using a <code>for</code> loop, we find out how often we select 4 of the top 5.</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-9_0284c8ceef6f6cd18a0b4fd686012129">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of repeats.</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The IQ ranks, ready for shuffling.</span></span>
@@ -1037,35 +1095,47 @@ End of notebook
 </section>
 <section id="example-athletic-ability-and-i.q.-a-third-way" class="level3" data-number="29.3.2">
 <h3 data-number="29.3.2" class="anchored" data-anchor-id="example-athletic-ability-and-i.q.-a-third-way"><span class="header-section-number">29.3.2</span> Example: Athletic ability and I.Q. — a third way</h3>
-<p>The example in <a href="#sec-athletic-iq-ranks" class="quarto-xref"><span>Section&nbsp;29.3.1</span></a> investigated the relationship between I.Q. and athletic score by ranking the two sets of scores. But ranking of scores loses some efficiency because it uses only an “ordinal” (rank-ordered) rather than a “cardinal” (measured) scale; the numerical shadings and relative relationships are lost when we convert to ranks. Therefore let us consider a test of correlation that uses the original cardinal numerical scores.</p>
+<p>The example in <a href="#sec-athletic-iq-ranks" class="quarto-xref"><span>Section 29.3.1</span></a> investigated the relationship between I.Q. and athletic score by ranking the two sets of scores. But ranking of scores loses some efficiency because it uses only an “ordinal” (rank-ordered) rather than a “cardinal” (measured) scale; the numerical shadings and relative relationships are lost when we convert to ranks. Therefore let us consider a test of correlation that uses the original cardinal numerical scores.</p>
 <p>First a little background: <a href="#fig-hypot-spos" class="quarto-xref">Figure&nbsp;<span>29.2</span></a> and <a href="#fig-hypot-sneg" class="quarto-xref">Figure&nbsp;<span>29.3</span></a> show two hypothetical cases of very high association among the I.Q. and athletic scores used in previous examples. <a href="#fig-hypot-spos" class="quarto-xref">Figure&nbsp;<span>29.2</span></a> indicates that the higher the I.Q. score, the higher the athletic score. With a boy’s athletic score you can thus predict quite well his I.Q. score by means of a hand-drawn line — or vice versa. The same is true of <a href="#fig-hypot-sneg" class="quarto-xref">Figure&nbsp;<span>29.3</span></a>, but in the opposite direction. Notice that even though athletic score is on the x-axis (horizontal) and I.Q. score is on the y-axis (vertical), the athletic score does not <em>cause</em> the I.Q. score. (It is an unfortunate deficiency of such diagrams that <em>some</em> variable must arbitrarily be placed on the x-axis, whether you intend to suggest causation or not.)</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/fig-hypot-spos_7f22fd710715e435dd4ec987f95acfef">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-hypot-spos" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="correlation_causation_files/figure-html/fig-hypot-spos-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;29.2: Hypothetical Scores for I.Q. and Athletic Ability — 1</figcaption>
+<div id="fig-hypot-spos" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hypot-spos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="correlation_causation_files/figure-html/fig-hypot-spos-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hypot-spos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;29.2: Hypothetical Scores for I.Q. and Athletic Ability — 1
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/fig-hypot-sneg_be58c03a81076351283bdb96b17b4453">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-hypot-sneg" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="correlation_causation_files/figure-html/fig-hypot-sneg-3.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;29.3: Hypothetical Scores for I.Q. and Athletic Ability — 2</figcaption>
+<div id="fig-hypot-sneg" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hypot-sneg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="correlation_causation_files/figure-html/fig-hypot-sneg-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hypot-sneg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;29.3: Hypothetical Scores for I.Q. and Athletic Ability — 2
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>In <a href="#fig-given_iq_athletic" class="quarto-xref">Figure&nbsp;<span>29.4</span></a>, which plots the scores as given in <a href="#tbl-physical-mental" class="quarto-xref">Table&nbsp;<span>29.1</span></a>, the prediction of athletic score given I.Q. score, or vice versa, is less clear-cut than in <a href="#fig-hypot-spos" class="quarto-xref">Figure&nbsp;<span>29.2</span></a>. On the basis of <a href="#fig-given_iq_athletic" class="quarto-xref">Figure&nbsp;<span>29.4</span></a> alone, one can say only that there <em>might</em> be some association between the two variables.</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/fig-given_iq_athletic_5c9bf00748a90a2b1f775d728e1313c6">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-given_iq_athletic" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="correlation_causation_files/figure-html/fig-given_iq_athletic-5.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;29.4: Given Scores for I.Q. and Athletic Ability</figcaption>
+<div id="fig-given_iq_athletic" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-given_iq_athletic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="correlation_causation_files/figure-html/fig-given_iq_athletic-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-given_iq_athletic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;29.4: Given Scores for I.Q. and Athletic Ability
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1107,9 +1177,13 @@ End of notebook
 \end{align*}
 \]</span></p>
 <p>Consider the cases in <a href="#tbl-pos-neg-mult" class="quarto-xref">Table&nbsp;<span>29.4</span></a> which are chosen to illustrate a perfect (linear) association between <em>x</em> (Column 1) and <em>y1</em> (Column 2), and also between <em>x</em> (Column 1) and <em>y2</em> (Column 4); the numbers shown in Columns 3 and 5 are those that would be consistent with perfect associations. Notice the sum of the multiples of the <em>x</em> and <em>y</em> values in the two cases. It is either higher (<em>x</em> * <em>y1</em>) or lower (<em>x</em> * <em>y2</em>) than for any other possible way of arranging the <em>y</em>’s. Any other arrangement of the <em>y</em>’s (<em>y3</em>, in Column 6, for example, chosen at random), when multiplied by the <em>x</em>’s in Column 1, (<em>x</em> * <em>y3</em>), produces a sum that falls somewhere between the sums of <em>x</em> * <em>y1</em> and <em>x</em> * <em>y2</em>, as is the case with any other set of <em>y3</em>’s which is not perfectly correlated with the <em>x</em>’s.</p>
-<div id="tbl-pos-neg-mult" class="anchored">
-<table class="table">
-<caption>Table&nbsp;29.4: Comparison of Sums of Multiplications</caption>
+<div id="tbl-pos-neg-mult" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pos-neg-mult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;29.4: Comparison of Sums of Multiplications
+</figcaption>
+<div aria-describedby="tbl-pos-neg-mult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 8%">
 <col style="width: 9%">
@@ -1194,10 +1268,12 @@ End of notebook
 
 </table>
 </div>
+</figure>
+</div>
 <section id="sec-ath-iq-sop" class="level3" data-number="29.4.1">
 <h3 data-number="29.4.1" class="anchored" data-anchor-id="sec-ath-iq-sop"><span class="header-section-number">29.4.1</span> Example: sum of products correlation of athletic and IQ scores</h3>
 <p><span class="quarto-unresolved-ref">?tbl-ath-iq-products</span> shows that the sum of the products of the <em>observed</em> I.Q. scores multiplied by athletic scores (column 7) is between the sums that would occur if the I.Q. scores were ranked from best to worst (column 3) and worst to best (column 5). The extent of correlation (association) can thus be measured by whether the sum of the multiples of the observed <em>x</em> and <em>y</em> values is relatively much higher or much lower than are sums of randomly-chosen pairs of <em>x</em> and <em>y</em> .</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-10_4d5620af34214e4e437f97a9f420431d">
+<div class="cell" data-layout-align="center">
 <p><string>:1: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value ’’ has dtype incompatible with int64, please explicitly cast to a compatible dtype first. +——————+—————-+—————–+—————-+—————–+————-+—————–+ | 1 | 2 | 3 | 4 | 5 | 6 | 7 | +——————+—————-+—————–+—————-+—————–+————-+—————–+ | Athletic score | Hypothetical | Col 1 x Col 2 | Hypothetical | Col 1 x Col 4 | Actual IQ | Col 1 x Col 6 | | | IQ pos | | IQ neg | | | | +==================+================+=================+================+=================+=============+=================+ | 97 | 120 | 11640 | 99 | 9603 | 114 | 11058 | +——————+—————-+—————–+—————-+—————–+————-+—————–+ | 94 | 118 | 11092 | 100 | 9400 | 120 | 11280 | +——————+—————-+—————–+—————-+—————–+————-+—————–+ | 93 | 114 | 10602 | 101 | 9393 | 107 | 9951 | +——————+—————-+—————–+—————-+—————–+————-+—————–+ | 90 | 110 | 9900 | 107 | 9630 | 113 | 10170 | +——————+—————-+—————–+—————-+—————–+————-+—————–+ | 87 | 113 | 9831 | 109 | 9483 | 118 | 10266 | +——————+—————-+—————–+—————-+—————–+————-+—————–+ | 86 | 109 | 9374 | 113 | 9718 | 101 | 8686 | +——————+—————-+—————–+—————-+—————–+————-+—————–+ | 86 | 107 | 9202 | 110 | 9460 | 109 | 9374 | +——————+—————-+—————–+—————-+—————–+————-+—————–+ | 85 | 101 | 8585 | 114 | 9690 | 110 | 9350 | +——————+—————-+—————–+—————-+—————–+————-+—————–+ | 81 | 100 | 8100 | 118 | 9558 | 100 | 8100 | +——————+—————-+—————–+—————-+—————–+————-+—————–+ | 76 | 99 | 7524 | 120 | 9120 | 99 | 7524 | +——————+—————-+—————–+—————-+—————–+————-+—————–+ | <strong>SUMS</strong> | | 95850 | | 95055 | | 95759 | +——————+—————-+—————–+—————-+—————–+————-+—————–+</string></p>
 <p>: Sums of Products: IQ and Athletic Scores {#tbl-ath-iq-products}}</p>
 </div>
@@ -1209,7 +1285,7 @@ End of notebook
 </ol>
 <p>Now we attack the I.Q. and athletic-score problem using the property of numbers just discussed. First multiply the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values of the actual observations, and sum them; we find a total of 95,759 (<span class="quarto-unresolved-ref">?tbl-ath-iq-products</span>). Then write the ten observed I.Q. scores on cards, and assign the cards in random order to the ten athletes, as shown in the column for trial 1 in <span class="quarto-unresolved-ref">?tbl-random-ath-iq</span>.</p>
 <p>Multiply the random IQ scores by their paired <span class="math inline">\(x\)</span>’s (Athletic scores), and sum to give the values at the bottom of <span class="quarto-unresolved-ref">?tbl-random-ath-iq</span>. If the I.Q. scores and athletic scores are <em>positively associated</em>, that is, if high I.Q.s and high athletic scores go together, then the sum of the multiplications for the observed sample will be higher than for most of the random trials. (If high I.Q.s go with low athletic scores, the sum of the multiplications for the observed sample will be <em>lower</em> than most of the random trials.)</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-11_1467f2eb07be5334fd2e0306bad44115">
+<div class="cell" data-layout-align="center">
 <p><string>:1: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value ‘<strong>Product sums</strong>’ has dtype incompatible with int64, please explicitly cast to a compatible dtype first. +——————+——-+——-+——-+——-+——-+——-+——-+——-+——-+——-+ | Athletic | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | | score | | | | | | | | | | | +==================+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+ | 97 | 100 | 110 | 101 | 113 | 107 | 109 | 109 | 114 | 100 | 118 | +——————+——-+——-+——-+——-+——-+——-+——-+——-+——-+——-+ | 94 | 120 | 109 | 99 | 101 | 100 | 113 | 107 | 110 | 118 | 107 | +——————+——-+——-+——-+——-+——-+——-+——-+——-+——-+——-+ | 93 | 114 | 113 | 113 | 120 | 99 | 120 | 100 | 113 | 99 | 100 | +——————+——-+——-+——-+——-+——-+——-+——-+——-+——-+——-+ | 90 | 101 | 120 | 114 | 99 | 110 | 107 | 101 | 107 | 107 | 120 | +——————+——-+——-+——-+——-+——-+——-+——-+——-+——-+——-+ | 87 | 118 | 101 | 110 | 107 | 118 | 100 | 120 | 99 | 114 | 114 | +——————+——-+——-+——-+——-+——-+——-+——-+——-+——-+——-+ | 86 | 110 | 114 | 118 | 114 | 101 | 101 | 110 | 109 | 101 | 110 | +——————+——-+——-+——-+——-+——-+——-+——-+——-+——-+——-+ | 86 | 107 | 100 | 120 | 109 | 114 | 114 | 113 | 120 | 120 | 101 | +——————+——-+——-+——-+——-+——-+——-+——-+——-+——-+——-+ | 85 | 99 | 99 | 107 | 110 | 120 | 110 | 118 | 100 | 109 | 113 | +——————+——-+——-+——-+——-+——-+——-+——-+——-+——-+——-+ | 81 | 113 | 118 | 100 | 118 | 109 | 99 | 99 | 118 | 113 | 109 | +——————+——-+——-+——-+——-+——-+——-+——-+——-+——-+——-+ | 76 | 109 | 107 | 109 | 100 | 113 | 118 | 114 | 101 | 110 | 99 | +——————+——-+——-+——-+——-+——-+——-+——-+——-+——-+——-+ | <strong>Product sums</strong> | 95452 | 95521 | 95389 | 95520 | 95259 | 95512 | 95352 | 95578 | 95331 | 95626 | +——————+——-+——-+——-+——-+——-+——-+——-+——-+——-+——-+</string></p>
 <p>: Random Draws of IQ scores paired against athletic scores {#tbl-random-ath-iq}</p>
 </div>
@@ -1232,7 +1308,7 @@ End of notebook
 </div>
 
 <p>We load the file containing the data:</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-14_730676e2d350ab1786ec8596108a80f2">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the data file containing athletic and IQ scores.</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ath_iq_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/athletic_iq.csv'</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the data frame.</span></span>
@@ -1251,12 +1327,12 @@ End of notebook
 10             76       99            10      10</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-16_32e165791d8f03d7c6116e4551c7d3e7">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn athletic and IQ scores into vectors.</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ath <span class="ot">=</span> ath_iq_df<span class="sc">$</span>athletic_score</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>iq <span class="ot">=</span> ath_iq_df<span class="sc">$</span>iq_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-18_8ce58de5cbf6d5749cf6632d52f2248f">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiply the two sets of scores together.</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>actual_prod <span class="ot">&lt;-</span> ath <span class="sc">*</span> iq</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum the results — the "observed value."</span></span>
@@ -1266,7 +1342,7 @@ End of notebook
 <pre><code>[1] 95759</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-20_e1827e82bff484b2b7c346bce6084edd">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the number of trials</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1298,13 +1374,13 @@ End of notebook
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_causation_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="correlation_causation_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>We see that obtaining a chance trial result as great as that observed was rare. R will calculate this proportion for us:</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-22_e5b176cdf357a263f3a1871d54ef735d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine in how many trials the random sum of products was less than</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the observed sum of products.</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">sum</span>(results <span class="sc">&lt;=</span> <span class="dv">0</span>)</span>
@@ -1325,11 +1401,15 @@ End of notebook
 <section id="example-correlation-between-adherence-to-medication-regime-and-change-in-cholesterol" class="level3" data-number="29.4.2">
 <h3 data-number="29.4.2" class="anchored" data-anchor-id="example-correlation-between-adherence-to-medication-regime-and-change-in-cholesterol"><span class="header-section-number">29.4.2</span> Example: Correlation Between Adherence to Medication Regime and Change in Cholesterol</h3>
 <p>Efron and Tibshirani <span class="citation" data-cites="efron1993bootstrap">(<a href="references.html#ref-efron1993bootstrap" role="doc-biblioref">1993, 72</a>)</span> show data on the extents to which 164 men a) took the drug prescribed to them (cholestyramine), and b) showed a decrease in total plasma cholesterol. <a href="#tbl-cholestyramine" class="quarto-xref">Table&nbsp;<span>29.5</span></a> shows the first 15 of the values (note that a positive value in the “Decrease in cholesterol” column denotes a decrease in cholesterol, while a negative value denotes an increase.)</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-23_9b2bc7ade261bd85e0f3adfb81b75539">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-cholestyramine" class="anchored">
-<table class="lightable-paper lightable-striped lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;29.5: First 15 rows of compliance / blood cholesterol</caption>
+<div id="tbl-cholestyramine" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cholestyramine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;29.5: First 15 rows of compliance / blood cholesterol
+</figcaption>
+<div aria-describedby="tbl-cholestyramine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-paper lightable-striped lightable-hover caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">% compliance</th>
@@ -1400,6 +1480,8 @@ End of notebook
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 
 
 </div>
@@ -1410,12 +1492,16 @@ End of notebook
 <li>Is there reason to believe that the relationship is meaningful? That is, we wish to ascertain if there is any meaningful correlation between the variables — because if there is no relationship between the variables, there is no basis for regressing one on the other. Sometimes people jump ahead in the latter question to first run the regression and then ask whether the regression slope coefficient(s) is (are) different than zero, but this usually is not sound practice. The sensible way to proceed is first to graph the data to see whether there is visible indication of a relationship.</li>
 </ol>
 <p>Efron and Tibshirani do this, and they find sufficient intuitive basis in the graph to continue the analysis (see <a href="#fig-chole-scatter" class="quarto-xref">Figure&nbsp;<span>29.5</span></a>).</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/fig-chole-scatter_4268f10910f46cb3dbf0e331cca72be7">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-chole-scatter" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="correlation_causation_files/figure-html/fig-chole-scatter-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;29.5: Cholesterol decrease as function of compliance</figcaption>
+<div id="fig-chole-scatter" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chole-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="correlation_causation_files/figure-html/fig-chole-scatter-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chole-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;29.5: Cholesterol decrease as function of compliance
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1436,7 +1522,7 @@ End of notebook
 <a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=compliance_cholesterol.ipynb">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-26_b13c92f32c6204e0e5edb8ce3e310992">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data as vectors.</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/cholost.csv'</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>compliance <span class="ot">&lt;-</span> df<span class="sc">$</span>percent_compliance</span>
@@ -1456,7 +1542,7 @@ End of notebook
 <pre><code>[1] 439141</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-27_ccdc869bc107e46ce5be1b97be3a1a76">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the number of trials</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1497,10 +1583,14 @@ End of notebook
 <p>We have been using the <em>sum of products</em> as a measure of straight-line (linear) association between two variables. We found that the sum of products for the athletic and IQ variables (<code>ath</code> and <code>iq</code>) was 95759, and we showed that the sum of products is higher for pairings of <code>ath</code> and <code>iq</code> with a higher degree of linear association. Now let us consider compliance and cholesterol above; the sum of products for <code>compliance</code> and <code>cholesterol</code> was 439141. Notice the <code>compliance</code> and <code>cholesterol</code> sum of products is much higher than for <code>ath</code> and <code>iq</code> — but, for various reasons that we explain below, that does not tell us whether the <em>association of the scores</em> is higher for the compliance / cholesterol values than the athletic / IQ scores. We would like a version of the sum of products procedure that could give us a measure of linear association that we could compare between different pairs of sequences. This is the purpose of the <em>correlation coefficient</em>.</p>
 <p>The first problem that makes it hard to compare the sum of product scores is that the sum of products depends on the number of elements in the sequence. <code>ath</code> (and <code>iq</code>) have 10 elements, whereas <code>compliance</code> (and <code>cholesterol</code>) have 164 elements. The sum of products is a sum; all other things being equal, the more values you sum, the higher the sum; all other things being equal, the sum of 164 elements will be greater than the sum of 10 elements. We can solve this problem by dividing the sum of products by the number of elements in that sum, to get the <em>mean</em> of the products. The mean of product values for the athletic / IQ scores is 95759 / 10 = 9575.9. The mean of products for compliance / cholesterol is 439141 / 164 = 2677.69.</p>
 <p>We have solved one problem in comparing the measure by taking the mean of products — the value no longer depends on the number of elements. We have other problems. For example, consider the IQ scores. We have used the raw IQ scores, on their usual scale, where 100 is the average IQ for the general population. Our raw IQ scores have a mean of 109.1. But we could also have scored IQ in another way. For example, we could have recorded the <em>difference</em> from 100 instead of the raw value, to get the values in column 2 of <a href="#tbl-iq-minus-hundred" class="quarto-xref">Table&nbsp;<span>29.6</span></a>. Call these the “IQ-100” scores. IQ-100 scores have a mean of 9.1.</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-29_62babb72cc99f77d0021c9e8e2496e6c">
-<div id="tbl-iq-minus-hundred" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;29.6: Means of Products: IQ, IQ-100 and Athletic Scores</caption>
+<div class="cell" data-layout-align="center">
+<div id="tbl-iq-minus-hundred" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-iq-minus-hundred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;29.6: Means of Products: IQ, IQ-100 and Athletic Scores
+</figcaption>
+<div aria-describedby="tbl-iq-minus-hundred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 22%">
 <col style="width: 18%">
@@ -1614,30 +1704,40 @@ End of notebook
 
 </table>
 </div>
+</figure>
+</div>
 </div>
 <p>Notice that the mean product for the IQ-100 scores is much smaller than the mean for the product with the original IQ values, because the IQ element in the product is smaller, so the products will be smaller, and the mean product will be smaller. However, it might be obvious that the <em>association</em> of the IQ and athletic scores remains the same after we have subtracted 100 from the IQ; higher IQ values on either scale are still associated with higher athletic scores. Think of the association as a straight-line relationship in a scatter plot, with the athletic scores on the x-axis, and the IQ scores on the y-axis. <a href="#fig-ath-iq-scatter" class="quarto-xref">Figure&nbsp;<span>29.1</span></a> has the original scatter plot with the athletic scores on the x-axis and the original IQ scores on the y-axis. The points appear to scatter around some straight line we could draw. <a href="#fig-ath-iq-hundred" class="quarto-xref">Figure&nbsp;<span>29.6</span></a> shows the scatterplot of the original IQ score against the athletic scores on the left plot (as for <a href="#fig-ath-iq-scatter" class="quarto-xref">Figure&nbsp;<span>29.1</span></a>) and the IQ-100 scores against the athletic scores in the right plot. As you can see, subtracting 100 from the IQ values just moved the points on the graph down by 100 on the y-axis — but the slope of the line relating the two must be the same. The slope is a measure of how much the IQ score increases as the athletic score increases — it is therefore a good measure of the <em>linear association</em> between athletic score and IQ score. Because the slope of our potential line should not change between the original IQ score and the IQ-100 score, the association has not changed, even though the mean product is much smaller.</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/fig-ath-iq-hundred_c612e1ce4dada194904e187bbf8bf721">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-ath-iq-hundred" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="correlation_causation_files/figure-html/fig-ath-iq-hundred-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;29.6: Scatter plot of IQ Score, IQ-100 as function of Athletic Score</figcaption>
+<div id="fig-ath-iq-hundred" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ath-iq-hundred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="correlation_causation_files/figure-html/fig-ath-iq-hundred-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ath-iq-hundred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;29.6: Scatter plot of IQ Score, IQ-100 as function of Athletic Score
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>We have discovered that the mean product will change as we add or subtract values to one or both of the sequences. You might also be able to see that the mean product will change if we multiply or divide the values in the sequence by some number. In summary, the mean product depends on the <em>scale</em> or <em>units</em> of the values in the sequence.</p>
-<p>We would like some measure of association that does not depend on the scale of the sequences. A simple approach is to put each sequence on a <em>standard</em> scale, by converting the original sequence values to <em>standard scores</em> (see <a href="standard_scores.html#sec-standard-scores" class="quarto-xref"><span>Section&nbsp;16.9</span></a>).</p>
+<p>We would like some measure of association that does not depend on the scale of the sequences. A simple approach is to put each sequence on a <em>standard</em> scale, by converting the original sequence values to <em>standard scores</em> (see <a href="standard_scores.html#sec-standard-scores" class="quarto-xref"><span>Section 16.9</span></a>).</p>
 <p>We do this by:</p>
 <ol type="1">
 <li>Subtracting the mean value from each element in the sequence to give the <em>deviations</em>.</li>
-<li>Dividing the deviations by a measure of spread — the <em>standard deviation</em> (see <a href="standard_scores.html#sec-standard-deviation" class="quarto-xref"><span>Section&nbsp;16.7</span></a>).</li>
+<li>Dividing the deviations by a measure of spread — the <em>standard deviation</em> (see <a href="standard_scores.html#sec-standard-deviation" class="quarto-xref"><span>Section 16.7</span></a>).</li>
 </ol>
 <p>See <a href="#tbl-standard-iq" class="quarto-xref">Table&nbsp;<span>29.7</span></a> for an example of applying this algorithm to the IQ scores. We get the deviations by subtracting the mean IQ (109.1), and the standard scores by dividing the deviations by the IQ standard deviation (7.02).</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-30_7bc8591534c4b250348b49b6989b3c54">
-<div id="tbl-standard-iq" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;29.7: IQ, deviations and standard scores</caption>
+<div class="cell" data-layout-align="center">
+<div id="tbl-standard-iq" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-standard-iq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;29.7: IQ, deviations and standard scores
+</figcaption>
+<div aria-describedby="tbl-standard-iq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 22%">
 <col style="width: 25%">
@@ -1704,9 +1804,11 @@ End of notebook
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 </div>
 <p>After we apply this procedure to both sequences, they are both in the same <em>standard</em> units. The mean product of these standard units is therefore a <em>standard</em> measure of association, called the <em>Pearson product-moment correlation coefficient</em>, or just the <em>correlation coefficient</em>. We use the letter <span class="math inline">\(r\)</span> for the value of the correlation coefficient. <span class="quarto-unresolved-ref">?tbl-r-iq</span> shows the mean of products calculation on standard scores athletic ability and IQ, to get the <span class="math inline">\(r\)</span> value.</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-31_3ce354dd10fec0d98c15ff7f0a325360">
+<div class="cell" data-layout-align="center">
 <p><string>:1: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value ’’ has dtype incompatible with float64, please explicitly cast to a compatible dtype first. +——————–+—————+——————+—————-+—————–+ | 1 | 2 | 3 | 4 | 5 | +——————–+—————+——————+—————-+—————–+ | Athletic score | Original IQ | Standardized | Standardized | Col 3 x Col 4 | | | | athletic score | IQ | | +====================+===============+==================+================+=================+ | 97 | 114 | 1.6 | 0.7 | 1.11 | +——————–+—————+——————+—————-+—————–+ | 94 | 120 | 1.09 | 1.55 | 1.69 | +——————–+—————+——————+—————-+—————–+ | 93 | 107 | 0.92 | -0.3 | -0.28 | +——————–+—————+——————+—————-+—————–+ | 90 | 113 | 0.42 | 0.56 | 0.23 | +——————–+—————+——————+—————-+—————–+ | 87 | 118 | -0.08 | 1.27 | -0.11 | +——————–+—————+——————+—————-+—————–+ | 86 | 101 | -0.25 | -1.15 | 0.29 | +——————–+—————+——————+—————-+—————–+ | 86 | 109 | -0.25 | -0.01 | 0 | +——————–+—————+——————+—————-+—————–+ | 85 | 110 | -0.42 | 0.13 | -0.05 | +——————–+—————+——————+—————-+—————–+ | 81 | 100 | -1.09 | -1.3 | 1.42 | +——————–+—————+——————+—————-+—————–+ | 76 | 99 | -1.93 | -1.44 | 2.78 | +====================+===============+==================+================+=================+ | <strong>Mean product</strong> | | | | 0.71 | | <strong>(r value)</strong> | | | | | +====================+===============+==================+================+=================+</string></p>
 <p>: <span class="math inline">\(r\)</span> for Athletic and IQ scores {#tbl-r-iq}}</p>
 </div>
@@ -1718,7 +1820,7 @@ End of notebook
 <a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=r_for_cholesterol.ipynb">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-33_2c713613aa8ea2a0edb013ab87cf9be9">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/cholost.csv'</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>compliance <span class="ot">&lt;-</span> df<span class="sc">$</span>percent_compliance</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>cholesterol <span class="ot">&lt;-</span> df<span class="sc">$</span>cholesterol_decrease</span>
@@ -1752,7 +1854,7 @@ End of notebook.
 <p>You might be able to see from the definition of the calculation above, that the correlation coefficient <span class="math inline">\(r\)</span> between <code>ath</code> and <code>iq</code> must be the same as the correlation coefficient (<span class="math inline">\(r\)</span>) between <code>iq</code> and <code>ath</code> — and in general the correlation coefficient between some sequence <span class="math inline">\(x\)</span> and another <span class="math inline">\(y\)</span> is equal to the correlation coefficient between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>.</p>
 <p>Why? Remember that the correlation coefficient is the mean of the product of the standard scores.</p>
 <p>Let us first calculate the standard scores for <code>ath</code> and <code>iq</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-35_08279bb8f4420a1bcf7ad3762b211932">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Athletic scores.</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>dev_ath <span class="ot">&lt;-</span> ath <span class="sc">-</span> <span class="fu">mean</span>(ath)   <span class="co"># Deviations.</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>stdev_ath <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(dev_ath <span class="sc">**</span> <span class="dv">2</span>))  <span class="co"># Standard deviation.</span></span>
@@ -1763,14 +1865,14 @@ End of notebook.
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>std_iq <span class="ot">=</span> dev_iq <span class="sc">/</span> stdev_iq  <span class="co"># Standard scores.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now calculate the correlation coefficient.</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-37_d41b6f0a026d500eff5ada6abd27f11c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'r value for "ath" and "iq": '</span>, <span class="fu">mean</span>(std_ath <span class="sc">*</span> std_iq))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>r value for "ath" and "iq": 0.709311774030946</code></pre>
 </div>
 </div>
 <p>But multiplication is commutative — changing the order does not change the result — so <span class="math inline">\(a * b = b * a\)</span>. This means that the <code>std_ath * std_id</code> gives the same vector as <code>std_id * std_ath</code>, and:</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-39_944db4b3e906f19f41f4baa6229776ce">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'r value for "iq" and "ath": '</span>, <span class="fu">mean</span>(std_iq <span class="sc">*</span> std_ath))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>r value for "iq" and "ath": 0.709311774030946</code></pre>
@@ -1785,7 +1887,7 @@ End of Python section.
 -->
 <div class="r">
 <p><code>cor</code> works as you would expect:</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-44_71f0e725a59848cba108282e90cd0fef">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(ath, iq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.709</code></pre>
@@ -1799,7 +1901,7 @@ End of R section.
 <section id="test-linear-association-with-the-correlation-coefficient" class="level3" data-number="29.5.3">
 <h3 data-number="29.5.3" class="anchored" data-anchor-id="test-linear-association-with-the-correlation-coefficient"><span class="header-section-number">29.5.3</span> Test linear association with the correlation coefficient</h3>
 <p>Above we used the sum-of-products calculation to see if the actual observed sum of products was unusual in the null-world. We simulated sum of product values in the null-world by permuting one of the sequences, and recalculating the sum of products.</p>
-<p>We could use the correlation coefficient instead of the sum of products as our measure of association, and simulate correlation coefficients in the null-world. We will come to the same conclusion using sum of products as we would for correlation coefficients because they are equivalent when comparing between two different orderings of the same sequences of values. The only advantage of the correlation coefficient for this case is that R has the ready-made function <span class="r"><code>cor</code></span> to do the calculation. Here is the test for linear association using the correlation coefficient instead of the sum of products. Compare the procedure below to <a href="#sec-ath-iq-sop" class="quarto-xref"><span>Section&nbsp;29.4.1</span></a>.</p>
+<p>We could use the correlation coefficient instead of the sum of products as our measure of association, and simulate correlation coefficients in the null-world. We will come to the same conclusion using sum of products as we would for correlation coefficients because they are equivalent when comparing between two different orderings of the same sequences of values. The only advantage of the correlation coefficient for this case is that R has the ready-made function <span class="r"><code>cor</code></span> to do the calculation. Here is the test for linear association using the correlation coefficient instead of the sum of products. Compare the procedure below to <a href="#sec-ath-iq-sop" class="quarto-xref"><span>Section 29.4.1</span></a>.</p>
 <div class="notebook" name="athlete_iq_cc" title="Association of athletic and IQ scores with $r$">
 <p>Start of <code>athlete_iq_cc</code> notebook</p>
 <div class="nb-links">
@@ -1807,7 +1909,7 @@ End of R section.
 <a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=athlete_iq_cc.ipynb">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-46_117103d1c2043af9f32e97cdbea03003">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the data file containing athletic and IQ scores.</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ath_iq_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/athletic_iq.csv'</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1853,7 +1955,7 @@ End of R section.
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_causation_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="correlation_causation_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -1863,7 +1965,7 @@ End of R section.
 <!---
 End of notebook
 -->
-<p>Notice we get a very similar proportion (p-value) with the correlation coefficient to the one from sum of products in <a href="#sec-ath-iq-sop" class="quarto-xref"><span>Section&nbsp;29.4.1</span></a>; in fact, the p-values only differ because the p-value is itself somewhat random, as it derives from (many) random samples.</p>
+<p>Notice we get a very similar proportion (p-value) with the correlation coefficient to the one from sum of products in <a href="#sec-ath-iq-sop" class="quarto-xref"><span>Section 29.4.1</span></a>; in fact, the p-values only differ because the p-value is itself somewhat random, as it derives from (many) random samples.</p>
 </section>
 </section>
 <section id="sec-counted-association" class="level2" data-number="29.6">
@@ -1881,9 +1983,13 @@ Question 2  Beer Yes Beer No
 Local Yes   37       20
 Local No    15        6
 -->
-<div id="tbl-beerpol-data" class="anchored">
-<table class="table">
-<caption>Table&nbsp;29.8: Results of Observed Sample For beer poll</caption>
+<div id="tbl-beerpol-data" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-beerpol-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;29.8: Results of Observed Sample For beer poll
+</figcaption>
+<div aria-describedby="tbl-beerpol-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 61%">
 <col style="width: 10%">
@@ -1922,6 +2028,8 @@ Local No    15        6
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p>Here is the statistical question: Is a person’s opinion on “local option” related to whether or not they drink beer? Our resampling solution begins by noting that there are seventy-eight respondents, sixty-five of whom approve local option and thirteen of whom do not. Therefore write “approve” on sixty-five index cards and “not approve” on thirteen index cards. Now take <em>another</em> set of seventy-eight index cards, preferably of a different color, and write “yes” on fifty-two of them and “no” on twenty-six of them, corresponding to the numbers of people who do and do not drink beer in the sample. Now lay them down in random <em>pairs</em> , one from each pile.</p>
 <p>If there is a high association between the variables, then real life observations will bunch up in the two diagonal cells in the upper left and lower right in <a href="#tbl-beerpol-data" class="quarto-xref">Table&nbsp;<span>29.8</span></a>. (Ignore the “total” data for now.) Put another way, people filling in the upper left and lower right cells are people with views compatible with their drinking habits (drink-yes / favor, or drink-no / don’t favor). Conversely, people filling in the lower left and upper right cells have views incompatible with their drinking habits (drink-yes, don’t favor, or drink-no, favor). Adding up the upper left / lower right diagonal gives us the total number of <em>compatible</em> responses, and adding the lower left / upper right diagonal gives us the <em>incompatible</em> total. Therefore, et an index of how strongly the table show compatible responses, we can subtract the incompatible total (lower left plus upper right) from the compatible total (upper left plus lower right) for the observed data: (45 + 6) - (20 + 7) = 24. Then compare this difference to the comparable differences found in random trials. The proportion of times that the simulated-trial difference exceeds the observed difference is the probability that the observed difference of +24 might occur by chance, even if there is no relationship between the two variables. (Notice that, in this case, we are working on the assumption that beer drinking is <em>positively</em> associated with approval of local option and not the inverse. We are interested only in differences that are equal to or exceed +24 when the northeast-southwest diagonal is subtracted from the northwest-southeast diagonal.)</p>
 <p>We can carry out a resampling test with this procedure:</p>
@@ -1932,9 +2040,13 @@ Local No    15        6
 <li><strong>Step 4.</strong> Repeat steps 2 and 3 perhaps a hundred times.</li>
 <li><strong>Step 5.</strong> Calculate the proportion “yes,” which estimates the probability that an association this great or greater would be observed by chance.</li>
 </ul>
-<div id="tbl-beerpol-trial" class="anchored">
-<table class="table">
-<caption>Table&nbsp;29.9: Results of one random trial of the beer poll problem</caption>
+<div id="tbl-beerpol-trial" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-beerpol-trial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;29.9: Results of one random trial of the beer poll problem
+</figcaption>
+<div aria-describedby="tbl-beerpol-trial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 9%">
 <col style="width: 14%">
@@ -1973,11 +2085,13 @@ Local No    15        6
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p><a href="#tbl-beerpol-trial" class="quarto-xref">Table&nbsp;<span>29.9</span></a> shows the result of one such trial. When we run a series of ten trials such trials, it indicates that the observed difference is very often exceeded, which suggests that we have no good evidence here for a relationship between beer drinking and opinion.</p>
 <p>The R notebook below does this repetitively. From the “actual” sample results we know that 52 respondents drink beer and 26 do not. We create the vector “drink” with 52 1’s for those who drink beer, and 26 0’s for those who do not. We also create the vector “sale” with 65 1’s (approve) and 13 0’s (disapprove). In the actual sample, 51 of the 78 respondents had “consistent” responses to the two questions — that is, people who both favor the sale of beer <em>and</em> drink beer, or who are against the sale of beer <em>and</em> do not drink beer. We want to randomly pair the responses to the two questions to compare against that observed result to test the relationship.</p>
 <p>To accomplish this aim, we repeat the following procedure 10,000 times using a <code>for</code> loop. We shuffle <code>drink</code> to <code>random_drink</code> so that the responses are randomly ordered. Now when we subtract the corresponding elements of the two vectors, a 0 will appear in each element of the new vector <code>diffs</code> for which there was consistency in the response of the two questions. We therefore count (<code>sum</code>) the times that <code>diffs</code> equals 0 and place this result in the vector <code>consistent</code> and the number of times <code>diffs</code> does not equal 0, and place this result in <code>inconsistent</code>. Find the difference (<code>consistent</code> minus <code>inconsistent</code>), and record the result in the <code>results</code> vector for each trial.</p>
 <p><code>results</code> stores, for each trial, the number of consistent responses minus inconsistent responses. To determine whether the results of the actual sample indicate a relationship between the responses to the two questions, we check how often the random trials had a difference (between consistent and inconsistent responses) as great as 24, the value in the observed sample.</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-50_f0cab7ebc5b5cb1a1b1b553978feeb72">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Constitute the set of 52 beer drinkers, and the set of 26 non-drinkers,</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># where 1 represents beer drinker, and 0 represents non-drinker.</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>drink <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">52</span>, <span class="dv">26</span>))</span>
@@ -1989,7 +2103,7 @@ Local No    15        6
 [77] 0 0</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-51_534354a14f97217b816a1b856f29ac69">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The same set of individuals classified by whether they favor or</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># don't favor the sale of beer, where 1 represents those who favor</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># local beer sale, and 0 represents those who do not.</span></span>
@@ -2002,7 +2116,7 @@ Local No    15        6
 [77] 0 0</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-52_6881332e9b70135976cab6ef4c77efe6">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of repeats.</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2049,7 +2163,7 @@ Local No    15        6
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_causation_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="correlation_causation_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -2060,9 +2174,13 @@ End of notebook
 <p>The actual results showed a difference of 24. In the histogram we see that a difference that large or larger happened just by chance pairing — without any relationship between the two variables — about 22 percent of the time. Hence, we conclude that there is little evidence of a relationship between the two variables.</p>
 <p>Though the test just described may <em>generally</em> be appropriate for data of this sort, it may well not be appropriate in some particular case. Let’s consider a set of data where even if the test showed that an association existed, we would not believe the test result to be meaningful.</p>
 <p>Suppose the survey results had been as presented in <a href="#tbl-crazy-beer" class="quarto-xref">Table&nbsp;<span>29.10</span></a>. We see that non-beer drinkers have a higher rate of approval of allowing beer drinking, which does not accord with experience or reason. Hence, without additional explanation we would not believe that a meaningful relationship exists among these variables even if the test showed one to exist. (Still another reason to doubt that a relationship exists is that the absolute differences are too small to mean anything to anyone — there is only a 6% difference in disapproval between drink and don’t drink groups. On both grounds, then, it makes sense simply to act as if there were no difference between the two groups and to run <em>no test</em>.)</p>
-<div id="tbl-crazy-beer" class="anchored">
-<table class="table">
-<caption>Table&nbsp;29.10: Beer poll in which results are not in accord with expectation</caption>
+<div id="tbl-crazy-beer" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-crazy-beer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;29.10: Beer poll in which results are not in accord with expectation
+</figcaption>
+<div aria-describedby="tbl-crazy-beer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th></th>
@@ -2086,6 +2204,8 @@ End of notebook
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
 </div>
 <p>The lesson to be learned from this is that one should inspect the data carefully before applying a statistical test, and only test for “significance” if the apparent relationships accord with theory, general understanding, and common sense.</p>
 </section>
@@ -2120,7 +2240,7 @@ End of notebook
 
 <p>First let us work out how to calculate the number of clusters as defined above.</p>
 <p>This is Slug’s record:</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-55_0bd6d9f520d420d703d9e5b0e4306d30">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>slug <span class="ot">=</span> <span class="fu">c</span>(</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'H'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'H'</span>, <span class="st">'X'</span>, <span class="st">'H'</span>, <span class="st">'H'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>,</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'H'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'H'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>,</span>
@@ -2132,7 +2252,7 @@ End of notebook
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here’s how we can calculate the number of runs:</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-57_f79e3c0f88c13416daebb4b3bb58b579">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>slug_runs <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>current_element <span class="ot">&lt;-</span> <span class="st">'start-marker'</span>  <span class="co"># Something that is always != to the elements.</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (element <span class="cf">in</span> slug) {</span>
@@ -2148,7 +2268,7 @@ End of notebook
 </div>
 </div>
 <p>For practice, let us count the number of clusters in the random set of cards above:</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-59_05fb1e3e9f5eae7abf57b6146896515b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>random_hand <span class="ot">=</span> <span class="fu">c</span>(</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'H'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'H'</span>, <span class="st">'H'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'H'</span>, <span class="st">'H'</span>, <span class="st">'H'</span>,</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'H'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'H'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'H'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>,</span>
@@ -2173,7 +2293,7 @@ End of notebook
 </div>
 </div>
 <p>We will use that code in the procedure below.</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-61_217cbbbaab4accbe7d8391ce437dcdc8">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the number of trials.</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>n_trials <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2202,7 +2322,7 @@ End of notebook
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_causation_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="correlation_causation_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -2218,7 +2338,7 @@ End of notebook
 <p>The coach may then refer to the protracted slump of one of the twenty-five players on his team to prove that slumps really occur. But, of twenty-five random 100-at-bat trials, one will contain a slump longer than any of the other twenty-four, and that slump will be considerably longer than average. A fair comparison, then, would be between the longest slump of his longest-slumping player, and the longest run of outs found among twenty-five random trials. In fact, the longest run among twenty-five hands of 100 cards was fifteen outs in a row. And, if we had set some of the hands for lower (and higher) batting averages than .250, the longest slump in the cards would have been even longer.</p>
 <p>Research by Roberts and his students at the University of Chicago shows that in fact slumps do <em>not</em> exist, as I conjectured in the first publication of this material in 1969. (Of course, a batter feels as if he has a better chance of getting a hit at some times than at other times. After a series of successful at-bats, sandlot players and professionals alike feel confident — just as gamblers often feel that they’re on a “streak.” But there seems to be no connection between a player’s performance and whether he feels hot or cold, astonishing as that may be.)</p>
 <p>Averages over longer periods may vary systematically, as Ty Cobb’s annual batting average varied non-randomly from season to season, Roberts found. But short-run analyses of dayto-day and week-to-week individual and team performances in most sports have shown results similar to the outcomes that a lottery-type random-number machine would produce.</p>
-<p>Remember, too, the study by Gilovich, Vallone, and Twersky of basketball mentioned in <a href="sampling_variability.html" class="quarto-xref"><span>Chapter&nbsp;14</span></a>. To repeat, their analyses “provided no evidence for a positive correlation between the outcomes of successive shots.” That is, knowing whether a shooter has or has not scored on the previous sheet — or in any previous sequence of shots — is useless for predicting whether they will score again.</p>
+<p>Remember, too, the study by Gilovich, Vallone, and Twersky of basketball mentioned in <a href="sampling_variability.html" class="quarto-xref"><span>Chapter 14</span></a>. To repeat, their analyses “provided no evidence for a positive correlation between the outcomes of successive shots.” That is, knowing whether a shooter has or has not scored on the previous sheet — or in any previous sequence of shots — is useless for predicting whether they will score again.</p>
 <p>The species <em>homo sapiens</em> apparently has a powerful propensity to believe that one can find a pattern even when there is no pattern to be found. Two decades ago I (JLS) cooked up several series of random numbers that looked like weekly prices of publicly-traded stocks. Players in the experiment were told to buy and sell stocks as they chose. Then I repeatedly gave them “another week’s prices,” and allowed them to buy and sell again. The players did all kinds of fancy calculating, using a wild variety of assumptions — although there was no possible way that the figuring could help them.</p>
 <p>When I stopped the game before completing the 10 buy-and-sell sessions they expected, subjects would ask that the game go on. Then I would tell them that there was no basis to believe that there were patterns in the data, because the “prices” were just randomly-generated numbers. Winning or losing therefore did not depend upon the subjects’ skill. Nevertheless, they demanded that the game not stop until the 10 “weeks” had been played, so they could find out whether they “won” or “lost.”</p>
 <p>This study of batting illustrates how one can test for independence among various trials. The trials are independent if each observation is randomly chosen with replacement from the universe, in which case there is no reason to believe that one observation will be related to the observations directly before and after; as it is said, “the coin has no memory.”</p>
@@ -2228,15 +2348,19 @@ End of notebook
 </section>
 <section id="exercises" class="level2" data-number="29.7">
 <h2 data-number="29.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">29.7</span> Exercises</h2>
-<p>You can find solutions for problems at <a href="exercise_solutions.html" class="quarto-xref"><span>Chapter&nbsp;32</span></a>.</p>
+<p>You can find solutions for problems at <a href="exercise_solutions.html" class="quarto-xref"><span>Chapter 32</span></a>.</p>
 <section id="sec-exr-voter-participation" class="level3" data-number="29.7.1">
 <h3 data-number="29.7.1" class="anchored" data-anchor-id="sec-exr-voter-participation"><span class="header-section-number">29.7.1</span> Exercise: voter participation</h3>
 <p><a href="#tbl-voter-participation" class="quarto-xref">Table&nbsp;<span>29.11</span></a> shows voter participation rates in the various states in the 1844 presidential election. Should we conclude that there was a negative relationship between the participation rate and the vote spread between the parties in the election? (Adapted from <span class="citation" data-cites="noreen1989computer">(<a href="references.html#ref-noreen1989computer" role="doc-biblioref">Noreen 1989, 20</a>, Table 2-4)</span>:</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-62_c0fad1a72849f344e809dfbc2e9502bf">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-voter-participation" class="anchored">
-<table class="lightable-paper lightable-striped lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;29.11: Voter Participation In 1844 Presidential Election </caption>
+<div id="tbl-voter-participation" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-voter-participation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;29.11: Voter Participation In 1844 Presidential Election
+</figcaption>
+<div aria-describedby="tbl-voter-participation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-paper lightable-striped lightable-hover caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">State</th>
@@ -2373,6 +2497,8 @@ End of notebook
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 
 
 </div>
@@ -2386,7 +2512,7 @@ End of notebook
 <a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=voter_participation_exercise.ipynb">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-64_08f24741ecd3eb62d6d3c28015a61b82">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>voter_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/election_1844.csv'</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>participation <span class="ot">&lt;-</span> voter_df<span class="sc">$</span>Participation</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>spread <span class="ot">&lt;-</span> voter_df<span class="sc">$</span>Spread</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2396,7 +2522,7 @@ End of notebook
 <!---
 End of notebook
 -->
-<p>See: <a href="exercise_solutions.html#sec-soln-voter-participation" class="quarto-xref"><span>Section&nbsp;32.6</span></a>.</p>
+<p>See: <a href="exercise_solutions.html#sec-soln-voter-participation" class="quarto-xref"><span>Section 32.6</span></a>.</p>
 </section>
 <section id="sec-exr-runs-strikeouts" class="level3" data-number="29.7.2">
 <h3 data-number="29.7.2" class="anchored" data-anchor-id="sec-exr-runs-strikeouts"><span class="header-section-number">29.7.2</span> Exercise: association of runs and strikeouts</h3>
@@ -2409,7 +2535,7 @@ End of notebook
 <a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=homerun_sop_exercise.ipynb">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-66_528587177af7330bbf8e2e66aa838a1a">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>homeruns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">38</span>, <span class="dv">9</span>, <span class="dv">38</span>, <span class="dv">22</span>, <span class="dv">31</span>, <span class="dv">33</span>,</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>              <span class="dv">11</span>, <span class="dv">40</span>, <span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">32</span>, <span class="dv">3</span>, <span class="dv">29</span>, <span class="dv">5</span>, <span class="dv">32</span>)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>strikeout <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">135</span>, <span class="dv">153</span>, <span class="dv">120</span>, <span class="dv">161</span>, <span class="dv">138</span>, <span class="dv">175</span>, <span class="dv">126</span>, <span class="dv">200</span>, <span class="dv">205</span>,</span>
@@ -2422,22 +2548,26 @@ End of notebook
 <!---
 End of notebook.
 -->
-<p>See: <a href="exercise_solutions.html#sec-soln-runs-strikeouts" class="quarto-xref"><span>Section&nbsp;32.7</span></a>.</p>
+<p>See: <a href="exercise_solutions.html#sec-soln-runs-strikeouts" class="quarto-xref"><span>Section 32.7</span></a>.</p>
 </section>
 <section id="sec-exr-runs-strikeouts-r" class="level3" data-number="29.7.3">
 <h3 data-number="29.7.3" class="anchored" data-anchor-id="sec-exr-runs-strikeouts-r"><span class="header-section-number">29.7.3</span> Exercise: runs, strikeouts, correlation coefficient</h3>
 <p>In the previous example relating strikeouts and home runs, we used the procedure of multiplying the elements within each pair. Now we use a more “sophisticated” measure, the correlation coefficient, which is simply a standardized form of the multiplicands, but sufficiently well known that we calculate it with a pre-set command.</p>
 <p>Exercise: Write a program that uses the correlation coefficient to test the significance of the association between home runs and strikeouts. You can use the starting notebook for the previous exercise.</p>
-<p>See: <a href="exercise_solutions.html#sec-soln-runs-strikeouts-r" class="quarto-xref"><span>Section&nbsp;32.8</span></a>.</p>
+<p>See: <a href="exercise_solutions.html#sec-soln-runs-strikeouts-r" class="quarto-xref"><span>Section 32.8</span></a>.</p>
 </section>
 <section id="sec-exr-money-exchange" class="level3" data-number="29.7.4">
 <h3 data-number="29.7.4" class="anchored" data-anchor-id="sec-exr-money-exchange"><span class="header-section-number">29.7.4</span> Exercise: money and exchange rate</h3>
 <p>All the other things equal, an increase in a country’s money supply is inflationary and should have a negative impact on the exchange rate for the country’s currency. The data in the following table (<a href="#tbl-exchange" class="quarto-xref">Table&nbsp;<span>29.12</span></a>) were computed using data from tables in the 1983/1984 <em>Statistical Yearbook of the United Nations</em>. The table shows the first 15 rows.</p>
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-67_d6ff84dcff5591cfd7839ca510bb8b5a">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-exchange" class="anchored">
-<table class="lightable-paper lightable-striped lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;29.12: % change in exchange rates and money supply 1983-1984 </caption>
+<div id="tbl-exchange" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-exchange-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;29.12: % change in exchange rates and money supply 1983-1984
+</figcaption>
+<div aria-describedby="tbl-exchange-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-paper lightable-striped lightable-hover caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -2774,6 +2904,8 @@ End of notebook.
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 
 
 </div>
@@ -2797,7 +2929,7 @@ be.
 <a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=exchange_rates_exercise.ipynb">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="correlation_causation_cache/html/unnamed-chunk-69_49a813f209b38111d2f5227791263337">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>exchange_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/exchange_rates.csv'</span>)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>exchange_rates <span class="ot">&lt;-</span> exchange_df<span class="sc">$</span>exchange_rate</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>money_supply <span class="ot">&lt;-</span> exchange_df<span class="sc">$</span>money_supply</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2807,10 +2939,10 @@ be.
 <!---
 End of notebook.
 -->
-<p>See: <a href="exercise_solutions.html#sec-soln-money-exchange" class="quarto-xref"><span>Section&nbsp;32.8.1</span></a>.</p>
+<p>See: <a href="exercise_solutions.html#sec-soln-money-exchange" class="quarto-xref"><span>Section 32.8.1</span></a>.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-dixon1983introduction" class="csl-entry" role="listitem">
 Dixon, Wilfrid J, and Frank J Massey Jr. 1983. <span>“Introduction to Statistical Analysis.”</span>
 </div>
@@ -2829,7 +2961,7 @@ Wallis, Wilson Allen, and Harry V Roberts. 1956. <em>Statistics, a New Approach.
 </div>
 </section>
 </section>
-<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn1"><p>As we discussed in the introduction, correlation coefficient values can vary between 1 and -1, where values near 1 mean a very strong positive linear relationship (high values in one variable predict high values in the other), values near -1 mean a very strong negative linear relationship (high values in one predict low values in the other), and values near 0 mean very little linear relationship between the variables.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -2837,7 +2969,7 @@ Wallis, Wilson Allen, and Harry V Roberts. 1956. <em>Statistics, a New Approach.
 <li id="fn3"><p>These data are based on an example in <span class="citation" data-cites="dixon1983introduction">(<a href="references.html#ref-dixon1983introduction" role="doc-biblioref">Dixon and Massey Jr 1983, 278</a>, example 13-5)</span>, in which the problem is tackled conventionally with a chi-square test.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Example from <span class="citation" data-cites="wallis1956statistics">(<a href="references.html#ref-wallis1956statistics" role="doc-biblioref">Wallis and Roberts 1956, 565</a> – 556)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</aside>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -2875,18 +3007,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2918,11 +3039,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2932,8 +3092,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2945,7 +3114,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2989,6 +3281,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -3014,6 +3307,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -3075,17 +3394,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./reliability_average.html" class="pagination-link">
+      <a href="./reliability_average.html" class="pagination-link" aria-label="Some Last Words About the Reliability of Sample Averages">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Some Last Words About the Reliability of Sample Averages</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./how_big_sample.html" class="pagination-link">
+      <a href="./how_big_sample.html" class="pagination-link" aria-label="How Large a Sample?">
         <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">How Large a Sample?</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

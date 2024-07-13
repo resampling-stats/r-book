@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.51">
+<meta name="generator" content="quarto-1.6.1">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Resampling statistics - 12&nbsp; Probability Theory, Part 3</title>
+<title>12&nbsp; Probability Theory, Part 3 – Resampling statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -100,7 +101,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -109,11 +116,12 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
-
 <script type="text/javascript">
   $(document).ready(function() {
     $("table").addClass('lightable-paper lightable-striped lightable-hover')
@@ -131,12 +139,12 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability_theory_3.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Probability Theory, Part 3</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability_theory_3.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Probability Theory, Part 3</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -146,7 +154,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Resampling statistics</a> 
@@ -390,7 +398,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -439,9 +447,11 @@ div.csl-indent {
   </div>
   
 
+
 </header>
 
-<p>This chapter discusses problems whose appropriate concept of a universe is not finite, whereas <a href="probability_theory_4_finite.html" class="quarto-xref"><span>Chapter&nbsp;13</span></a> discusses problems whose appropriate concept of a universe is finite.</p>
+
+<p>This chapter discusses problems whose appropriate concept of a universe is not finite, whereas <a href="probability_theory_4_finite.html" class="quarto-xref"><span>Chapter 13</span></a> discusses problems whose appropriate concept of a universe is finite.</p>
 <p>How can a universe be infinite yet known? Consider, for example, the possible flips with a given coin; the number is not limited in any meaningful sense, yet we understand the properties of the coin and the probabilities of a head and a tail.</p>
 <section id="sec-birthday-problem" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="sec-birthday-problem"><span class="header-section-number">12.1</span> Example: The Birthday Problem</h2>
@@ -463,7 +473,7 @@ div.csl-indent {
 <a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=birthday_problem.ipynb">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-3_dd4520f4dd6a2da3641b7090d9f67748">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n_with_same_birthday <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10000</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># All the days of the year from "1" through "365"</span></span>
@@ -504,7 +514,7 @@ div.csl-indent {
 </div>
 <p>End of <code>birthday_problem.Rmd</code> notebook</p>
 </div>
-<p>We have dealt with this example in a rather intuitive and unsystematic fashion. From here on, we will work in a more systematic, step-by-step manner. And from here on the problems form an orderly sequence of the classical types of problems in probability theory (<a href="#sec-infinite-universes" class="quarto-xref"><span>Chapter&nbsp;12</span></a> and <a href="probability_theory_4_finite.html" class="quarto-xref"><span>Chapter&nbsp;13</span></a>), and inferential statistics (<a href="framing_questions.html" class="quarto-xref"><span>Chapter&nbsp;20</span></a> to <a href="reliability_average.html" class="quarto-xref"><span>Chapter&nbsp;28</span></a>.)</p>
+<p>We have dealt with this example in a rather intuitive and unsystematic fashion. From here on, we will work in a more systematic, step-by-step manner. And from here on the problems form an orderly sequence of the classical types of problems in probability theory (<a href="#sec-infinite-universes" class="quarto-xref"><span>Chapter 12</span></a> and <a href="probability_theory_4_finite.html" class="quarto-xref"><span>Chapter 13</span></a>), and inferential statistics (<a href="framing_questions.html" class="quarto-xref"><span>Chapter 20</span></a> to <a href="reliability_average.html" class="quarto-xref"><span>Chapter 28</span></a>.)</p>
 </section>
 <section id="example-three-daughters-among-four-children" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="example-three-daughters-among-four-children"><span class="header-section-number">12.2</span> Example: Three Daughters Among Four Children</h2>
@@ -521,9 +531,13 @@ div.csl-indent {
 <li><strong>Step 5.</strong> Count the proportion “yes.” This proportion is an estimate of the probability of obtaining exactly 3 daughters in 4 children.</li>
 </ul>
 <p>The first few experimental trials might appear in the record sheet as follows (<a href="#tbl-coins-girls" class="quarto-xref">Table&nbsp;<span>12.1</span></a>):</p>
-<div id="tbl-coins-girls" class="anchored">
-<table class="table">
-<caption>Table&nbsp;12.1: Example trials from the three-girls problem</caption>
+<div id="tbl-coins-girls" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coins-girls-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.1: Example trials from the three-girls problem
+</figcaption>
+<div aria-describedby="tbl-coins-girls-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Number of Heads</th>
@@ -570,6 +584,8 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p>The probability of getting three daughters in four births could also be found with a deck of cards, a random number table, a die, or with R. For example, half the cards in a deck are black, so the probability of getting a black card (“daughter”) from a full deck is 1 in 2. Therefore, deal a card, record “daughter” or “son,” <em>replace</em> the card, shuffle, deal again, and so forth for 200 sets of four cards. Then count the proportion of groups of four cards in which you got four daughters.</p>
 <div class="notebook" name="three_girls" title="Three Girls">
 <p>Start of <code>three_girls</code> notebook</p>
@@ -578,7 +594,7 @@ div.csl-indent {
 <a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=three_girls.ipynb">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-6_8a715a494fb208c64eb9f11b70796347">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>girl_counts <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10000</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Do 10000 trials</span></span>
@@ -613,7 +629,7 @@ div.csl-indent {
 <p>End of <code>three_girls.Rmd</code> notebook</p>
 </div>
 <p>Notice that the procedure outlined in the steps above would have been different (though almost identical) if we asked about the probability of <em>three or more</em> daughters rather than <em>exactly three</em> daughters among four children. For <em>three or more</em> daughters we would have scored “yes” on our score-keeping pad for <em>either</em> three or four heads, rather than for just three heads. Likewise, in the computer solution we would have used the statement <span class="r"><code>n_three_girls &lt;- sum(girl_counts &gt;= 3)</code></span>.</p>
-<p>It is important that, in this case, in contrast to what we did in the example from <a href="probability_theory_2_compound.html#sec-one-pair" class="quarto-xref"><span>Section&nbsp;11.2</span></a> (the introductory poker example), the card is <em>replaced</em> each time so that each card is dealt from a full deck. This method is known as <em>sampling with replacement</em> . One samples with replacement whenever the successive events are <em>independent</em> ; in this case we assume that the chance of having a daughter remains the same (1 girl in 2 births) no matter what sex the previous births were <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. But, if the first card dealt is black and would <em>not</em> be replaced, the chance of the second card being black would no longer be 26 in 52 (.50), but rather 25 in 51 (.49), if the first <em>three</em> cards are black and would not be replaced, the chances of the fourth card’s being black would sink to 23 in 49 (.47).</p>
+<p>It is important that, in this case, in contrast to what we did in the example from <a href="probability_theory_2_compound.html#sec-one-pair" class="quarto-xref"><span>Section 11.2</span></a> (the introductory poker example), the card is <em>replaced</em> each time so that each card is dealt from a full deck. This method is known as <em>sampling with replacement</em> . One samples with replacement whenever the successive events are <em>independent</em> ; in this case we assume that the chance of having a daughter remains the same (1 girl in 2 births) no matter what sex the previous births were <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. But, if the first card dealt is black and would <em>not</em> be replaced, the chance of the second card being black would no longer be 26 in 52 (.50), but rather 25 in 51 (.49), if the first <em>three</em> cards are black and would not be replaced, the chances of the fourth card’s being black would sink to 23 in 49 (.47).</p>
 <p>To push the illustration further, consider what would happen if we used a deck of only six cards, half (3 of 6) black and half (3 of 6) red, instead of a deck of 52 cards. If the chosen card is replaced each time, the 6-card deck produces the same results as a 52-card deck; in fact, a two-card deck would do as well. But, if the sampling is done <em>without</em> replacement, it is <em>impossible</em> to obtain 4 “daughters” with the 6-card deck because there are only 3 “daughters” in the deck. To repeat, then, whenever you want to estimate the probability of some series of events where each event is independent of the other, you must sample <em>with replacement</em> .</p>
 </section>
 <section id="variations-of-the-daughters-problem" class="level2" data-number="12.3">
@@ -621,11 +637,11 @@ div.csl-indent {
 <p>In later chapters we will frequently refer to a problem which is identical in basic structure to the problem of three girls in four children — the probability of getting 9 females in ten calf births if the probability of a female birth is (say) .5 — when we set this problem in the context of the possibility that a genetic engineering practice is effective in increasing the proportion of females (desirable for the production of milk).</p>
 <p>So far we have assumed the simple case where we have a vector of values that we are sampling from, and we are selecting each of these values into the sample with equal probability.</p>
 <p>For example, we started with the simple assumption that a child is just as likely to be born a boy as a girl. Our input is:</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-8_3241700c47361aae53bf205d11ab585d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>input_values <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'girl'</span>, <span class="st">'boy'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>By default, <code>sample</code> will draw the input values with equal probability. Here, we draw a sample (<code>children</code>) of four values from the input, where <em>each value</em> in <code>children</code> has an equal chance of being “girl” or “boy”.</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-10_4ce749770018c36908e046af49cb7c8d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>children <span class="ot">&lt;-</span> <span class="fu">sample</span>(input_values, <span class="at">size=</span><span class="dv">4</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>children</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -638,11 +654,11 @@ div.csl-indent {
 <section id="and-the-probp-argument" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="and-the-probp-argument"><span class="header-section-number">12.4</span> <code>sample</code> and the <span class="r"><code>prob</code></span> argument</h2>
 <p>We could replicate this probability of 0.487 for ‘girl’ in the output sample by making an input array of 1000 strings, that contains 487 ‘girls’ and 513 ‘boys’:</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-12_61dc8d0670d1435234204249a8c3594c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>big_girls <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">'girl'</span>, <span class="st">'boy'</span>), <span class="fu">c</span>(<span class="dv">487</span>, <span class="dv">513</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now if we sample using the default in <code>sample</code>, each <em>element</em> in the input <code>big_girls</code> array will have the same chance of appearing in the sample, but because there are 487 ‘girls’, and 513 ‘boys’, each with an equal chance of appearing in the sample, we will get a ‘girl’ in roughly 487 out of every 1000 elements we draw, and a boy roughly 513 / 1000 times. That is, our chance of any one element of being a ‘girl’ is, as we want, 0.487.</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-14_7361c0cf7825d11d20afa015a7bedd08">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now each element has probability 0.487 of 'girl', 0.513 of 'boy'.</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>realistic_children <span class="ot">&lt;-</span> <span class="fu">sample</span>(big_girls, <span class="at">size=</span><span class="dv">4</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>realistic_children</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -651,7 +667,7 @@ div.csl-indent {
 </div>
 </div>
 <p>But, there is an easier way than compiling a big 1000 element array, and that is to use the <span class="r"><code>prob=</code></span> argument to <code>sample</code>. This allows us to specify the probability with which we will draw each of the input elements into the output sample. For example, to draw ‘girl’ with probability 0.487 and ‘boy’ with probability 0.513, we would do:</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-16_81329c4affc36ee33f9d7e2f1b9a4e88">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw 'girl' with probability (p) 0.487 and 'boy' 0.513.</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>children_again <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'girl'</span>, <span class="st">'boy'</span>), <span class="at">size=</span><span class="dv">4</span>, <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.487</span>, <span class="fl">0.513</span>),</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
@@ -661,7 +677,7 @@ div.csl-indent {
 </div>
 </div>
 <p>The <span class="r"><code>prob</code></span> argument allows us to specify the probability of each element in the input vector — so if we had three elements in the input array, we would need three probabilities in <span class="r"><code>prob</code></span>. For example, let’s say we were looking at some poorly-entered hospital records, we might have ‘girl’ or ‘boy’ recorded as the child’s gender, but the record might be missing — ‘not-recorded’ — with a 19% chance:</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-18_2eefe0717f4f97754db0073efae448c5">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw 'girl' with probability (p) 0.4, 'boy' with p=0.41, 'not-recorded' with</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># p=0.19.</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'girl'</span>, <span class="st">'boy'</span>, <span class="st">'not-recorded'</span>), <span class="at">size=</span><span class="dv">30</span>, <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.41</span>, <span class="fl">0.19</span>),</span>
@@ -687,7 +703,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <div class="callout-body-container callout-body">
 <p>You might wonder how R does this trick of choosing the elements with different probabilities.</p>
 <p>One way of doing this is to use <em>uniform</em> random numbers from 0 through 1. These are floating point numbers that can take any value, at random, from 0 through 1.</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-20_2d3cf0c02bfc2e377e3efa5cebc3c000">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this chunk a few times to see random numbers anywhere from 0 through 1.</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># `runif` means "Random UNIForm".</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -697,7 +713,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 </div>
 <p>Because this random uniform number has an equal chance of being anywhere in the range 0 through 1, there is a 50% chance that any given number will be less then 0.5 and a 50% chance it is greater than 0.5. (Of course it could be <em>exactly equal to</em> 0.5, but this is vanishingly unlikely, so we will ignore that for now).</p>
 <p>So, if we thought girls were exactly as likely as boys, we could select from ‘girl’ and ‘boy’ using this simple logic:</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-22_3f45941bdfe09617e9ae7ac72f12c76b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fl">0.5</span>) {</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">=</span> <span class="st">'girl'</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
@@ -705,7 +721,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But, by the same logic, there is a 0.487 chance that the random uniform number will be less than 0.487 and a 0.513 chance it will be greater. So, if we wanted to give ourselves a 0.487 chance of ‘girl’, we could do:</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-24_bd6e6081a1f845e07e54bd8e70c0d00a">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fl">0.487</span>) {</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">=</span> <span class="st">'girl'</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
@@ -720,7 +736,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <h2 data-number="12.5" class="anchored" data-anchor-id="the-daughters-problem-with-more-accurate-probabilities"><span class="header-section-number">12.5</span> The daughters problem with more accurate probabilities</h2>
 <p>We can use the probability argument to <code>sample</code> to do a more realistic simulation of the chance of a family with exactly three girls. In this case it is easy to make the chance for the R simulation, but much more difficult using physical devices like coins to simulate the randomness.</p>
 <p>Remember, the original code for the 50-50 case, has the following:</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-26_f1b6121eab0e7c41476202819777dcac">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select 'girl' or 'boy' at random, four times.</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>children <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'girl'</span>, <span class="st">'boy'</span>), <span class="at">size=</span><span class="dv">4</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -728,7 +744,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">sum</span>(children <span class="sc">==</span> <span class="st">'girl'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The only change we need to the above, for the 0.487 - 0.513 case, is the one you see above:</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-28_f4d0a593cc67023f9521e3fdd7bc7a57">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Give 'girl' 48.7% of the time, 'boy' 51.3% of the time.</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>children <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'girl'</span>, <span class="st">'boy'</span>), <span class="at">size=</span><span class="dv">4</span>, <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.487</span>, <span class="fl">0.513</span>),</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
@@ -749,7 +765,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <p>A fundamental property of binomial processes is that the individual trials are <em>independent</em> , a concept discussed earlier. A binomial sampling process is a <em>series</em> of binomial (one-of-two-outcome) events about which one may ask many sorts of questions — the probability of exactly X heads (“successes”) in N trials, or the probability of X or more “successes” in N trials, and so on.</p>
 <p>“Equally likely outcomes” means we assume that the probability of a girl or boy in any one birth is the same (though this assumption is slightly contrary to fact); we represent this assumption with the equal-probability heads and tails of a coin. Shortly we will come to binomial sampling experiments where the probabilities of the individual outcomes are <em>not</em> equal.</p>
 <p>The term “with replacement” was explained earlier; if we were to use a deck of red and black cards (instead of a coin) for this resampling experiment, we would <em>replace</em> the card each time a card is drawn.</p>
-<p>The introductory poker example from <a href="probability_theory_2_compound.html#sec-one-pair" class="quarto-xref"><span>Section&nbsp;11.2</span></a>, illustrated sampling without replacement, as will other examples to follow.</p>
+<p>The introductory poker example from <a href="probability_theory_2_compound.html#sec-one-pair" class="quarto-xref"><span>Section 11.2</span></a>, illustrated sampling without replacement, as will other examples to follow.</p>
 <p>This problem would be done conventionally with the binomial theorem using probabilities of .5, or of .487 and .513, asking about 3 successes in 4 trials.</p>
 </section>
 <section id="example-three-or-more-successful-basketball-shots-in-five-attempts" class="level2" data-number="12.8">
@@ -766,9 +782,13 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <li>Count the proportion “yes” out of the four hundred throws. That proportion estimates the probability of getting three or more baskets out of five shots if the probability of a single basket is .25.</li>
 </ol>
 <p>The first four repetitions on your score sheet might look like this (<a href="#tbl-three-shots" class="quarto-xref">Table&nbsp;<span>12.2</span></a>):</p>
-<div id="tbl-three-shots" class="anchored">
-<table class="table">
-<caption>Table&nbsp;12.2: First four repetitions of 3 or more shots simulation</caption>
+<div id="tbl-three-shots" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-three-shots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.2: First four repetitions of 3 or more shots simulation
+</figcaption>
+<div aria-describedby="tbl-three-shots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Card 1</th>
@@ -815,6 +835,8 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p>Instead of cards, we could have used two-digit random numbers, with (say) “1-25” standing for “success,” and “26-00” (“00” in place of “100”) standing for failure. Then the steps would simply be:</p>
 <ol type="1">
 <li>Let the random numbers “1-25” stand for “successful shot,” “26-00” for unsuccessful shot.</li>
@@ -830,7 +852,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=basketball_shots.ipynb">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-31_54cd5d0206ffc3d2836c889f8c3d51a9">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>n_baskets <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10000</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Do 10000 experimental trials.</span></span>
@@ -891,7 +913,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=bullseye.ipynb">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-34_f4db624abd76804b91178b5bead76979">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a vector to store the results of each trial.</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>white_counts <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10000</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -941,14 +963,18 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 </div>
 <p>End of <code>bullseye.Rmd</code> notebook</p>
 </div>
-<p>This example illustrates the addition rule that was introduced and discussed in <a href="probability_theory_1b.html" class="quarto-xref"><span>Chapter&nbsp;9</span></a>. In <a href="#sec-one-black-archery" class="quarto-xref"><span>Section&nbsp;12.10</span></a>, a bullseye, an in-the-white shot, and a missed shot are “mutually exclusive” events because a single shot cannot result in more than one of the three possible outcomes. One can calculate the probability of <em>either of two</em> mutually-exclusive outcomes by adding their probabilities. The probability of <em>either</em> a bullseye or a shot in the white is .1 + .6 = .7. The probability of an arrow <em>either</em> in the white <em>or</em> a miss is .6 + .3 = .9. The logic of the addition rule is obvious when we examine the random numbers given to the outcomes. Seven of 10 random numbers belong to “bullseye” or “in the white,” and nine of 10 belong to “in the white” or “miss.”</p>
+<p>This example illustrates the addition rule that was introduced and discussed in <a href="probability_theory_1b.html" class="quarto-xref"><span>Chapter 9</span></a>. In <a href="#sec-one-black-archery" class="quarto-xref"><span>Section 12.10</span></a>, a bullseye, an in-the-white shot, and a missed shot are “mutually exclusive” events because a single shot cannot result in more than one of the three possible outcomes. One can calculate the probability of <em>either of two</em> mutually-exclusive outcomes by adding their probabilities. The probability of <em>either</em> a bullseye or a shot in the white is .1 + .6 = .7. The probability of an arrow <em>either</em> in the white <em>or</em> a miss is .6 + .3 = .9. The logic of the addition rule is obvious when we examine the random numbers given to the outcomes. Seven of 10 random numbers belong to “bullseye” or “in the white,” and nine of 10 belong to “in the white” or “miss.”</p>
 </section>
 <section id="example-two-groups-of-heart-patients" class="level2" data-number="12.11">
 <h2 data-number="12.11" class="anchored" data-anchor-id="example-two-groups-of-heart-patients"><span class="header-section-number">12.11</span> Example: Two Groups of Heart Patients</h2>
 <p>We want to learn how likely it is that, by chance, group A would have as little as two deaths more than group B — <a href="#tbl-two-heart-groups" class="quarto-xref">Table&nbsp;<span>12.3</span></a>:</p>
-<div id="tbl-two-heart-groups" class="anchored">
-<table class="table">
-<caption>Table&nbsp;12.3: Two Groups of Heart Patients</caption>
+<div id="tbl-two-heart-groups" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-two-heart-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.3: Two Groups of Heart Patients
+</figcaption>
+<div aria-describedby="tbl-two-heart-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th></th>
@@ -970,6 +996,8 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p>This problem, phrased here as a question in probability, is the prototype of a problem in statistics that we will consider later (which the conventional theory would handle with a “chi square distribution”). We can handle it in either of two ways, as follows:</p>
 <p><strong>Approach A</strong></p>
 <ol type="1">
@@ -987,13 +1015,13 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <li>As above, repeat steps 2 and 3 perhaps 10000 times and compute the proportion “Yes.”</li>
 </ol>
 <p>We must also take into account the possibility of a similar eye-catching “unbalanced” result of a much larger proportion of deaths in Group B. It will be a tough decision how to do so, but a reasonable option is to simply double the probability computed in step 4a or 4b.</p>
-<p>Deciding which of these two approaches — the “permutation” (without replacement) and “bootstrap” (with replacement) methods — is the more appropriate is often a thorny matter; it will be discussed latter in <a href="testing_measured.html" class="quarto-xref"><span>Chapter&nbsp;24</span></a>. In many cases, however, the two approaches will lead to similar results.</p>
+<p>Deciding which of these two approaches — the “permutation” (without replacement) and “bootstrap” (with replacement) methods — is the more appropriate is often a thorny matter; it will be discussed latter in <a href="testing_measured.html" class="quarto-xref"><span>Chapter 24</span></a>. In many cases, however, the two approaches will lead to similar results.</p>
 <p>Later, we will actually carry out these procedures with the aid of R, and estimate the probabilities we seek.</p>
 </section>
 <section id="example-dispersion-of-a-sum-of-random-variables-hammer-lengths-heads-and-handles" class="level2" data-number="12.12">
 <h2 data-number="12.12" class="anchored" data-anchor-id="example-dispersion-of-a-sum-of-random-variables-hammer-lengths-heads-and-handles"><span class="header-section-number">12.12</span> Example: Dispersion of a Sum of Random Variables — Hammer Lengths — Heads and Handles</h2>
 <p>The distribution of lengths for hammer <em>handles</em> is as follows: 20 percent are 10 inches long, 30 percent are 10.1 inches, 30 percent are 10.2 inches, and 20 percent are 10.3 inches long. The distribution of lengths for hammer <em>heads</em> is as follows: 2.0 inches, 20 percent; 2.1 inches, 20 percent; 2.2 inches, 30 percent; 2.3 inches, 20 percent; 2.4 inches, 10 percent.</p>
-<p>If you draw a handle and a head at random, what will be the mean total length? In <a href="probability_theory_1b.html" class="quarto-xref"><span>Chapter&nbsp;9</span></a> we saw that the conventional formulaic method tells you that an answer with a formula that says the sum of the means is the mean of the sums, but it is easy to get the answer with simulation. But now we ask about the <em>dispersion</em> of the sum. There are formulaic rules for such measures as the variance. But consider this other example: What proportion of the hammers made with handles and heads drawn at random will have lengths equal to or greater than 12.4 inches? No simple formula will provide an answer. And if the number of categories is increased considerably, any formulaic approach will be become burdensome if not undoable. But Monte Carlo simulation produces an answer quickly and easily, as follows:</p>
+<p>If you draw a handle and a head at random, what will be the mean total length? In <a href="probability_theory_1b.html" class="quarto-xref"><span>Chapter 9</span></a> we saw that the conventional formulaic method tells you that an answer with a formula that says the sum of the means is the mean of the sums, but it is easy to get the answer with simulation. But now we ask about the <em>dispersion</em> of the sum. There are formulaic rules for such measures as the variance. But consider this other example: What proportion of the hammers made with handles and heads drawn at random will have lengths equal to or greater than 12.4 inches? No simple formula will provide an answer. And if the number of categories is increased considerably, any formulaic approach will be become burdensome if not undoable. But Monte Carlo simulation produces an answer quickly and easily, as follows:</p>
 <ol type="1">
 <li><p>Fill a bucket with:</p>
 <ul>
@@ -1020,7 +1048,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <section id="example-the-product-of-random-variables-theft-by-employees" class="level2" data-number="12.13">
 <h2 data-number="12.13" class="anchored" data-anchor-id="example-the-product-of-random-variables-theft-by-employees"><span class="header-section-number">12.13</span> Example: The Product of Random Variables — Theft by Employees</h2>
 <p>The distribution of the number of thefts per month you can expect in your business is as follows:</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Number</th>
@@ -1051,7 +1079,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 </tbody>
 </table>
 <p>The amounts that may be stolen on any theft are as follows:</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Amount</th>
@@ -1099,7 +1127,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=pennies.ipynb">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-37_a4be6f02ee82296fa646b1fc5aed8bd5">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>someone_won <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10000</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Do 10000 trials</span></span>
@@ -1192,12 +1220,16 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <p>If a drunk chooses the direction of each step randomly, will he ever get home? If he can only walk on the road on which he lives, the problem is almost the same as the gambler’s-ruin problem above (“pennies”). But if the drunk can go north-south as well as east-west, the problem becomes a bit different and interesting.</p>
 <p>Looking now at <a href="#fig-drunk-walk" class="quarto-xref">Figure&nbsp;<span>12.1</span></a> — what is the probability of the drunk reaching <em>either</em> his house (at 3 steps east, 2 steps north) <em>or</em> my house (1 west, 4 south) before he finishes taking twelve steps?</p>
 <p>One way to handle the problem would be to use a four-directional spinner such as is used with a child’s board game, and then keep track of each step on a piece of graph paper. The reader may construct a R program as an exercise.</p>
-<div class="cell" data-layout-align="center" data-opts.label="svg_fig" data-hash="probability_theory_3_cache/html/fig-drunk-walk_64e1c516b93f651194cc068bf218efc2">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-drunk-walk" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="diagrams/drunks_walk.svg" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;12.1: Drunk random walk</figcaption>
+<div id="fig-drunk-walk" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-drunk-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="diagrams/drunks_walk.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drunk-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.1: Drunk random walk
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1205,12 +1237,16 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 </section>
 <section id="sec-public-liquor" class="level2" data-number="12.16">
 <h2 data-number="12.16" class="anchored" data-anchor-id="sec-public-liquor"><span class="header-section-number">12.16</span> Example: public and private liquor pricing</h2>
-<p>Let’s end this chapter with an actual example that will be used again in <a href="probability_theory_4_finite.html" class="quarto-xref"><span>Chapter&nbsp;13</span></a> when discussing probability in finite universes, and then at great length in the context of statistics in <a href="testing_measured.html" class="quarto-xref"><span>Chapter&nbsp;24</span></a>. This example also illustrates the close connection between problems in pure probability and those in statistical inference.</p>
+<p>Let’s end this chapter with an actual example that will be used again in <a href="probability_theory_4_finite.html" class="quarto-xref"><span>Chapter 13</span></a> when discussing probability in finite universes, and then at great length in the context of statistics in <a href="testing_measured.html" class="quarto-xref"><span>Chapter 24</span></a>. This example also illustrates the close connection between problems in pure probability and those in statistical inference.</p>
 <p>As of 1963, there were 26 U.S. states in whose liquor systems the retail liquor stores are privately owned, and 16 “monopoly” states where the state government owns the retail liquor stores. (Some states were omitted for technical reasons.) These were the representative 1961 prices of a fifth of Seagram 7 Crown whiskey in the two sets of states (<a href="#tbl-whiskey-prices" class="quarto-xref">Table&nbsp;<span>12.4</span></a>):</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-38_201aa9b68f76b5770cbd75c905be684e">
-<div id="tbl-whiskey-prices" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;12.4: Whiskey prices by state category</caption>
+<div class="cell" data-layout-align="center">
+<div id="tbl-whiskey-prices" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-whiskey-prices-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.4: Whiskey prices by state category
+</figcaption>
+<div aria-describedby="tbl-whiskey-prices-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 16%">
 <col style="width: 16%">
@@ -1372,13 +1408,19 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 </tbody>
 </table>
 </div>
+</figure>
 </div>
-<div class="cell" data-layout-align="center" data-opts.label="svg_fig" data-hash="probability_theory_3_cache/html/fig-whiskey-hist_eb8e866017d896fcc393636444a2bb50">
+</div>
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-whiskey-hist" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="probability_theory_3_files/figure-html/fig-whiskey-hist-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;12.2: Whiskey prices by state category</figcaption>
+<div id="fig-whiskey-hist" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-whiskey-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="probability_theory_3_files/figure-html/fig-whiskey-hist-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-whiskey-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.2: Whiskey prices by state category
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1399,7 +1441,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 <p>You will see that in action below, but this is what that <em>concatenation</em> looks like in R for some example vectors.</p>
 <div class="r">
 <p>We have already seen R’s concatenation function in action. It is the function named <code>c</code>. For example, we use <code>c(1, 2, 3)</code> to <em>concatenate</em> the single numbers 1, 2, and 3 into a combined (concatenated) <em>vector</em> with elements 1, 2, 3:</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-40_1af0ab5f9dcb79f7a0abbf5aad58539b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>vec_a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>vec_a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1407,7 +1449,7 @@ How does the <span class="r"><code>prob</code></span> argument to <code>sample</
 </div>
 </div>
 <p>We can also use the <code>c</code> function to concatenate <em>vectors</em>:</p>
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-41_c6d6399e4121b021b920529bf0774eb3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>vec_b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the "c" function to make new vector consisting of elements in</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># first vector followed by elements in second vector.</span></span>
@@ -1432,7 +1474,7 @@ End of R block.
 <a class="interact-button" href="https://resampling-stats.github.io/r-book/notebooks/lab/index.html?path=liquor_prices.ipynb">Interact</a>
 </div>
 
-<div class="cell" data-layout-align="center" data-hash="probability_theory_3_cache/html/unnamed-chunk-44_d880dc76af5bf2935803ba5db0ea2361">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fake_diffs <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10000</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>priv <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.82</span>, <span class="fl">5.29</span>, <span class="fl">4.89</span>, <span class="fl">4.95</span>, <span class="fl">4.55</span>, <span class="fl">4.90</span>, <span class="fl">5.25</span>, <span class="fl">5.30</span>, <span class="fl">4.29</span>, <span class="fl">4.85</span>, <span class="fl">4.54</span>,</span>
@@ -1478,7 +1520,7 @@ End of R block.
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="probability_theory_3_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="probability_theory_3_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -1486,15 +1528,15 @@ End of R block.
 <p>End of <code>liquor_prices.Rmd</code> notebook</p>
 </div>
 <p>The results shown above — not even one “success” in 10,000 trials — imply that there is only a very small probability that two groups with mean prices as different as were observed would happen by chance if drawn with replacement from the universe of 42 observed prices.</p>
-<p>Here we think of these states as if they came from a non-finite universe, which is one possible interpretation for one particular context. However, in <a href="probability_theory_4_finite.html" class="quarto-xref"><span>Chapter&nbsp;13</span></a> we will postulate a finite universe, which is appropriate if it is reasonable to consider that these observations constitute the entire universe (aside from those states excluded from the analysis because of data complexities).</p>
+<p>Here we think of these states as if they came from a non-finite universe, which is one possible interpretation for one particular context. However, in <a href="probability_theory_4_finite.html" class="quarto-xref"><span>Chapter 13</span></a> we will postulate a finite universe, which is appropriate if it is reasonable to consider that these observations constitute the entire universe (aside from those states excluded from the analysis because of data complexities).</p>
 </section>
 </section>
 <section id="the-general-procedure" class="level2" data-number="12.17">
 <h2 data-number="12.17" class="anchored" data-anchor-id="the-general-procedure"><span class="header-section-number">12.17</span> The general procedure</h2>
-<p><a href="testing_procedures.html" class="quarto-xref"><span>Chapter&nbsp;25</span></a> generalizes what we have done in the probability problems above into a general procedure, which will in turn be a subpart of a general procedure for all of resampling.</p>
+<p><a href="testing_procedures.html" class="quarto-xref"><span>Chapter 25</span></a> generalizes what we have done in the probability problems above into a general procedure, which will in turn be a subpart of a general procedure for all of resampling.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-arbuthnot1710christenings" class="csl-entry" role="listitem">
 Arbuthnot, John. 1710. <span>“An Argument for Divine Providence, Taken from the Constant Regularity Observ’d in the Births of Both Sexes. By Dr. John Arbuthnott, Physitian in Ordinary to Her Majesty, and Fellow of the College of Physitians and the Royal Society.”</span> <em>Philosophical Transactions of the Royal Society of London</em> 27 (328): 186–90. <a href="https://royalsocietypublishing.org/doi/pdf/10.1098/rstl.1710.0011">https://royalsocietypublishing.org/doi/pdf/10.1098/rstl.1710.0011</a>.
 </div>
@@ -1503,7 +1545,7 @@ Mosteller, Frederick, Robert E. K. Rourke, and George Brinton Thomas Jr. 1961. <
 </div>
 </div>
 </section>
-<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn1"><p>Conventional labels such as “binomial” are used here for general background and as guideposts to orient the student of conventional statistics. You do not need to know these labels to understand the resampling approach; one of the advantages of resampling is that it avoids errors resulting from incorrect pigeonholing of problems.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -1512,7 +1554,7 @@ Mosteller, Frederick, Robert E. K. Rourke, and George Brinton Thomas Jr. 1961. <
 <li id="fn4"><p>This fact was the origin of the very first “significance test” in statistics. In the early 1700s, John Arbuthnot <span class="citation" data-cites="arbuthnot1710christenings">(<a href="references.html#ref-arbuthnot1710christenings" role="doc-biblioref">1710</a>)</span> noticed that there were more christenings of boys than girls in London in every year for which he had figures. He showed that this was vanishingly unlikely if male births were in fact exactly as likely as female births, and attributed this to divine providence, because society tended to lose males faster than females in in adulthood, due to manual labor and war.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>Conventional labels such as “binomial” are used here for general background and as guideposts to orient the student of conventional statistics. You do not need to know these labels to understand the resampling approach; one of the advantages of resampling is that it avoids errors resulting from incorrect pigeonholing of problems.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</aside>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1550,18 +1592,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1593,11 +1624,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1607,8 +1677,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1620,7 +1699,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1664,6 +1866,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1689,6 +1892,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1750,17 +1979,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./probability_theory_2_compound.html" class="pagination-link">
+      <a href="./probability_theory_2_compound.html" class="pagination-link" aria-label="Probability Theory, Part 2: Compound Probability">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability Theory, Part 2: Compound Probability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./probability_theory_4_finite.html" class="pagination-link">
+      <a href="./probability_theory_4_finite.html" class="pagination-link" aria-label="Probability Theory, Part 4: Estimating Probabilities from Finite Universes">
         <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Probability Theory, Part 4: Estimating Probabilities from Finite Universes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

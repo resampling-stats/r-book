@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.51">
+<meta name="generator" content="quarto-1.6.1">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Resampling statistics - 5&nbsp; Resampling with code</title>
+<title>5&nbsp; Resampling with code – Resampling statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -100,7 +101,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -109,19 +116,47 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
-
 <script type="text/javascript">
   $(document).ready(function() {
     $("table").addClass('lightable-paper lightable-striped lightable-hover')
   });
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="font-awesome.min.css">
@@ -133,12 +168,12 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./resampling_with_code.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Resampling with code</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./resampling_with_code.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Resampling with code</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -148,7 +183,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Resampling statistics</a> 
@@ -392,7 +427,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -443,16 +478,18 @@ div.csl-indent {
   </div>
   
 
+
 </header>
 
-<p><a href="resampling_method.html" class="quarto-xref"><span>Chapter&nbsp;2</span></a> used simulation and resampling from tables of random numbers, dice, and coins. Making random choices in this way can make it easier to understand the process, but of course, physical methods of making random outcomes can be slow and boring.</p>
+
+<p><a href="resampling_method.html" class="quarto-xref"><span>Chapter 2</span></a> used simulation and resampling from tables of random numbers, dice, and coins. Making random choices in this way can make it easier to understand the process, but of course, physical methods of making random outcomes can be slow and boring.</p>
 <p>We saw that short computer programs can do a huge number of resampling trials in a less than a second. The flexibility of a programming language makes it possible to simulate many different outcomes and tests.</p>
 <p>Programs can build up tables of random numbers, and do basic tasks like counting the number of values in a row or taking proportions. With these simple tools, we can simulate many problems in probability and statistics.</p>
 <p>In this chapter, we will model another problem using R, but this chapter will add three new things.</p>
 <ul>
-<li><p>The problem we will work on is a little different from the ambulances problem from <a href="resampling_method.html" class="quarto-xref"><span>Chapter&nbsp;2</span></a>. It is a real problem about deciding whether a new cancer treatment is better than the alternatives, and it introduces the idea of making a model of the world, to ask questions about chances and probabilities.</p></li>
+<li><p>The problem we will work on is a little different from the ambulances problem from <a href="resampling_method.html" class="quarto-xref"><span>Chapter 2</span></a>. It is a real problem about deciding whether a new cancer treatment is better than the alternatives, and it introduces the idea of making a model of the world, to ask questions about chances and probabilities.</p></li>
 <li><p>We will slow down a little to emphasize the steps in solving this kind of problem. First we work out how to simulate a single <em>trial</em>. Then we work out how to run many simulated trials.</p></li>
-<li><p>We sprinted through the code in <a href="resampling_method.html" class="quarto-xref"><span>Chapter&nbsp;2</span></a>, with the promise we would come back to the details. Here we go into more detail about some ideas from the code in the last chapter. These are:</p>
+<li><p>We sprinted through the code in <a href="resampling_method.html" class="quarto-xref"><span>Chapter 2</span></a>, with the promise we would come back to the details. Here we go into more detail about some ideas from the code in the last chapter. These are:</p>
 <ul>
 <li>Storing several values together in one place, with <span class="r">vectors</span>.</li>
 <li>Using <em>functions</em> (code recipes) to apply procedures.</li>
@@ -473,17 +510,21 @@ div.csl-indent {
 <p>At this stage you might and should ask, what could we possibly mean by “surprised”? That is a good and important question, and we will discuss that much more in the chapters to come. For now, please bear with us as we do a thought experiment.</p>
 <p>Let us forget the 17 out of 17 result of the NCI study for a moment. Imagine that there is another hospital, called Saint Hypothetical General, just down the road from the NCI, that was also treating 17 patients with Burkitt lymphoma. Saint Hypothetical were not using the NCI treatment, they were using the standard treatment.</p>
 <p>We already know that each patient given the standard treatment has a 90% chance of cure. Given that 90% cure rate, what is the chance that 17 out of 17 of the Hypothetical group will be cured?</p>
-<p>You may notice that this question about the Hypothetical group is similar to the problem of the 20 ambulances in Chapter <a href="resampling_method.html" class="quarto-xref"><span>Chapter&nbsp;2</span></a>. In that problem, we were interested to know how likely it was that 3 or more of 20 ambulances would be out of action on any one day, given that each ambulance had a 10% chance of being out of action. Here we would like to know the chances that all 17 patients would be cured, given that each patient has a 90% chance of being cured.</p>
+<p>You may notice that this question about the Hypothetical group is similar to the problem of the 20 ambulances in Chapter <a href="resampling_method.html" class="quarto-xref"><span>Chapter 2</span></a>. In that problem, we were interested to know how likely it was that 3 or more of 20 ambulances would be out of action on any one day, given that each ambulance had a 10% chance of being out of action. Here we would like to know the chances that all 17 patients would be cured, given that each patient has a 90% chance of being cured.</p>
 </section>
 <section id="a-physical-model-of-the-hypothetical-hospital" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="a-physical-model-of-the-hypothetical-hospital"><span class="header-section-number">5.3</span> A physical model of the hypothetical hospital</h2>
 <p>As in the ambulance example, we could make a physical model of chance in this world. For example, to simulate whether a given patient is cured or not by a 90% effective treatment, we could throw a ten sided die and record the result. We could say, arbitrarily, that a result of 0 means “not cured”, and all the numbers 1 through 9 mean “cured” (typical 10-sided dice have sides numbered 0 through 9).</p>
 <p>We could roll 17 dice to simulate one “trial” in this random world. For each trial, we record the number of dice that show numbers 1 through 9 (and not 0). This will be a number between 0 and 17, and it is the number of patients “cured” in our simulated trial.</p>
 <p><a href="#fig-17-d10s" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> is the result of one such trial we did with a set of 17 10-sided dice we happened to have to hand:</p>
-<div id="fig-17-d10s" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/17_d10s.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.1: One roll of 17 10-sided dice</figcaption>
+<div id="fig-17-d10s" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-17-d10s-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/17_d10s.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-17-d10s-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: One roll of 17 10-sided dice
+</figcaption>
 </figure>
 </div>
 <p>The trial in <a href="#fig-17-d10s" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> shows are four dice with the 0 face uppermost, and the rest with numbers from 1 through 9. Therefore, there were 13 out of 17 not-zero numbers, meaning that 13 out of 17 simulated “patients” were “cured” in this simulated trial.</p>
@@ -522,13 +563,13 @@ Whole numbers
 <p>A whole number is a number that is not negative, and does not have fractional part (does not have anything after a decimal point). 0 and 1 and 2 and 3 are whole numbers, but -1 and <span class="math inline">\(\frac{3}{5}\)</span> and 11.3 are not. The whole numbers from 0 through 9 are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.</p>
 </div>
 </div>
-<p>We have already discussed what we mean by <em>random</em> in <a href="resampling_method.html#sec-randomness-computer" class="quarto-xref"><span>Section&nbsp;2.2</span></a>.</p>
+<p>We have already discussed what we mean by <em>random</em> in <a href="resampling_method.html#sec-randomness-computer" class="quarto-xref"><span>Section 2.2</span></a>.</p>
 </section>
 <section id="from-numbers-to-s" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="from-numbers-to-s"><span class="header-section-number">5.6</span> From numbers to vectors</h2>
 <p>We need to prepare the <em>sequence</em> of numbers that we want R to select from.</p>
 <p>We have already seen the idea that R has <em>values</em> that are individual numbers. Remember, a <em>variable</em> is a <em>named value</em>. Here we attach the name <code>a</code> to the value 1.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-3_34c886e4902ea81ba2b3cb2dfc60e1c7">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of "a"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -541,7 +582,7 @@ Whole numbers
 <p>The name <em>vector</em> sounds rather technical and mathematical, but the only important idea for us is that a <em>vector</em> stores a <em>sequence</em> of numbers.</p>
 </div>
 <p>Here we make a vector that contains the 10 numbers we will select from:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-5_c7b9250fd3117fce55d06bc5ac04df4c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a vector of numbers, store with the name "some_numbers".</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>some_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of "some_numbers"</span></span>
@@ -583,25 +624,29 @@ What is an integer?
 <li><strong>Return value</strong> : the values the function sends back.</li>
 </ul>
 <p>See <a href="#fig-round_function_pl" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> for an illustration of <span class="r"><code>round</code></span> as a production line.</p>
-<div class="cell" data-layout-align="center" data-opts.label="svg_fig" data-hash="resampling_with_code_cache/html/fig-round_function_pl_09067fe348eec04660b0599986d6ffd5">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-round_function_pl" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="diagrams/round_function_pl.svg" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.2: The <code>round</code> function as a production line</figcaption>
+<div id="fig-round_function_pl" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-round_function_pl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="diagrams/round_function_pl.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-round_function_pl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: The <code>round</code> function as a production line
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>In the next few code chunks, you see examples where <span class="r"><code>round</code></span> takes in a not-integer number, as an <em>argument</em>, and sends back the nearest integer as the <em>return value</em>:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-9_190670007cfe329b7e95ccb29fa1826e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put in 3.2, round sends back 3.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-10_2d1ab10cebae8a2b1981c64b8e9e6404">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put in -2.7, round sends back -3.</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="sc">-</span><span class="fl">2.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -609,7 +654,7 @@ What is an integer?
 </div>
 </div>
 <p>Like many functions, <span class="r"><code>round</code></span> can take more than one argument (component). You can send <code>range</code> the number of digits you want to round to, after the number of you want it to work on, like this (see <a href="#fig-round_ndigits_pl" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>):</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-12_7b6df775317d26aa1abe29ae2131e13d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put in 3.1415, and the number of digits to round to (2).</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># round sends back 3.14</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.1415</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -617,12 +662,16 @@ What is an integer?
 <pre><code>[1] 3.14</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-opts.label="svg_fig" data-hash="resampling_with_code_cache/html/fig-round_ndigits_pl_33ea33af7338fdf53ed797dd467bf660">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-round_ndigits_pl" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="diagrams/round_function_ndigits_pl.svg" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.3: <code>round</code> with optional arguments specifying number of digits</figcaption>
+<div id="fig-round_ndigits_pl" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-round_ndigits_pl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="diagrams/round_function_ndigits_pl.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-round_ndigits_pl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.3: <code>round</code> with optional arguments specifying number of digits
+</figcaption>
 </figure>
 </div>
 </div>
@@ -634,7 +683,7 @@ What is an integer?
 <p>In the example above, we sent <code>round</code> two arguments. <code>round</code> knows that we mean the first argument to be the number we want to round, and the second argument is the number of decimal places we want to round to. It knows which is which by the <em>position</em> of the arguments — the <em>first</em> argument is the <em>number</em> it should round, and <em>second</em> is the number of digits.</p>
 <p>In fact, internally, the <code>round</code> function also gives these arguments <em>names</em>. It calls the number it should round — <span class="r"><code>x</code></span> — and the number of digits it should round to — <span class="r"><code>digits</code></span>. This is useful, because it is often clearer and simpler to identify the argument we are specifying with its name, instead of just relying on its position.</p>
 <p>If we aren’t using the argument names, we call the round function as we did above:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-14_140ed37de8ffa4f1c5f85225ca7c5fe0">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put in 3.1415, and the number of digits to round to (2).</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># round sends back 3.14</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.1415</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -643,7 +692,7 @@ What is an integer?
 </div>
 </div>
 <p>In this call, we relied on the fact that we, the people writing the code, and you, the person reading the code, remembers that the second argument (2) means the number of decimal places it should round to. But, we can also specify the argument using its name, like this (see <span class="r"><a href="#fig-round_function_named" class="quarto-xref">Figure&nbsp;<span>5.4</span></a></span>):</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-16_7a943efe40464a8707c947e091b66f9e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put in 3.1415, and the number of digits to round to (2).</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the name of the number-of-decimals argument for clarity:</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.1415</span>, <span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -651,29 +700,37 @@ What is an integer?
 <pre><code>[1] 3.14</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-opts.label="svg_fig" data-hash="resampling_with_code_cache/html/fig-round_function_named_ec8b106f735075c77f43cb694a404458">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-round_function_named" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="diagrams/round_function_named.svg" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.4: The <code>round</code> function with argument names</figcaption>
+<div id="fig-round_function_named" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-round_function_named-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="diagrams/round_function_named.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-round_function_named-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.4: The <code>round</code> function with argument names
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-opts.label="svg_fig" data-hash="resampling_with_code_cache/html/fig-np_round_function_named_bed89b0f57e079c56705f801246aa645">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-np_round_function_named" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="diagrams/np_round_function_named.svg" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.5: The <code>np.round</code> function with argument names</figcaption>
+<div id="fig-np_round_function_named" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-np_round_function_named-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="diagrams/np_round_function_named.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-np_round_function_named-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.5: The <code>np.round</code> function with argument names
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Here R sees the <em>first</em> argument, as before, and assumes that it is the number we want to round. Then it sees the second, named argument — <span class="r"><code>digits=2</code></span> — and knows, <em>from the name</em>, that we mean this to be the number of decimals to round to.</p>
 <p>In fact, we could even specify <em>both</em> arguments by name, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-18_ef7f77fb8b0fcaf93a0c61a479b26144">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put in 3.1415, and the number of digits to round to (2).</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Name both arguments.</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="at">x=</span><span class="fl">3.1415</span>, <span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -699,7 +756,7 @@ How do you know what names to use for the function arguments?
 <section id="sec-ranges" class="level2" data-number="5.9">
 <h2 data-number="5.9" class="anchored" data-anchor-id="sec-ranges"><span class="header-section-number">5.9</span> Ranges</h2>
 <p>Now let us return to the variable <code>some_numbers</code> that we created above:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-20_021a938cf2fbefdc4b874a491ade27a3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a vector of numbers, store with the name "some_numbers".</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>some_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of "some_numbers"</span></span>
@@ -727,7 +784,7 @@ Pick a number from 1 through 5
 <div class="r">
 <p>R allows you to write a colon (<code>:</code>) between two values, to mean that you want a <em>vector</em> (sequence) that is all the integers from the first value (before the colon) <em>through</em> the second value (after the colon):</p>
 </div>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-25_7a6e041ab22ce460ad9bed25d0003c9c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A vector containing all the integers from 0 through 9.</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>some_integers <span class="ot">=</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>some_integers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -736,14 +793,14 @@ Pick a number from 1 through 5
 </div>
 </div>
 <p>Here are some more examples of <span class="r">the colon syntax</span>:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-28_0afb2a75fedf0473bba295428d41c9e2">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All the integers from 10 through 14</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">:</span><span class="dv">14</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10 11 12 13 14</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-29_abfaa9837cc957e1b7abd3e2d408363a">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All the integers from -1 through 5</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -764,10 +821,10 @@ More on <code>sample</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <code>sample</code> function will be a fundamental tool for taking many kinds of samples, and we cover it in more detail in <a href="sampling_tools.html" class="quarto-xref"><span>Chapter&nbsp;7</span></a>.</p>
+<p>The <code>sample</code> function will be a fundamental tool for taking many kinds of samples, and we cover it in more detail in <a href="sampling_tools.html" class="quarto-xref"><span>Chapter 7</span></a>.</p>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-38_aafb38038663f2c43b50d63a35e6d0e4">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select 1 integer (the second argument) from the choices in some_integers</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (the first argument).</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>my_integer <span class="ot">&lt;-</span> <span class="fu">sample</span>(some_integers, <span class="dv">1</span>)</span>
@@ -785,19 +842,23 @@ More on <code>sample</code>
 </div>
 <p><span class="r"><a href="#fig-sample_pl" class="quarto-xref">Figure&nbsp;<span>5.6</span></a></span> is a diagram illustrating an example run of the <code>sample</code> function (production line).</p>
 <div class="r">
-<div class="cell" data-layout-align="center" data-opts.label="svg_fig" data-hash="resampling_with_code_cache/html/fig-sample_pl_88b19810e3b70a2f186d632a61a6c273">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-sample_pl" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="diagrams/sample_pl.svg" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.6: Example run of the <code>sample</code> function</figcaption>
+<div id="fig-sample_pl" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sample_pl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="diagrams/sample_pl.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample_pl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.6: Example run of the <code>sample</code> function
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <p>Here is the same code again, with new comments.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-40_25c9f083a37ebe8faef15e8b0fc484a9">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Send the value of "some_integers" to sample.</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># some_integers is the *argument*.  Ask sample to return 1 of the values.</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Put the *return* value from the function into "my_number".</span></span>
@@ -815,9 +876,9 @@ More on <code>sample</code>
 <p>In the code above, we asked R to select a single number at random — by sending 1 as the second argument to the function.</p>
 <p>As you can imagine, we can tell <code>sample</code> to select <em>any number of values</em> at random, by changing the second argument to the function.</p>
 <p>In our case, we would like R to select 17 numbers at random from the sequence of <code>some_integers</code>.</p>
-<p>But — there is a complication here. By default, <code>sample</code> selects numbers from the first argument <em>without replacement</em>, meaning that, by default, sample cannot select the same number twice, and in our case, where we want 17 numbers, that is bad, because <code>sample</code> is going to run out of numbers. To get the result we want, we must also add an extra argument: <code>replace=TRUE</code>. <code>replace=TRUE</code> tells R to sample <code>some_integers</code> <em>with replacement</em>, where <code>sample</code> can select the same number more than once in the same sample. Sampling with and without replacement is a fundamental distinction in probability and statistics. <a href="sampling_tools.html" class="quarto-xref"><span>Chapter&nbsp;7</span></a> goes into much more detail about this, but for now, please take our word for it that using <code>replace=TRUE</code> for <code>sample</code> gives us the same effect as rolling several 10-sided dice.</p>
+<p>But — there is a complication here. By default, <code>sample</code> selects numbers from the first argument <em>without replacement</em>, meaning that, by default, sample cannot select the same number twice, and in our case, where we want 17 numbers, that is bad, because <code>sample</code> is going to run out of numbers. To get the result we want, we must also add an extra argument: <code>replace=TRUE</code>. <code>replace=TRUE</code> tells R to sample <code>some_integers</code> <em>with replacement</em>, where <code>sample</code> can select the same number more than once in the same sample. Sampling with and without replacement is a fundamental distinction in probability and statistics. <a href="sampling_tools.html" class="quarto-xref"><span>Chapter 7</span></a> goes into much more detail about this, but for now, please take our word for it that using <code>replace=TRUE</code> for <code>sample</code> gives us the same effect as rolling several 10-sided dice.</p>
 </div>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-42_44923745add7db097cab67c60fbed265">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get 17 values from the *some_integers* vector.</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample *with replacement*, so sample can select numbers more than once.</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the 17 numbers with the name "a"</span></span>
@@ -835,7 +896,7 @@ More on <code>sample</code>
 <p>R has a function <span class="r"><code>sum</code></span> that will add up all the numbers in a vector.</p>
 <p>You can see the contents of <code>a</code> above.</p>
 <p><span class="r"><code>sum</code></span> adds all the numbers in the vector together, to give the <em>sum</em> of the vector. The <em>sum</em> is just the result of adding the second element to the first, then adding third element to the result, and the fourth element to the result, and so on.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-44_b7ce53a133eb60229d3f57f30973d36d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 71</code></pre>
@@ -851,7 +912,7 @@ More on <code>sample</code>
 <section id="comparison" class="level3" data-number="5.12.1">
 <h3 data-number="5.12.1" class="anchored" data-anchor-id="comparison"><span class="header-section-number">5.12.1</span> Comparison</h3>
 <p>To ask whether a number is greater than zero, we use <em>comparison</em>. Here is a <em>greater than zero</em> comparison on a single number:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-46_36c209c3257faf60c17c6ab92f8946f1">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of n greater than 0?</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
@@ -862,7 +923,7 @@ More on <code>sample</code>
 </div>
 <p><code>&gt;</code> is a <em>comparison</em> — it <em>asks a question</em> about the numbers either side of it. In this case <code>&gt;</code> is asking the question “is the value of <code>n</code> (on the left hand side) greater than 0 (on the right hand side)?” The value of <code>n</code> is 5, so the question becomes, “is 5 greater than 0?” The answer is Yes, and R represents this Yes answer as the value <code>TRUE</code>.</p>
 <p>In contrast, the comparison below boils down to “is 0 greater than 0?”, to which the answer is No, and R represents this as <code>FALSE</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-48_a0f96b7add311d59983245a9f839fd0a">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of p greater than 0?</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
@@ -873,7 +934,7 @@ More on <code>sample</code>
 </div>
 <p>So far you have seen the results of comparison on a single number. Now say we do the same comparison on a vector. For example, say we ask the question “is the value of <code>a</code> greater than 0”? Remember, <code>a</code> is a vector containing 17 values. We are comparing 17 values to one value (0). What answer do you think R will give? You may want to think a little about this before you read on.</p>
 <p>As a reminder, here is the current value for <code>a</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-50_8edc8f3c1a8c5980713124b6d1328392">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the current value for "a"</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -881,7 +942,7 @@ More on <code>sample</code>
 </div>
 </div>
 <p>Now you have had some time to think, here is what happens:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-52_28b4f4ffe1cf9fb496240d34b59574be">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of "a" greater than 0?</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -892,7 +953,7 @@ More on <code>sample</code>
 </div>
 <p>There are 17 values in <code>a</code>, so the comparison to 0 means there are 17 comparisons, and 17 answers. R therefore returns <em>a vector</em> of 17 elements, containing these 17 answers. The first answer is the answer to the question “is the value of the <em>first</em> element of <code>a</code> greater than 0”, and the second is the answer to “is the value of the <em>second</em> element of <code>a</code> greater than 0”.</p>
 <p>Let us store the result of this comparison to work on:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-54_e9e450159e42ff6faf89f88e1e70096a">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of "a" greater than 0?</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Store as another vector "q".</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> a <span class="sc">&gt;</span> <span class="dv">0</span></span>
@@ -909,7 +970,7 @@ More on <code>sample</code>
 <h2 data-number="5.13" class="anchored" data-anchor-id="sec-count-with-sum"><span class="header-section-number">5.13</span> Counting <code>TRUE</code> values with <code>sum</code></h2>
 <p>Notice above that there is one <code>TRUE</code> element in <code>q</code> for every element in <code>a</code> that was greater than 0. It only remains to <em>count</em> the number of <code>TRUE</code> values in <code>q</code>, to get the count of patients in our simulated trial who were cured.</p>
 <p>We can use the R function <span class="r"><code>sum</code></span> to count the number of <code>TRUE</code> elements in a vector. As you can see above, <span class="r"><code>sum</code></span> adds up all the elements in a vector, to give a single number. This will work as we want for the <code>q</code> vector, because R counts <code>FALSE</code> as equal to 0 and <code>TRUE</code> as equal to 1:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-57_814851f2cb1f22e0bfaa915024814598">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Question: is FALSE equal to 0?</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Answer - Yes! (TRUE)</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">==</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -917,7 +978,7 @@ More on <code>sample</code>
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-58_f5031b0e73d1fdcbbc968205211aa1f3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Question: is TRUE equal to 1?</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Answer - Yes! (TRUE)</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -927,7 +988,7 @@ More on <code>sample</code>
 </div>
 <p>Therefore, the function <code>sum</code>, when applied to a vector of <code>TRUE</code> and <code>FALSE</code> values, will count the number of <code>TRUE</code> values in the vector.</p>
 <p>To see this in action we can make a new vector of <code>TRUE</code> and <code>FALSE</code> values, and try using <span class="r"><code>sum</code></span> on the new array.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-60_0cb6dc42e30fe21bb97824ee657c5f3b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A vector containing three TRUE values and two FALSE values.</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>trues_and_falses <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the new vector.</span></span>
@@ -938,7 +999,7 @@ More on <code>sample</code>
 </div>
 <p>The <code>sum</code> operation adds all the elements in the vector. Because <code>TRUE</code> counts as 1, and <code>FALSE</code> counts as 0, adding all the elements in <code>trues_and_falses</code> is the same as adding up the values 1 + 0 + 1 + 1 + 0, to give 3.</p>
 <p>We can apply the same operation on <code>q</code> to count the number of <code>TRUE</code> values.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-62_c6ab235a23dc837a79b2812a0902563e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of TRUE values in "q"</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the same as the number of values in "a" that are greater than 0.</span></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">sum</span>(q)</span>
@@ -952,7 +1013,7 @@ More on <code>sample</code>
 <section id="the-procedure-for-one-simulated-trial" class="level2" data-number="5.14">
 <h2 data-number="5.14" class="anchored" data-anchor-id="the-procedure-for-one-simulated-trial"><span class="header-section-number">5.14</span> The procedure for one simulated trial</h2>
 <p>We now have the whole procedure for one simulated trial. We can put the whole procedure in one chunk:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-64_8feb832e02d52d872a2e40cd59b4553f">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Procedure for one simulated trial</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get 17 values from the *some_integers* vector.</span></span>
@@ -975,7 +1036,7 @@ More on <code>sample</code>
 <p>Please forgive us as we race ahead again, as we did in the last chapter. As in the last chapter, we will use a <em>results</em> vector called <code>z</code> to store the count for each trial. As in the last chapter, we will use a <code>for</code> loop to repeat the trial procedure many times. As in the last chapter, we will not explain the counts vector of the <code>for</code> loop in any detail, because we are going to cover those in the next chapter.</p>
 <p>Let us now imagine that we want to do 100 simulated trials at Saint Hypothetical General. This will give us 100 counts. We will want to store the count for each trial.</p>
 <p>To do this, we make a vector called <code>z</code> to hold the 100 counts. We have called the vector <code>z</code>, but we could have called it anything we liked, such as <code>counts</code> or <code>results</code> or <code>cecilia</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-66_7683b522b4cb6a4fa97b82f3e45a43eb">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A vector to hold the 100 count values.</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Later, we will fill this in with real count values from simulated trials.</span></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -987,7 +1048,7 @@ More on <code>sample</code>
 <li>We are storing the count for each trial as we go.</li>
 </ul>
 <p>We will go into more detail on how this works in the next chapter.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-68_d5d2613c9f52fe7be86af7ab46d772eb">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Procedure for 100 simulated trials.</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A vector to store the counts for each trial.</span></span>
@@ -1017,7 +1078,7 @@ More on <code>sample</code>
 </div>
 <p>Finally, we need to count how many of the trials results we stored in <code>z</code> gave a “cured” count of 17.</p>
 <p>We can ask the question whether a single number is equal to 17 using the <em>double equals</em> comparison: <code>==</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-70_44fe5f2fbc031a15d03230b02ed890b3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="dv">17</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of s equal to 17?</span></span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
@@ -1032,7 +1093,7 @@ More on <code>sample</code>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1049,7 +1110,7 @@ More on <code>sample</code>
 </div>
 </div>
 <p>We can ask this question of <em>all 100 counts</em> by asking the question: is the vector <code>z</code> equal to 17, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-72_91bda6976704a16cb7bfb6bf8e9c22ed">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the value of z equal to 17?</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>were_cured <span class="ot">&lt;-</span> z <span class="sc">==</span> <span class="dv">17</span></span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result of the comparison.</span></span>
@@ -1067,7 +1128,7 @@ More on <code>sample</code>
 </div>
 </div>
 <p>Finally we use <code>sum</code> to count the number of <code>TRUE</code> values in the <code>were_cured</code> vector, to give the number of trials where all 17 patients were cured.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-74_688daa5aeb5b81bf7c892352b9c7afde">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of TRUE values in "were_cured"</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the same as the number of values in "z" that are equal to 17.</span></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>n_all_cured <span class="ot">&lt;-</span> <span class="fu">sum</span>(were_cured)</span>
@@ -1078,7 +1139,7 @@ More on <code>sample</code>
 </div>
 </div>
 <p><code>n_all_cured</code> is the number of simulated trials for which all patients were cured. It only remains to get the proportion of trials for which this was true, and to do this, we divide by the number of trials.</p>
-<div class="cell" data-layout-align="center" data-hash="resampling_with_code_cache/html/unnamed-chunk-76_c385e9f8d3c10db5b01e343ab9d9241c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportion of trials where all patients were cured.</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> n_all_cured <span class="sc">/</span> <span class="dv">100</span></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result</span></span>
@@ -1111,7 +1172,7 @@ More on <code>sample</code>
 <p>The program above may not seem simple at first glance, but we think you will find, over the course of this book, that these programs become much simpler to understand than the older conventional approach to such problems that has routinely been taught to students for decades.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-dunleavy2006burkitt" class="csl-entry" role="listitem">
 Dunleavy, Kieron, Stefania Pittaluga, John Janik, Nicole Grant, Margaret Shovlin, Richard Little, Robert Yarchoan, Seth Steinberg, Elaine S. Jaffe, and Wyndham H. Wilson. 2006. <span>“<span class="nocase">Novel Treatment of Burkitt Lymphoma with Dose-Adjusted EPOCH-Rituximab: Preliminary Results Showing Excellent Outcome.</span>”</span> <em>Blood</em> 108 (11): 2736–36. <a href="https://doi.org/10.1182/blood.V108.11.2736.2736">https://doi.org/10.1182/blood.V108.11.2736.2736</a>.
 </div>
@@ -1154,18 +1215,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1197,11 +1247,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1211,8 +1300,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1224,7 +1322,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1268,6 +1489,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1293,6 +1515,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1354,17 +1602,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./about_technology.html" class="pagination-link">
+      <a href="./about_technology.html" class="pagination-link" aria-label="Introducing {{< var lang >}} and the {{< var nb_app >}} notebook">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducing R and the RStudio notebook</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./resampling_with_code2.html" class="pagination-link">
+      <a href="./resampling_with_code2.html" class="pagination-link" aria-label="More resampling with code">
         <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">More resampling with code</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
