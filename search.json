@@ -344,7 +344,7 @@
     "href": "about_technology.html",
     "title": "4  Introducing R and the RStudio notebook",
     "section": "",
-    "text": "4.1 The environment\nMany of the chapters have sections with code for you to run, and experiment with. These sections contain Jupyter notebooks 1]. Jupyter notebooks are interactive web pages that allow you to read, write and run R code. We mark the start of each notebook in the text with a note and link heading like the one you see below. In the web edition of this book, you can click on the Download link in this header to download the section as a notebook. You can also click on the Interact link in this header to open the notebook on a cloud computer. This allows you to interact with the notebook on the cloud computer. You can run the code, and experiment by making changes.\nIn the print version of the book, we point you to the web version, to get the links.\nAt the end of this chapter, we explain how to run these notebooks on your own computer. In the next section you will see an example notebook; you might want to run this in the cloud to get started.",
+    "text": "4.1 The environment\nMany of the chapters have sections with code for you to run, and experiment with. These sections contain Jupyter notebooks 2]. Jupyter notebooks are interactive web pages that allow you to read, write and run R code. We mark the start of each notebook in the text with a note and link heading like the one you see below. In the web edition of this book, you can click on the Download link in this header to download the section as a notebook. You can also click on the Interact link in this header to open the notebook on a cloud computer. This allows you to interact with the notebook on the cloud computer. You can run the code, and experiment by making changes.\nIn the print version of the book, we point you to the web version, to get the links.\nAt the end of this chapter, we explain how to run these notebooks on your own computer. In the next section you will see an example notebook; you might want to run this in the cloud to get started.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Introducing {{< var lang >}} and the {{< var nb_app >}} notebook</span>"
     ]
@@ -414,7 +414,7 @@
     "href": "about_technology.html#footnotes",
     "title": "4  Introducing R and the RStudio notebook",
     "section": "",
-    "text": "jupyter-nb↩︎",
+    "text": "https://www.r-project.org/↩︎\njupyter-nb↩︎",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Introducing {{< var lang >}} and the {{< var nb_app >}} notebook</span>"
     ]
