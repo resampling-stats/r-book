@@ -21,7 +21,7 @@ Start of `battery_lifetime_exercise` notebook
 
 <div class="nb-links">
 <a class="notebook-link" href=notebooks/battery_lifetime_exercise.Rmd>Download notebook</a>
-<a class="interact-button" href="https://resampling-stats.github.io/r-book/interact/lab/index.html?path=battery_lifetime_exercise.ipynb">Interact</a>
+<a class="interact-button" href="/interact/lab/index.html?path=battery_lifetime_exercise.ipynb">Interact</a>
 </div>
 
 A sample of 20 batteries is tested, and the average lifetime is 28.85
@@ -53,7 +53,7 @@ Start of `optical_density_exercise` notebook
 
 <div class="nb-links">
 <a class="notebook-link" href=notebooks/optical_density_exercise.Rmd>Download notebook</a>
-<a class="interact-button" href="https://resampling-stats.github.io/r-book/interact/lab/index.html?path=optical_density_exercise.ipynb">Interact</a>
+<a class="interact-button" href="/interact/lab/index.html?path=optical_density_exercise.ipynb">Interact</a>
 </div>
 
 Suppose we have 10 measurements of Optical Density on a batch of HIV
