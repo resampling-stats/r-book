@@ -1,0 +1,32 @@
+# Battery lifetime solution
+
+
+```{r}
+lifetimes <- c(30, 32, 31, 28, 31, 29, 29, 24, 30, 31,
+               28, 28, 32, 31, 24, 23, 31, 27, 27, 31)
+
+message('Mean is: ', mean(lifetimes))
+```
+
+```{r}
+n_lifetimes <- length(lifetimes)
+results <- numeric(n_trials)
+
+for (i in 1:n_trials) {
+    # Draw 20 lifetimes from "lifetimes, randomly and with replacement.
+    fake_lifetimes <- sample(lifetimes, size=n_lifetimes, replace=TRUE)
+    # Find the average lifetime of the 20.
+    fake_mean <- mean(fake_lifetimes)
+    # Keep score.
+    results[i] <- fake_mean
+}
+
+hist(results, breaks=25,
+    main='Bootstrap distribution of mean battery lifetimes',
+    xlab='Bootstrap mean battery lifetime')
+
+mean_limits <- quantile(results, c(0.025, 0.975))
+rounded <- round(mean_limits, 2)
+message('95% percent limits for mean lifetimes: ',
+        rounded[1], ' ', rounded[2])
+```

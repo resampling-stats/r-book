@@ -1,0 +1,47 @@
+# Athletic ability and IQ using rank counts
+
+
+Continuing with the question: **Is there correlation between two
+variables or are they independent?**
+
+This approach differs from the previous notebook in this series, in
+looking only at the top 5 permuted I.Q. ranks. Now read on.
+
+In the R code below, we first note that the top 5 athletes had 4 of the
+top 5 I.Q. scores. So we constitute the set of 10 IQ rankings vector
+`iq_ranks`. We then shuffle `iq_ranks` and select the first 5 I.Q.
+rankings (out of 10). We count (`sum`) how many are in the top 5, and
+keep track of the result. After repeating 10,000 times using a `for`
+loop, we find out how often we select 4 of the top 5.
+
+```{r}
+# Number of repeats.
+n_trials <- 10000
+# The IQ ranks, ready for shuffling.
+iq_ranks <- 1:10  # 1 through 10.
+# Scorekeeping array.
+results <- numeric(n_trials)
+
+for (i in 1:n_trials) {
+    # Shuffle the ranks.
+    shuffled <- sample(iq_ranks)
+    # Take the first 5 ranks.
+    top_5 <- shuffled[1:5]
+    # Everything up until this point is the same as the code above.
+    # Here is the difference.
+    # Check whether the selected IQ ranks are in the top 5.
+    are_top <- top_5 <= 5
+    # Count how many were in the top 5
+    n_are_top <- sum(are_top)
+    # Keep track of the result of each trial.
+    results[i] <- n_are_top
+    # End the experiment, go back and repeat.
+}
+
+# Determine how many trials produced 4 or more top ranks by chance.
+k = sum(results >= 4)
+#  Convert to a proportion.
+kk = k / n_trials
+# Show the result.
+kk
+```

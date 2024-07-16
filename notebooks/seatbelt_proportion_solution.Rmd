@@ -1,0 +1,29 @@
+# Seatbelt proportion solution
+
+
+```{r}
+pittsburgh <- rep(c('seatbelt', 'none'), c(36, 36))
+n_pitts <- length(pittsburgh)
+chicago <- rep(c('seatbelt', 'none'), c(77, 52))
+n_chicago <- length(chicago)
+
+n_trials <- 10000
+results <- numeric(n_trials)
+
+for (i in 1:n_trials) {
+    fake_pitts <- sample(pittsburgh, size=n_pitts, replace=TRUE)
+    fake_chicago <- sample(chicago, size=n_chicago, replace=TRUE)
+    fake_p_pitts <- sum(fake_pitts == 'seatbelt') / n_pitts
+    fake_p_chicago <- sum(fake_chicago == 'seatbelt') / n_chicago
+    fake_p_diff <- fake_p_pitts - fake_p_chicago
+    results[i] <- fake_p_diff
+}
+
+hist(results, breaks=25,
+    main='Bootstrap distribution of p differences',
+    xlab='Bootstrap p differences')
+
+p_limits <- quantile(results, c(0.025, 0.975))
+rounded <- round(p_limits, 3)
+message('95% percent limits for p differences: ', rounded[1], ' ', rounded[2])
+```

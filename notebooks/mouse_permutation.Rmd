@@ -1,0 +1,53 @@
+# Permutation test for mouse survival data
+
+
+Use permutation (shuffle-and-split) samples from mouse survival data to
+compare actual mean difference to those observed in the null-
+(permutation) world.
+
+```{r}
+# Treatment group.
+treat <- c(94, 38, 23, 197, 99, 16, 141)
+# control group
+control <- c(52, 10, 40, 104, 51, 27, 146, 30, 46)
+
+# Observed difference in real world.
+actual_diff <- mean(treat) - mean(control)
+
+# Set the number of trials.
+n_trials <- 10000
+
+# An empty array to store the trials.
+results <- numeric(n_trials)
+
+# U is our universe (Step 2 above)
+u <- c(treat, control)
+
+# step 5 above.
+for (i in 1:n_trials) {
+    # Step 3b above.
+    shuffled <- sample(u)
+    # Step 3b - take the first 7 values.
+    fake_treat <- shuffled[1:7]
+    # Step 3b - take the remaining values.
+    fake_control <- shuffled[8:16]
+    # Step 4.
+    mt <- mean(fake_treat)
+    # Step 4.
+    mc <- mean(fake_control)
+    # Step 4.
+    diff <- mt - mc
+    # Step 4.
+    results[i] <- diff
+}
+
+# Step 6
+hist(results, breaks=25,
+    main='Permutation distribution of mean differences in survival',
+    xlab='Permutation mean treatment - mean control')
+
+# Step 6
+k <- sum(results >= actual_diff)
+kk <- k / n_trials
+message('Proportion permutation mean difference >= actual difference: ', kk)
+```

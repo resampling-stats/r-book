@@ -1,0 +1,35 @@
+# Paired test for pig rations
+
+
+Use simulation to test for a difference in pig rations, by pairing pigs
+and testing the probability of observed differences within the pairs.
+
+```{r}
+n_iters <- 10000
+
+# Make array to store results for each trial.
+results <- numeric(n_iters)
+
+# Do 10000 trials
+for (i in 1:n_iters) {
+    # Generate randomly 12 "A" or "B"s.  Each of the 12 values represents
+    # one "pairing" where "A" <- ration A "wins," "B" <- ration B "wins.".
+    wins <- sample(c('A', 'B'), replace=TRUE, size=12)
+    # Count the number of "pairings" where ration A won, put the result in
+    # "n_a_wins".
+    n_a_wins <- sum(wins == 'A')
+    # Keep track of the result in results.
+    results[i] <- n_a_wins
+    # End the trial, go back and repeat until all 10000 trials are complete.
+}
+# Determine how often we got 9 or more "wins" for ration A.
+high <- sum(results >= 9)
+# Determine how often we got 3 or fewer "wins" for ration A.
+low <- sum(results <= 3)
+# Add the two together
+k <- high + low
+#  Convert to a proportion
+kk <- k / n_iters
+# Print the result.
+message('Proportion >=9 or <=3: ', kk)
+```

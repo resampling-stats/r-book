@@ -1,0 +1,116 @@
+# Bayesian analysis of cars and mechanics
+
+
+We wish to know the probability that if the mechanic *says* a car is
+“OK,” it *really* is faulty. Phrased differently, what is the
+probability of a car being faulty if the mechanic said it was OK?
+
+```{r}
+n_trials <- 10000  # number of cars
+
+# Counters for number of approved, number of approved and faulty
+approved <- 0
+approved_and_faulty <- 0
+
+for (i in 1:n_trials) {
+
+    # Decide whether the car is faulty or working, with a probability of
+    # 0.3 and 0.7 respectively
+    car <- sample(c('faulty', 'working'), size=1, prob=c(0.3, 0.7))
+
+    if (car == 'faulty') {
+        # What the mechanic says of a faulty car
+        mechanic_says <- sample(c('approved', 'not approved'),
+                                size=1,
+                                prob=c(0.1, 0.9))
+    } else {
+        # What the mechanic says of a working car
+        mechanic_says <- sample(c('approved', 'not approved'),
+                                size=1,
+                                prob=c(0.7, 0.3))
+    }
+
+    if (mechanic_says == 'approved') {
+        approved <-  approved + 1
+        if (car == 'faulty') {
+            approved_and_faulty <- approved_and_faulty + 1
+        }
+    }
+}
+
+k <- approved_and_faulty / approved
+
+message('Proportion of faulty cars of cars approved: ', round(k, 2))
+```
+
+The answer looks to be somewhere between 5 and 6%. The code clearly
+follows the description step by step, but it is also quite slow. If we
+can improve the code, we may be able to do our simulation with more
+cars, and get a more accurate answer.
+
+Let’s use arrays to store the states of all cars in the lot
+simultaneously:
+
+```{r}
+# Number of cars; we made this number larger by a factor of 100
+n_trials <- 1000000
+
+# Generate an array with as many entries as there are cars, each
+# being either 'working' or 'faulty'.
+# We are taking a sample _with_ replacement.
+cars <- sample(c('working', 'faulty'),
+               size=n_trials,
+               replace=TRUE,
+               prob=c(0.7, 0.3))
+
+# Count how many cars are working
+n_working <- sum(cars == 'working')
+
+# All the rest are faulty
+n_faulty <- n_trials - n_working
+
+# Create a new vector in which to store what a mechanic says
+# about the car: 'approved' or 'not approved'. We use
+# "character" to tell R these are strings.
+mechanic_says <- character(n_trials)
+
+# We start with the working cars; what does the mechanic say about them?
+# Generate 'approved' or 'not approved' labels with the given probabilities.
+mechanic_says[cars == 'working'] <- sample(
+    c('approved', 'not approved'),
+    size=n_working,
+    replace=TRUE,
+    prob=c(0.8, 0.2)
+)
+
+# Similarly, for each faulty car, generate 'approved'/'not approved'
+# labels with the given probabilities.
+mechanic_says[cars == 'faulty'] <- sample(
+    c('approved', 'not approved'),
+    size=n_faulty,
+    replace=TRUE,
+    prob=c(0.1, 0.9)
+)
+
+# Identify all cars that were approved
+# This produces a binary mask, an array that looks like:
+# [True, False, False, True, ... ]
+approved <- (mechanic_says == 'approved')
+
+# Identify cars that are faulty AND were approved
+faulty_but_approved <- (cars == 'faulty') & approved
+
+# Count the number of cars that are faulty but approved, as well as
+# the total number of cars that were approved
+n_faulty_but_approved <- sum(faulty_but_approved)
+n_approved <- sum(approved)
+
+# Calculate the ratio, which is the answer we seek
+k <- n_faulty_but_approved / n_approved
+
+message('Proportion of faulty cars of cars approved: ', round(k, 2))
+```
+
+The code now runs much faster, and with a larger number of cars we see
+that the answer is closer to a 5% chance of a car being broken after it
+has been approved by a mechanic.
