@@ -107,8 +107,8 @@ render-id="quarto-int-sidebar:/resampling_method.html&lt;span-class='chapter-num
 render-id="quarto-int-sidebar:/what_is_probability.html&lt;span-class='chapter-number'&gt;3&lt;/span&gt;--&lt;span-class='chapter-title'&gt;What-is-probability?&lt;/span&gt;"><span class="chapter-number">3</span> 
 <span class="chapter-title">What is probability?</span></span>
 <span class="hidden quarto-markdown-envelope-contents"
-render-id="quarto-int-sidebar:/about_technology.html&lt;span-class='chapter-number'&gt;4&lt;/span&gt;--&lt;span-class='chapter-title'&gt;Introducing-{{&lt;-var-lang-&gt;}}-and-the-{{&lt;-var-nb_app-&gt;}}-notebook&lt;/span&gt;"><span class="chapter-number">4</span> 
-<span class="chapter-title">Introducing R and the RStudio
+render-id="quarto-int-sidebar:/about_technology.html&lt;span-class='chapter-number'&gt;4&lt;/span&gt;--&lt;span-class='chapter-title'&gt;Introducing-{{&lt;-var-lang-&gt;}}-and-the-Jupyter-notebook&lt;/span&gt;"><span class="chapter-number">4</span> 
+<span class="chapter-title">Introducing R and the Jupyter
 notebook</span></span>
 <span class="hidden quarto-markdown-envelope-contents"
 render-id="quarto-int-sidebar:/resampling_with_code.html&lt;span-class='chapter-number'&gt;5&lt;/span&gt;--&lt;span-class='chapter-title'&gt;Resampling-with-code&lt;/span&gt;"><span class="chapter-number">5</span> 

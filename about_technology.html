@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Introducing R and the RStudio notebook – Resampling statistics</title>
+<title>4&nbsp; Introducing R and the Jupyter notebook – Resampling statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./about_technology.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducing R and the RStudio notebook</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./about_technology.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducing R and the Jupyter notebook</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./about_technology.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducing R and the RStudio notebook</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducing R and the Jupyter notebook</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -387,7 +387,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#the-environment" id="toc-the-environment" class="nav-link active" data-scroll-target="#the-environment"><span class="header-section-number">4.1</span> The environment</a></li>
   <li><a href="#getting-started-with-the-notebook" id="toc-getting-started-with-the-notebook" class="nav-link" data-scroll-target="#getting-started-with-the-notebook"><span class="header-section-number">4.2</span> Getting started with the notebook</a></li>
-  <li><a href="#running-the-code-on-your-own-computer" id="toc-running-the-code-on-your-own-computer" class="nav-link" data-scroll-target="#running-the-code-on-your-own-computer"><span class="header-section-number">4.7</span> Running the code on your own computer</a></li>
+  <li><a href="#sec-running-own-computer" id="toc-sec-running-own-computer" class="nav-link" data-scroll-target="#sec-running-own-computer"><span class="header-section-number">4.7</span> Running the code on your own computer</a>
+  <ul class="collapse">
+  <li><a href="#sec-running-rstudio" id="toc-sec-running-rstudio" class="nav-link" data-scroll-target="#sec-running-rstudio"><span class="header-section-number">4.7.1</span> Running notebooks in RStudio</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -396,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-about-technology" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducing R and the RStudio notebook</span></span></h1>
+<h1 class="title"><span id="sec-about-technology" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducing R and the Jupyter notebook</span></span></h1>
 </div>
 
 
@@ -416,8 +419,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This chapter introduces you to the technology we will use throughout the book. By <em>technology</em>, we mean two things:</p>
 <ul>
 <li>The R programming language, along with some important add-on libraries for data analysis.</li>
-<li>The RStudio notebook system for running and editing R code in a <span class="r">graphical</span> interface.</li>
+<li>The RStudio notebook system for running and editing R code in a web interface.</li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Using R on the web and on your computer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In this chapter, we concentrate on the technology we use for the interactive version of the book. The interactive version allows you to run R code as interactive <em>notebooks</em> in your web browser.</p>
+<p>Either now, or later, you should also consider running the code on your own computer — see <a href="#sec-running-own-computer" class="quarto-xref"><span>Section 4.7</span></a>.</p>
+</div>
+</div>
 <p>The chapter introduces <span class="r">the R language</span>, and then gives an example to introduce R and the RStudio Notebook. If you have not used R before, the example notebook will get you started. The example also shows how we will be using notebooks through the rest of the book.</p>
 <div class="r">
 <p>This version of the book uses the <em>R</em> programming language to implement resampling algorithms.</p>
@@ -441,21 +458,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a class="interact-button" href="./interact/lab/index.html?path=billies_bill.ipynb">Interact</a>
 </div>
 
-<p>The text in this notebook section assumes you have opened the page as an interactive notebook, on your own computer, or one of the RStudio web interfaces.</p>
-<p>A notebook can contain blocks of text — like this one — as well as code, and the results from running the code.</p>
-<p>If you are in the notebook interface (rather than reading this in the textbook), you will see the RStudio menu near the top of the page, with headings “File”, “Edit” and so on.</p>
 <div class="r">
-<p>Underneath that, by default, you may see a row of icons - the “Toolbar”.</p>
-<p>In the toolbar, you may see a list box that will allow you to run the code in the notebook, among other icons.</p>
-<p>When we get to code chunks, you will also see a green play icon at the right edge of the interface, in the chunk. This will allow you to run the code chunk.</p>
-<p>Although you can use this “run” button, we suggest you get used to using the keyboard shortcut. The default shortcut on Windows or Linux is to hold down the Control key and the Shift key and the Enter (Return) key at the same time. We will call this Control-Shift-Enter. On Mac the default combination is Command-Shift-Enter, where Command is the key with the four-leaf-clover-like icon to the left of the space-bar. To save us having to say this each time, we will call this combination Ctl/Cmd-Shift-Enter.</p>
+<p>The text in this notebook section assumes you have opened the page as an interactive notebook on the web. In that case, you are running the notebook in a version of Jupyter. We will assume you are using Jupyter in the description that follows. You can also run R in Jupyter on your own computer, although we recommend that you use RStudio to work with R notebook files (see <a href="#sec-running-own-computer" class="quarto-xref"><span>Section 4.7</span></a>). The procedure for working with notebooks in RStudio is not the same as that for Jupyter. We will cover RStudio, briefly, in another notebook tutorial after this one.</p>
 </div>
+<p>A notebook can contain blocks of text — like this one — as well as code, and the results from running the code.</p>
+<p>Jupyter Notebooks are made up of <em>cells</em>.</p>
+<div class="r">
+<p>We assume you are running this notebook via the interactive web pages, and therefore, that you are running the notebook with Jupyter, not RStudio.</p>
+<p>RStudio differs a little from Jupyter, because it does not have the idea of a text “cell” — instead it distinguishes between the main body of the notebook, made up of text, and <em>code chunks</em> — delimited sections in the notebook that contain code, instead of text. Jupyter would refer to these code chunks as <em>code cells</em>. We will go into more detail in <a href="#sec-running-rstudio" class="quarto-xref"><span>Section 4.7.1</span></a>.</p>
+</div>
+<p>Jupyter cells can contain text or code.</p>
+<p>Notebook text can have formatting, such as links.</p>
+<p>For example, this sentence ends with a link to the earlier <a href="https://resample.statistics.com/intro-text-online">second edition of this book</a>.</p>
+<p>If you are in the interactive notebook interface (rather than reading this in the textbook), you will see the Jupyter menu bar near the top of the page, with headings “File”, “Edit” and so on.</p>
+<p>In Jupyter, underneath the File … menu bar, by default, you may see a row of icons - the “Toolbar”.</p>
+<p>In the Jupyter toolbar, you may see icons to run the current cell, among others.</p>
+<p>To move from one cell to the next, you can click the run icon in the toolbar, but it is more efficient to press the Shift key, and press Enter (with Shift still held down). We will write this as Ctl/Cmd-Shift-Enter.</p>
 <p>In this, our first notebook, we will be using R to solve one of those difficult and troubling problems in life — working out the bill in a restaurant.</p>
 <section id="the-meal-in-question" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="the-meal-in-question"><span class="header-section-number">4.3</span> The meal in question</h2>
 <p>Alex and Billie are at a restaurant, getting ready to order. They do not have much money, so they are calculating the expected bill before they order.</p>
 <p>Alex is thinking of having the fish for £10.50, and Billie is leaning towards the chicken, at £9.25. First they calculate their combined bill.</p>
-<p>Below this text you see a <em>code</em> chunk. It contains the R code to calculate the total bill. Press <span class="r">Control-Shift-Enter or Cmd-Shift-Enter (on Mac)</span> in the chunk below, to see the total.</p>
+<p>Below this text you see a <em>code</em> chunk. It contains the R code to calculate the total bill. Press <span class="r">Control-Shift-Enter or Cmd-Shift-Enter (on Mac)</span> in the chunk below, to see the total.<span class="r">(Remember, this is what you should do when running the code in Jupyter, via the interactive web pages. If you are using RStudio on your own computer, you should use different commands — see <a href="#sec-running-rstudio" class="quarto-xref"><span>Section 4.7.1</span></a>.)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">10.50</span> <span class="sc">+</span> <span class="fl">9.25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -471,6 +495,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="4.4" class="anchored" data-anchor-id="comments"><span class="header-section-number">4.4</span> Comments</h2>
 <p>Unlike a calculator, we can also put notes next to our calculations, to remind us what they are for. One way of doing this is to use a “comment”. You have already seen comments in the previous chapter.</p>
 <p>A comment is some text that the computer will ignore. In R, you can make a comment by starting a line with the <code>#</code> (hash) character. For example, the next cell is a code cell, but when you run it, it does not show any result. In this case, that is because the computer sees the <code>#</code> at the beginning of the line, and then ignores the rest.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This bit of text is for us to read, and the computer to ignore.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Many of the code cells you see will have comments in them, to explain what the code is doing.</p>
 <p>Practice writing comments for your own code. It is a very good habit to get into. You will find that experienced programmers write many comments on their code. They do not do this to show off, but because they have a lot of experience in reading code, and they know that comments make it much easier to read and understand code.</p>
 </section>
@@ -482,8 +509,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In R <code>*</code> means multiplication. This is the equivalent of the “×” key on a calculator.</p>
 <p>What about this, for the correct calculation?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The tip - with a nasty mistake.</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fl">10.50</span> <span class="sc">+</span> <span class="fl">9.25</span> <span class="sc">*</span> <span class="fl">0.15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The tip - with a nasty mistake.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fl">10.50</span> <span class="sc">+</span> <span class="fl">9.25</span> <span class="sc">*</span> <span class="fl">0.15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11.9</code></pre>
 </div>
@@ -514,16 +541,16 @@ Note
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The bill plus tip - mistake fixed.</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(<span class="fl">10.50</span> <span class="sc">+</span> <span class="fl">9.25</span>) <span class="sc">*</span> <span class="fl">0.15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The bill plus tip - mistake fixed.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>(<span class="fl">10.50</span> <span class="sc">+</span> <span class="fl">9.25</span>) <span class="sc">*</span> <span class="fl">0.15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.96</code></pre>
 </div>
 </div>
 <p>The obvious next step is to calculate the bill <em>including the tip</em>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The bill, including the tip</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fl">10.50</span> <span class="sc">+</span> <span class="fl">9.25</span> <span class="sc">+</span> (<span class="fl">10.50</span> <span class="sc">+</span> <span class="fl">9.25</span>) <span class="sc">*</span> <span class="fl">0.15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The bill, including the tip</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fl">10.50</span> <span class="sc">+</span> <span class="fl">9.25</span> <span class="sc">+</span> (<span class="fl">10.50</span> <span class="sc">+</span> <span class="fl">9.25</span>) <span class="sc">*</span> <span class="fl">0.15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 22.7</code></pre>
 </div>
@@ -533,72 +560,72 @@ Note
 <p>This is the role of <em>variables</em>. A <em>variable</em> is a value with a name.</p>
 <p>Here is a variable:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of Alex's meal.</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">10.50</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of Alex's meal.</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">10.50</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>a</code> is a <em>name</em> we give to the value 10.50. You can read the line above as “The variable <code>a</code> <em>gets the value</em> 10.50”. We can also talk of <em>setting</em> the variable. Here we are <em>setting</em> <code>a</code> to equal 10.50.</p>
 <p>Now, when we use <code>a</code> in code, it refers to the value we gave it. For example, we can put <code>a</code> on a line on its own, and R will show us the <em>value</em> of <code>a</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The value of a</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The value of a</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10.5</code></pre>
 </div>
 </div>
 <p>We did not have to use the name <code>a</code> — we can choose almost any name we like. For example, we could have chosen <code>alex_meal</code> instead:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of Alex's meal.</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alex_meal gets the value 10.50</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>alex_meal <span class="ot">&lt;-</span> <span class="fl">10.50</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of Alex's meal.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alex_meal gets the value 10.50</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>alex_meal <span class="ot">&lt;-</span> <span class="fl">10.50</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We often set variables like this, and then display the result, all in the same chunk. We do this by first setting the variable, as above, and then, on the final line of the chunk, we put the variable name on a line on its own, to ask R to show us the value of the variable. Here we set <code>billie_meal</code> to have the value 9.25, and then show the value of <code>billie_meal</code>, all in the same chunk.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of Alex's meal.</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># billie_meal gets the value 10.50</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>billie_meal <span class="ot">&lt;-</span> <span class="fl">10.50</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of billie_meal</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>billie_meal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of Alex's meal.</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># billie_meal gets the value 10.50</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>billie_meal <span class="ot">&lt;-</span> <span class="fl">10.50</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of billie_meal</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>billie_meal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10.5</code></pre>
 </div>
 </div>
 <p>Of course, here, we did not learn much, but we often set variable values with the results of a calculation. For example:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of both meals, before tip.</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>bill_before_tip <span class="ot">&lt;-</span> <span class="fl">10.50</span> <span class="sc">+</span> <span class="fl">9.25</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of both meals.</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>bill_before_tip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of both meals, before tip.</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>bill_before_tip <span class="ot">&lt;-</span> <span class="fl">10.50</span> <span class="sc">+</span> <span class="fl">9.25</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of both meals.</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>bill_before_tip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 19.8</code></pre>
 </div>
 </div>
 <p>But wait — we can do better than typing in the calculation like this. We can use the values of our variables, instead of typing in the values again.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of both meals, before tip, using variables.</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>bill_before_tip <span class="ot">&lt;-</span> alex_meal <span class="sc">+</span> billie_meal</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of both meals.</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>bill_before_tip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of both meals, before tip, using variables.</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>bill_before_tip <span class="ot">&lt;-</span> alex_meal <span class="sc">+</span> billie_meal</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of both meals.</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>bill_before_tip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 21</code></pre>
 </div>
 </div>
 <p>We make the calculation clearer by writing the calculation this way — we are calculating the bill before the tip by adding the cost of Alex’s and Billie’s meal — and that’s what the code looks like. But this also allows us to <em>change</em> the variable value, and recalculate. For example, say Alex decided to go for the hummus plate, at £7.75. Now we can tell R that we want <code>alex_meal</code> to have the value 7.75 instead of 10.50:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The new cost of Alex's meal.</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alex_meal gets the value 7.75</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>alex_meal <span class="ot">=</span> <span class="fl">7.75</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of alex_meal</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>alex_meal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The new cost of Alex's meal.</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alex_meal gets the value 7.75</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>alex_meal <span class="ot">=</span> <span class="fl">7.75</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of alex_meal</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>alex_meal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7.75</code></pre>
 </div>
 </div>
 <p>Notice that <code>alex_meal</code> now has a new value. It was 10.50, but now it is 7.75. We have <em>reset</em> the value of <code>alex_meal</code>. In order to use the new value for <code>alex_meal</code>, we must <em>recalculate</em> the bill before tip with <em>exactly the same code as before</em>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The new cost of both meals, before tip.</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>bill_before_tip <span class="ot">&lt;-</span> alex_meal <span class="sc">+</span> billie_meal</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of both meals.</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>bill_before_tip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The new cost of both meals, before tip.</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>bill_before_tip <span class="ot">&lt;-</span> alex_meal <span class="sc">+</span> billie_meal</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of both meals.</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>bill_before_tip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 18.2</code></pre>
 </div>
@@ -606,10 +633,10 @@ Note
 <p>Notice that, now we have rerun this calculation, we have <em>reset</em> the value for <code>bill_before_tip</code> to the correct value corresponding to the new value for <code>alex_meal</code>.</p>
 <p>All that remains is to recalculate the bill plus tip, using the new value for the variable:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of both meals, after tip.</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>bill_after_tip <span class="ot">=</span> bill_before_tip <span class="sc">+</span> bill_before_tip <span class="sc">*</span> <span class="fl">0.15</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of both meals, after tip.</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>bill_after_tip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of both meals, after tip.</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>bill_after_tip <span class="ot">=</span> bill_before_tip <span class="sc">+</span> bill_before_tip <span class="sc">*</span> <span class="fl">0.15</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the value of both meals, after tip.</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>bill_after_tip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 21</code></pre>
 </div>
@@ -622,21 +649,81 @@ Note
 <p>End of <code>billies_bill</code> notebook</p>
 </section>
 </div>
+<!---
+End of notebook.
+-->
 </section>
-<section id="running-the-code-on-your-own-computer" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="running-the-code-on-your-own-computer"><span class="header-section-number">4.7</span> Running the code on your own computer</h2>
+<section id="sec-running-own-computer" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="sec-running-own-computer"><span class="header-section-number">4.7</span> Running the code on your own computer</h2>
 <p>Many people, including your humble authors, like to be able to run code examples on their own computers. This section explains how you can set up to run the notebooks on your own computer.</p>
-<p>Once you have done this setup, you can use the “download” link</p>
-<div class="r">
-<p>To run the R notebook, you will need two software packages on your computer. These are:</p>
+<p>Once you have done this setup, you can use the “download” link that you will see for each notebook, to download the notebook to your machine. From there, you can open the notebook on RStudio.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Download links and data files
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Most of the download links in this book will trigger a download of the notebook file. This is a file with extension <span class="r"><code>.Rmd</code></span>, that you can open with RStudio.</p>
+<p>Later in the book, you will see examples where the notebook loads a data file. In that case, the download link for the notebook points to a <code>.zip</code> file containing the notebook and the data file. Unzip the <code>.zip</code> file to get the notebook and data file, and then open the resulting notebook in RStudio.</p>
+</div>
+</div>
+<p>You can run any of the code notebooks in this textbook on your own machine by downloading the notebook, via the download link at the top of each notebook section, and then opening the resulting notebook in RStudio.</p>
+<section id="sec-running-rstudio" class="level3 r" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="sec-running-rstudio"><span class="header-section-number">4.7.1</span> Running notebooks in RStudio</h3>
+<p>We are use a version of the Jupyter notebook for our interactive (web) examples. Although you can use the Jupyter notebook on your own computer, we recommend you use the RStudio desktop application.[^rstudio] It works in similar way to Jupyter, but with some variation. You will find many good tutorials for RStudio online; at time of writing <a href="https://www.datacamp.com/tutorial/r-studio-tutorial">this DataCamp tutorial</a> was a good place to start.</p>
+<p>As you will read on the RStudio download page, linked above, you will need two software packages on your computer to run RStudio. These are:</p>
 <ul>
-<li>The base R language</li>
+<li>The base R language.</li>
 <li>The RStudio graphical interface to R.</li>
 </ul>
-<p>The base R language gives you the software to run R code and show results. You can use the base R language on its own, but, in order to interact with the R notebook on your computer, you will need the RStudio interface. RStudio gives you a richer interface to interact with the R language, including the ability to open, edit and run R notebooks, like the notebook in this chapter. RStudio uses the base R language to run R code from the notebook, and show the results.</p>
+<p>The base R language gives you the software to run R code and show results. You can use the base R language on its own, but RStudio gives you a richer interface to interact with the R language, including the ability to open, edit and run R notebooks, like the notebook in this chapter. RStudio uses the base R language to run R code from the notebook, and show the results.</p>
 <p>Install the base R language by going to the main R website at <a href="https://www.r-project.org" class="uri">https://www.r-project.org</a>, following the links to the package for your system (Windows, Mac, or Linux), and install according to the instructions on the website.</p>
-<p>Then install the RStudio interface by visiting the RStudio website at <a href="https://www.rstudio.com" class="uri">https://www.rstudio.com</a>, and navigating to the download links for the free edition of the “RStudio IDE”. IDE stands for Integrated Development Environment; it refers to the RStudio application’s ability make it easier to interact with, and develop, R code. You only need the free version; it has all the features you will need. The free version is the only version that we, your humble authors, have used for this book, and for all our own work and teaching.</p>
+<p>Then install the RStudio interface by going to the RStudio download page at <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>, and navigating to the link to download RStudio Desktop. RStudio is an Integrated Development Environment for R. The RStudio IDE makes it easier to interact with, and develop, R code. You only need the free (default) version; it has all the features you will need. The free version is the only version that we, your humble authors, have used for this book, and for all our own work and teaching.</p>
+<p>See <a href="#sec-running-rstudio" class="quarto-xref"><span>Section 4.7.1</span></a> for a starter tutorial on running notebooks in RStudio.</p>
+<p>Click the Download link below to download this notebook to your computer.</p>
+<div class="notebook" name="bill_in_rstudio" title="The Bill but in RStudio">
+<p>Start of <code>bill_in_rstudio</code> notebook</p>
+<div class="nb-links">
+<a class="notebook-link" href="notebooks/bill_in_rstudio.Rmd">Download notebook</a>
+<a class="interact-button" href="./interact/lab/index.html?path=bill_in_rstudio.ipynb">Interact</a>
 </div>
+
+<p>Notice that the Download link gave you a file ending in <code>.Rmd</code>, where “Rmd” is short for <em>RMarkdown</em>. <em>RMarkdown</em> is the name of the notebook format — and it is the native notebook format for RStudio. The <code>.Rmd</code> file is an RMarkdown version of the notebook.</p>
+<p>Open the <code>bill_in_rstudio.Rmd</code> file in RStudio.</p>
+<p>RStudio’s idea of a notebook is very similar to Jupyter’s — and this is not a coincidence, the Jupyter notebook was already popular when RStudio came up with its own take on this idea.</p>
+<p>However, there are some differences between Jupyter and RStudio in the way that they think about notebooks, and in the notebook interface.</p>
+<p>To start with the interface, notice that RStudio has its own menu, with “File”, “Edit”, etc. Each notebook has its own tab in the interface. If you have just opened this notebook, and no others, you will only have one tab, corresponding to this notebook. Depending on your configuration, you may also have other windows inside the RStudio window, for example, showing the variables defined in R, and the files in the same directory as the notebook.</p>
+<p>Identify the notebook tab — the tab containing this file. You will notice that the notebook tab has a <em>notebook toolbar</em> at the top. We will come to that soon.</p>
+<p>We have started with the interface, but now we return to RStudio’s slightly different concept of a notebook, compared to Jupyter.</p>
+<p>For example, Jupyter thinks in terms of <em>cells</em>. All content in a Jupyter notebook has a containing cell; text cells contain text, and code cells contain code. In a Jupyter notebook, this text would be inside a text cell.</p>
+<p>RStudio notebook thinks of the notebook differently. It conceives of the notebook as being text, by default. Within the text, there may be <em>code chunks</em>. These are the equivalent of Jupyter’s code cells — they are blocks of code you can execute within the notebook. The notebook interface displays any output from the code, including plots.</p>
+<p>For example, the following is a <em>code chunk</em> (in RMarkdown terms):</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The cost of Alex's meal.</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alex_meal gets the value 10.50</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>alex_meal <span class="ot">&lt;-</span> <span class="fl">10.50</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the cost of Alex's meal.</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>alex_meal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.5</code></pre>
+</div>
+</div>
+<p>Now we return to the interface. Click inside the code chunk above. Notice that the code chunk is grey, compared to the usual default white for the rest of the notebook. At the top left of the code chunk, you will see a <em>play</em> icon. Click this to run the code and see the results.</p>
+<p>There are various other ways of running code chunks. For example, the <em>notebook toolbar</em> that you identified about has icons that allow you run the code. In particular, there is a “Run” icon that triggers a drop-down menu, with options for running this and other code chunks. You will soon find yourself wanting the keyboard shortcuts to run code-chunks — please do start using these as early as you can — you will find they make you much more efficient and fluent in using notebooks in RStudio. To see the shortcuts, find the main RStudio menu, and select “Keyboard Shortcuts Help” for more information.</p>
+<p>We will leave you with this brief introduction, and point you out into the interwebs to search for good tutorials on using RStudio. Books always get out of date quickly, so we won’t risk instant obsolescence by recommending particular pages or videos here.</p>
+<p>End of <code>bill_in_rstudio</code> notebook</p>
+</div>
+<!---
+End of notebook.
+-->
+</section>
+<!---
+End of R segment.
+-->
 
 
 </section>
