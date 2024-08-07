@@ -491,7 +491,7 @@ Methods of estimating dispersion.
 <p><a href="#tbl-pig-ab-rations" class="quarto-xref">Table&nbsp;<span>24.1</span></a> has the measured data for pig rations A and B.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-pig-ab-rations" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-pig-ab-rations" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pig-ab-rations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;24.1: Measured data for pig rations A and B
@@ -1111,6 +1111,19 @@ Discussion of bootstrap and median?
 <p>The R notebook compares the difference in the sums of the weight gains for the actual pigs against the difference resulting from two randomly-chosen groups of pigs, using the same numerical weight gains of individual pigs as were obtained in the actual experiment. If the differences in average weight gains of the randomly ordered groups are rarely as large as the difference in weight gains from the actual sets of pigs fed food A-alpha and food B-beta, then we can conclude that the foods do make a difference in pigs’ weight gains.</p>
 <p>Note first that pigs in group A gained a total of 382 pounds while group B gained a total of 344 pounds — 38 fewer. To minimize computations, we will deal with totals like these, not averages.</p>
 <p>First we construct vectors A and B of the weight gains of the pigs fed with the two foods. Then we combine the two vectors into one long vector and select two groups of 12 randomly and with replacement (the two <code>sample</code> commands). Notice we sample <em>with replacement</em>. This is the <em>bootstrap</em> procedure*, where we simulate new samples by resampling with replacement from the original sample. We <code>sum</code> the weight gains for the two resamples, and calculate the difference. We keep track of those differences by storing them in the <code>results</code> array, graph them on a histogram, and see how many times resample A exceeded resample B by at least 38 pounds, or vice versa (we are testing whether the two are different, not whether food A produces larger weight gains).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Notebook with data file
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As you saw in <span class="quarto-unresolved-ref">?sec-download-links</span>, the following notebook reads a data file, so the download link points to a <code>.zip</code> file containing the notebook and the data file.</p>
+</div>
+</div>
 <div class="notebook" name="measured_rations" title="Pig rations via bootstrap">
 <p>Start of <code>measured_rations</code> notebook</p>
 <div class="nb-links">
@@ -1581,7 +1594,7 @@ Discussion of fogginess that arises from uncertainty about maths.
 <p>Next we consider the use of resampling with <em>measured</em> data to test the hypothesis that drug A prevents low birthweights <span class="citation" data-cites="rosner1995biostatistics">(<a href="references.html#ref-rosner1995biostatistics" role="doc-biblioref">Rosner 1995, 291</a>)</span>. The data for the treatment and control groups are shown in <a href="#tbl-birthweights" class="quarto-xref">Table&nbsp;<span>24.4</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-birthweights" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-birthweights" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-birthweights-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;24.4: Birthweights in clinical trial for drug to prevent low birthweights
@@ -1727,7 +1740,7 @@ Table&nbsp;24.4: Birthweights in clinical trial for drug to prevent low birthwei
 <p>The treatment group averaged .82 pounds more than the control group (<a href="#tbl-birth-means" class="quarto-xref">Table&nbsp;<span>24.5</span></a>):</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-birth-means" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-birth-means" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-birth-means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;24.5: Mean birthweight per group
@@ -2020,7 +2033,7 @@ End of notebook
 <p>The method of <a href="#sec-pig-rations-measured" class="quarto-xref"><span>Section 24.0.1</span></a> can be extended to handle this problem. Assume that <em>four</em> foods were each tested on twelve pigs. The weight gains in pounds for the pigs fed on foods A and B were as before. <a href="#tbl-pig-cd-rations" class="quarto-xref">Table&nbsp;<span>24.6</span></a> has the weight gains for foods C and D. (Compare these with the weight gains for foods A and B in <a href="#tbl-pig-ab-rations" class="quarto-xref">Table&nbsp;<span>24.1</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-pig-cd-rations" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-pig-cd-rations" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pig-cd-rations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;24.6: Measured data for pig rations C and D
@@ -2179,7 +2192,7 @@ Table&nbsp;24.6: Measured data for pig rations C and D
 <p>In the notebook below, we want a measure of how the groups differ. The obvious first step is to add up the total weight gains for each group (<a href="#tbl-gain-sums" class="quarto-xref">Table&nbsp;<span>24.7</span></a>):</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-gain-sums" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-gain-sums" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gain-sums-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;24.7: Weight gain sum per group
@@ -2372,7 +2385,7 @@ End of notebook
 <p>The data shown in <a href="#tbl-hamilton-scores" class="quarto-xref">Table&nbsp;<span>24.8</span></a> might be data for the outcomes of two different mechanics, showing the length of time until the next overhaul is needed for nine pairs of similar vehicles. Or they could be two readings made by different instruments on the same sample of rock. In fact, they represent data for two successive tests for depression on a version of the Hamilton Depression Scale before and after drug therapy.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-hamilton-scores" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-hamilton-scores" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hamilton-scores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;24.8: Hamilton Depression Scale Factor IV Values
