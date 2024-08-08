@@ -31,7 +31,9 @@ for (i in 1:n_trials) {
 }
 
 # Plot a histogram of the scores.
-title_of_plot <- paste0("Number of females in", n_trials, " samples of \n", sample_size, " simulated calves")
+title_of_plot <- paste("Number of females in", n_trials,
+                       "samples of", sample_size,
+                       "simulated calves")
 hist(scores, xlab = 'Number of Females', main=title_of_plot)
 
 # Count the number of scores that were greater than or equal to 9.

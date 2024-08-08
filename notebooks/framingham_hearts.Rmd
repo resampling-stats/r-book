@@ -9,7 +9,7 @@ histograms (see <a href="#sec-on-histograms" class="quarto-xref"><span
 class="quarto-unresolved-ref">sec-on-histograms</span></a>). We are
 going to set the bins for the histogram using advanced ranges.
 
-### 21.2.7 Advanced ranges
+### 21.2.8 Advanced ranges
 
 So far (<a href="#sec-ranges" class="quarto-xref"><span
 class="quarto-unresolved-ref">sec-ranges</span></a>) we have used the
@@ -53,7 +53,7 @@ sequence of values starting at 0.1 up to and including 0.9, in steps of
 seq(0.1, 0.9, by=0.2)
 ```
 
-### 21.2.8 Simulation for infarction and cholesterol
+### 21.2.9 Simulation for infarction and cholesterol
 
 With that background, we can proceed with the simulation.
 
