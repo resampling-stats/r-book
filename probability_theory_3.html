@@ -157,7 +157,9 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Resampling statistics</a> 
+      <a href="./">
+      Resampling statistics
+      </a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -423,9 +425,8 @@ div.csl-indent {
   <li><a href="#sec-public-liquor" id="toc-sec-public-liquor" class="nav-link" data-scroll-target="#sec-public-liquor"><span class="header-section-number">12.16</span> Example: public and private liquor pricing</a>
   <ul class="collapse">
   <li><a href="#sec-concatenate" id="toc-sec-concatenate" class="nav-link" data-scroll-target="#sec-concatenate"><span class="header-section-number">12.16.1</span> Concatenating vectors</a></li>
-  <li><a href="#price-simulation" id="toc-price-simulation" class="nav-link" data-scroll-target="#price-simulation"><span class="header-section-number">12.16.2</span> Price simulation</a></li>
+  <li><a href="#sec-on-histograms" id="toc-sec-on-histograms" class="nav-link" data-scroll-target="#sec-on-histograms"><span class="header-section-number">12.16.2</span> Plotting histograms</a></li>
   </ul></li>
-  <li><a href="#the-general-procedure" id="toc-the-general-procedure" class="nav-link" data-scroll-target="#the-general-procedure"><span class="header-section-number">12.17</span> The general procedure</a></li>
   </ul>
 </nav>
     </div>
@@ -1465,77 +1466,10 @@ Figure&nbsp;12.2: Whiskey prices by state category
 End of R block.
 -->
 </section>
-<section id="price-simulation" class="level3" data-number="12.16.2">
-<h3 data-number="12.16.2" class="anchored" data-anchor-id="price-simulation"><span class="header-section-number">12.16.2</span> Price simulation</h3>
-<div class="notebook" name="liquor_prices" title="Public and private liquor prices">
-<p>Start of <code>liquor_prices</code> notebook</p>
-<div class="nb-links">
-<a class="notebook-link" href="notebooks/liquor_prices.Rmd">Download notebook</a>
-<a class="interact-button" href="./interact/lab/index.html?path=liquor_prices.ipynb">Interact</a>
-</div>
-
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fake_diffs <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10000</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>priv <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.82</span>, <span class="fl">5.29</span>, <span class="fl">4.89</span>, <span class="fl">4.95</span>, <span class="fl">4.55</span>, <span class="fl">4.90</span>, <span class="fl">5.25</span>, <span class="fl">5.30</span>, <span class="fl">4.29</span>, <span class="fl">4.85</span>, <span class="fl">4.54</span>,</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>          <span class="fl">4.75</span>, <span class="fl">4.85</span>, <span class="fl">4.85</span>, <span class="fl">4.50</span>, <span class="fl">4.75</span>, <span class="fl">4.79</span>, <span class="fl">4.85</span>, <span class="fl">4.79</span>, <span class="fl">4.95</span>, <span class="fl">4.95</span>, <span class="fl">4.75</span>,</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>          <span class="fl">5.20</span>, <span class="fl">5.10</span>, <span class="fl">4.80</span>, <span class="fl">4.29</span>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>govt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.65</span>, <span class="fl">4.55</span>, <span class="fl">4.11</span>, <span class="fl">4.15</span>, <span class="fl">4.20</span>, <span class="fl">4.55</span>, <span class="fl">3.80</span>, <span class="fl">4.00</span>, <span class="fl">4.19</span>, <span class="fl">4.75</span>, <span class="fl">4.74</span>,</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>          <span class="fl">4.50</span>, <span class="fl">4.10</span>, <span class="fl">4.00</span>, <span class="fl">5.05</span>, <span class="fl">4.20</span>)</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>actual_diff <span class="ot">&lt;-</span> <span class="fu">mean</span>(priv) <span class="sc">-</span> <span class="fu">mean</span>(govt)</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Join the two vectors of data into one vector.</span></span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>both <span class="ot">&lt;-</span> <span class="fu">c</span>(priv, govt)</span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat 10000 simulation trials.</span></span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>) {</span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sample 26 with replacement for private group</span></span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>    fake_priv <span class="ot">&lt;-</span> <span class="fu">sample</span>(both, <span class="at">size=</span><span class="dv">26</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sample 16 with replacement for govt. group</span></span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>    fake_govt <span class="ot">&lt;-</span> <span class="fu">sample</span>(both, <span class="at">size=</span><span class="dv">16</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find the mean of the "private" group.</span></span>
-<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">mean</span>(fake_priv)</span>
-<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mean of the "govt." group</span></span>
-<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>    g <span class="ot">&lt;-</span> <span class="fu">mean</span>(fake_govt)</span>
-<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Difference in the means</span></span>
-<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>    diff <span class="ot">&lt;-</span> p <span class="sc">-</span> g</span>
-<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Keep score of the trials</span></span>
-<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>    fake_diffs[i] <span class="ot">&lt;-</span> diff</span>
-<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Graph of simulation results to compare with the observed result.</span></span>
-<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a><span class="co"># The paste function sticks the strings together into a single string.</span></span>
-<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a>fig_title <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">'Average price difference (Actual difference = '</span>,</span>
-<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">round</span>(actual_diff <span class="sc">*</span> <span class="dv">100</span>),</span>
-<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'cents)'</span>)</span>
-<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(fake_diffs, <span class="at">main=</span>fig_title, <span class="at">xlab=</span><span class="st">'Difference in average prices (cents)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="probability_theory_3_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>End of <code>liquor_prices</code> notebook</p>
-</div>
-<p>The results shown above — not even one “success” in 10,000 trials — imply that there is only a very small probability that two groups with mean prices as different as were observed would happen by chance if drawn with replacement from the universe of 42 observed prices.</p>
-<p>Here we think of these states as if they came from a non-finite universe, which is one possible interpretation for one particular context. However, in <a href="probability_theory_4_finite.html" class="quarto-xref"><span>Chapter 13</span></a> we will postulate a finite universe, which is appropriate if it is reasonable to consider that these observations constitute the entire universe (aside from those states excluded from the analysis because of data complexities).</p>
-</section>
-</section>
-<section id="the-general-procedure" class="level2" data-number="12.17">
-<h2 data-number="12.17" class="anchored" data-anchor-id="the-general-procedure"><span class="header-section-number">12.17</span> The general procedure</h2>
-<p><a href="testing_procedures.html" class="quarto-xref"><span>Chapter 25</span></a> generalizes what we have done in the probability problems above into a general procedure, which will in turn be a subpart of a general procedure for all of resampling.</p>
-
-
+<section id="sec-on-histograms" class="level3" data-number="12.16.2">
+<h3 data-number="12.16.2" class="anchored" data-anchor-id="sec-on-histograms"><span class="header-section-number">12.16.2</span> Plotting histograms</h3>
+<p>The other procedure we will use for the simulation, is graphing the results with a <em>histogram</em>.</p>
+<p>A histogram is a visual way to show the <em>distribution</em> of a sequence of values.</p>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-arbuthnot1710christenings" class="csl-entry" role="listitem">
 Arbuthnot, John. 1710. <span>“An Argument for Divine Providence, Taken from the Constant Regularity Observ’d in the Births of Both Sexes. By Dr. John Arbuthnott, Physitian in Ordinary to Her Majesty, and Fellow of the College of Physitians and the Royal Society.”</span> <em>Philosophical Transactions of the Royal Society of London</em> 27 (328): 186–90. <a href="https://royalsocietypublishing.org/doi/pdf/10.1098/rstl.1710.0011">https://royalsocietypublishing.org/doi/pdf/10.1098/rstl.1710.0011</a>.
@@ -1544,6 +1478,7 @@ Arbuthnot, John. 1710. <span>“An Argument for Divine Providence, Taken from th
 Mosteller, Frederick, Robert E. K. Rourke, and George Brinton Thomas Jr. 1961. <em>Probability with Statistical Applications</em>. 2nd ed. <a href="https://archive.org/details/probabilitywiths0000most">https://archive.org/details/probabilitywiths0000most</a>.
 </div>
 </div>
+</section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
