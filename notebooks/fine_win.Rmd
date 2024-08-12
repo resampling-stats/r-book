@@ -130,11 +130,11 @@ Now we have everything we need to run many trials with the same logic.
 # By default, say we have no result.
 result = 'No result'
 a_ball <- sample(bucket_A, size=1)
-# If you have drawn a blue ball from bucket A:
+# If you have drawn a blue ball from bucket A: (then run code between {})
 if (a_ball == 'blue') {
     # Draw a ball at random from bucket B
     b_ball <- sample(bucket_B, size=1)
-    # if the ball is green:
+    # if the ball is green: (then run code between {})
     if (b_ball == 'green') {
         # record "yes"
         result <- 'yes'
