@@ -4,41 +4,6 @@
 This notebook uses simulation to test the null hypothesis that it is
 equally likely that new fruit files are male or female.
 
-#### 21.2.1.1 `paste` to concatenate strings
-
-We are going to make a rather verbose label for the plot below. In order
-to do this, we will need to compile a set of strings and numbers
-together into a string.
-
-One useful R function to do this is `paste`.
-
-We pass `paste` the strings and values we want it to combine, as
-arguments. It converts each argument to a string, and concatenates the
-resulting strings, separating them with a space (by default).
-
-For example, to make a new string that concatenates the strings
-`'resampling'`, `'is'` and `'better'`, separated by spaces, we could
-use:
-
-```{r}
-paste('resampling', 'is', 'better')
-```
-
-If we wanted to insert a number as a string into this sequence, we can
-send the number as an argument. `paste` converts the number to a string
-before concatenation.
-
-```{r}
-paste('resampling', 'is', 100, 'times', 'better')
-```
-
-`paste` is useful for compiling messages to print, or labels for plots,
-as you will see below.
-
-#### 21.2.1.2 Simulation for irradiation and sex of fruit-flies
-
-
-
 ```{r}
 # Set the number of trials
 n_trials <- 10000

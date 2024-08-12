@@ -1,0 +1,62 @@
+# Building strings for labels
+
+
+As the examples in this book proceed, we will use more code techniques
+to write the examples in a more concise and efficient way.
+
+One task that we often have, is to build up helpful strings to use as
+labels on plots, or to print out as messages. These strings will often
+mix numbers and text. For example, we may want to print out a helpful
+message such as: `Simulation using 10000 trials`, where the number 10000
+in the message comes from some variable, such as `n_trials`. Let’s set
+that variable now:
+
+```{r}
+n_trials <- 10000
+```
+
+Building the useful string above would involve taking the string
+`'Simulation using '`, then appending a string to represent the number
+10,000 — as in:
+
+```{r}
+# Convert the number (integer) to a string (character vector) representing the
+# number.
+as.character(n_trials)
+```
+
+Finally we need to append another string to the result — `' trials.'`.
+So our task will be to *concatenate* (stick together) these three
+strings.
+
+You can concatenate strings in R with the `paste` function. We pass
+`paste` the strings and values we want it to combine, as arguments. It
+converts each argument to a string, and concatenates the resulting
+strings, separating them with a space (by default).
+
+For example, to make a new string that concatenates the strings
+`'resampling'`, `'is'` and `'better'`, separated by spaces, we could
+use:
+
+```{r}
+paste('resampling', 'is', 'better')
+```
+
+If we wanted to insert a number as a string into this sequence, we can
+send the *number* as an argument. `paste` converts the number to a
+string before concatenation.
+
+```{r}
+paste('resampling', 'is', 100, 'times', 'better')
+```
+
+To create the string we started this section with, we could write:
+
+```{r}
+paste('Simulation using', n_trials, 'trials.')
+```
+
+We will start using `paste` from here, to compile messages to print, or
+labels for plots.
+
+
