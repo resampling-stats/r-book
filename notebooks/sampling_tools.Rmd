@@ -186,25 +186,7 @@ one_jury <- sample(jury_pool, 12, replace=TRUE)
 one_jury
 ```
 
-<div class="callout callout-style-default callout-note callout-titled">
-
-<div class="callout-header d-flex align-content-center">
-
-<div class="callout-icon-container">
-
-<i class='callout-icon'></i>
-
-</div>
-
-<div class="callout-title-container flex-fill">
-
-Using the `size` argument to `sample`
-
-</div>
-
-</div>
-
-<div class="callout-body-container callout-body">
+**Note: Using the `size` argument to `sample`**
 
 In the code above, we have specified the *size* of the sample we want
 (12) with the second argument to `sample`. As you saw in
@@ -223,9 +205,7 @@ one_jury <- sample(jury_pool, size=12, replace=TRUE)
 one_jury
 ```
 
-</div>
-
-</div>
+**End of note**
 
 We can use `==` on the vector to get `TRUE` values where the juror was
 “black” and `FALSE` values otherwise:
@@ -381,25 +361,7 @@ ok_jury <- sample(jury_panel, size=12)
 ok_jury
 ```
 
-<div class="callout callout-style-default callout-note callout-titled">
-
-<div class="callout-header d-flex align-content-center">
-
-<div class="callout-icon-container">
-
-<i class='callout-icon'></i>
-
-</div>
-
-<div class="callout-title-container flex-fill">
-
-Comments at the end of lines
-
-</div>
-
-</div>
-
-<div class="callout-body-container callout-body">
+**Note: Comments at the end of lines**
 
 You have already seen comment lines. These are lines beginning with `#`,
 to signal to R that the rest of the line is text for humans to read, but
@@ -418,9 +380,7 @@ not for R.
 message('Hello')  # This is a comment at the end of the line.
 ```
 
-</div>
-
-</div>
+**End of note**
 
 To finish the procedure for simulating a single jury selection, we count
 the number of black jurors:

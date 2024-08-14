@@ -59,25 +59,7 @@ b <- sum(a == 9)
 b
 ```
 
-<div class="callout callout-style-default callout-note callout-titled">
-
-<div class="callout-header d-flex align-content-center">
-
-<div class="callout-icon-container">
-
-<i class='callout-icon'></i>
-
-</div>
-
-<div class="callout-title-container flex-fill">
-
-Counting sequence elements
-
-</div>
-
-</div>
-
-<div class="callout-body-container callout-body">
+**Note: Counting sequence elements**
 
 We see that the code uses:
 
@@ -99,9 +81,7 @@ This comes down to asking “how many elements in `a` are equal to 9”.
 
 Don’t worry, we will go over this again in the next chapter.
 
-</div>
-
-</div>
+**End of note**
 
 The `sum` command is a *counting* operation. It asks the computer to
 *count* the number of `9`s among the twenty numbers that are in location

@@ -265,7 +265,7 @@ message('p for stay: ', p_for_stay)
 message('p for switch: ', p_for_switch)
 ```
 
-### 10.7.1 Insight from the Monty Hall simulation
+### 10.8.1 Insight from the Monty Hall simulation
 
 The code simulation gives us an estimate of the right answer, but it
 also forces us to set out the exact mechanics of the problem. For
@@ -297,7 +297,7 @@ the probability that our *initial guess* is right, and that must be 1 in
 one other door to switch to, the probability of winning after switching
 must be 2 in 3 (0.666).
 
-### 10.7.2 Simulation and a variant of Monty Hall
+### 10.8.2 Simulation and a variant of Monty Hall
 
 You have seen that you can avoid the silly mistakes that many of us make
 with probability — by asking the computer to tell you the result

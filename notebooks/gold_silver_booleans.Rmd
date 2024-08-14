@@ -79,7 +79,7 @@ In this variant, we recorded the type of first chest for each trial
 **We would like to count the number of times there was “Gold” in the
 first chest *and* “Gold” in the second.**
 
-## 10.5 Combining Boolean arrays
+## 10.6 Combining Boolean arrays
 
 We can do the count we need by *combining* the Boolean vectors with the
 `&` operator. `&` combines Boolean vectors with a *logical and*.

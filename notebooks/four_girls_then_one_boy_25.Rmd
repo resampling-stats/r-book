@@ -78,25 +78,7 @@ Another way to ask the same question is by using the `all` function on
 `are_equal`. This returns `TRUE` if *all* the elements in `are_equal`
 are `TRUE`, and `FALSE` otherwise.
 
-<div class="callout callout-style-default callout-note callout-titled">
-
-<div class="callout-header d-flex align-content-center">
-
-<div class="callout-icon-container">
-
-<i class='callout-icon'></i>
-
-</div>
-
-<div class="callout-title-container flex-fill">
-
-Testing whether all elements of a vector are the same
-
-</div>
-
-</div>
-
-<div class="callout-body-container callout-body">
+**Note: Testing whether all elements of a vector are the same**
 
 The `all`, applied to a Boolean vector (as here), checks whether *all*
 of the elements in the Boolean vector are `TRUE`. If so, it returns
@@ -114,9 +96,7 @@ all(c(TRUE, TRUE, TRUE, TRUE))
 all(c(TRUE, TRUE, FALSE, TRUE))
 ```
 
-</div>
-
-</div>
+**End of note**
 
 Here is the full procedure for steps 2 and 3 (a single trial):
 
