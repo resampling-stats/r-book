@@ -402,28 +402,45 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise_solutions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Exercise Solutions</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./acknowlegements.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Acknowledgements</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./technical_note.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Technical Note to the Professional Reader</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Exercise Solutions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./technical_note.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Technical Note to the Professional Reader</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowlegements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Acknowledgements</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Code topics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -444,7 +461,7 @@ window.Quarto = {
   <li><a href="#sec-named-arguments" id="toc-sec-named-arguments" class="nav-link" data-scroll-target="#sec-named-arguments"><span class="header-section-number">5.8</span> Functions and named arguments</a></li>
   <li><a href="#sec-ranges" id="toc-sec-ranges" class="nav-link" data-scroll-target="#sec-ranges"><span class="header-section-number">5.9</span> Ranges</a></li>
   <li><a href="#sec-random-choice" id="toc-sec-random-choice" class="nav-link" data-scroll-target="#sec-random-choice"><span class="header-section-number">5.10</span> Choosing values at random</a></li>
-  <li><a href="#sec-sampling-arrays" id="toc-sec-sampling-arrays" class="nav-link" data-scroll-target="#sec-sampling-arrays"><span class="header-section-number">5.11</span> Sampling into vectors</a>
+  <li><a href="#sec-sampling-arrays" id="toc-sec-sampling-arrays" class="nav-link" data-scroll-target="#sec-sampling-arrays"><span class="header-section-number">5.11</span> Creating vectors with sampling</a>
   <ul class="collapse">
   <li><a href="#sum-adding-all-the-values" id="toc-sum-adding-all-the-values" class="nav-link" data-scroll-target="#sum-adding-all-the-values"><span class="header-section-number">5.11.1</span> <code>sum</code> — adding all the values</a></li>
   </ul></li>
@@ -874,7 +891,7 @@ Figure&nbsp;5.6: Example run of the <code>sample</code> function
 </div>
 </section>
 <section id="sec-sampling-arrays" class="level2" data-number="5.11">
-<h2 data-number="5.11" class="anchored" data-anchor-id="sec-sampling-arrays"><span class="header-section-number">5.11</span> Sampling into vectors</h2>
+<h2 data-number="5.11" class="anchored" data-anchor-id="sec-sampling-arrays"><span class="header-section-number">5.11</span> Creating vectors with sampling</h2>
 <div class="r">
 <p>In the code above, we asked R to select a single number at random — by sending 1 as the second argument to the function.</p>
 <p>As you can imagine, we can tell <code>sample</code> to select <em>any number of values</em> at random, by changing the second argument to the function.</p>

@@ -10,6 +10,8 @@ a “one-tailed test.”) The result in the `kk` variable is the chance of a
 contract when support for the proposal is actually split evenly down the
 middle.
 
+
+
 ```{r}
 # We will do 10,000 iterations.
 n <- 10000

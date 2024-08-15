@@ -207,17 +207,22 @@ render-id="quarto-int-sidebar:/bayes_simulation.html&lt;span-class='chapter-numb
 <span class="chapter-title">Bayesian Analysis by
 Simulation</span></span>
 <span class="hidden quarto-markdown-envelope-contents"
-render-id="quarto-int-sidebar:/exercise_solutions.html&lt;span-class='chapter-number'&gt;32&lt;/span&gt;--&lt;span-class='chapter-title'&gt;Exercise-Solutions&lt;/span&gt;"><span class="chapter-number">32</span> 
+render-id="quarto-int-sidebar:/references.htmlReferences">References</span>
+<span class="hidden quarto-markdown-envelope-contents"
+render-id="quarto-int-sidebar:quarto-sidebar-section-1">Appendices</span>
+<span class="hidden quarto-markdown-envelope-contents"
+render-id="quarto-int-sidebar:/exercise_solutions.html&lt;span-class='chapter-number'&gt;A&lt;/span&gt;--&lt;span-class='chapter-title'&gt;Exercise-Solutions&lt;/span&gt;"><span class="chapter-number">A</span> 
 <span class="chapter-title">Exercise Solutions</span></span>
 <span class="hidden quarto-markdown-envelope-contents"
-render-id="quarto-int-sidebar:/acknowlegements.html&lt;span-class='chapter-number'&gt;33&lt;/span&gt;--&lt;span-class='chapter-title'&gt;Acknowledgements&lt;/span&gt;"><span class="chapter-number">33</span> 
-<span class="chapter-title">Acknowledgements</span></span>
-<span class="hidden quarto-markdown-envelope-contents"
-render-id="quarto-int-sidebar:/technical_note.html&lt;span-class='chapter-number'&gt;34&lt;/span&gt;--&lt;span-class='chapter-title'&gt;Technical-Note-to-the-Professional-Reader&lt;/span&gt;"><span class="chapter-number">34</span> 
+render-id="quarto-int-sidebar:/technical_note.html&lt;span-class='chapter-number'&gt;B&lt;/span&gt;--&lt;span-class='chapter-title'&gt;Technical-Note-to-the-Professional-Reader&lt;/span&gt;"><span class="chapter-number">B</span> 
 <span class="chapter-title">Technical Note to the Professional
 Reader</span></span>
 <span class="hidden quarto-markdown-envelope-contents"
-render-id="quarto-int-sidebar:/references.htmlReferences">References</span>
+render-id="quarto-int-sidebar:/acknowlegements.html&lt;span-class='chapter-number'&gt;C&lt;/span&gt;--&lt;span-class='chapter-title'&gt;Acknowledgements&lt;/span&gt;"><span class="chapter-number">C</span> 
+<span class="chapter-title">Acknowledgements</span></span>
+<span class="hidden quarto-markdown-envelope-contents"
+render-id="quarto-int-sidebar:/code_topics.html&lt;span-class='chapter-number'&gt;D&lt;/span&gt;--&lt;span-class='chapter-title'&gt;Code-topics&lt;/span&gt;"><span class="chapter-number">D</span> 
+<span class="chapter-title">Code topics</span></span>
 <span class="hidden quarto-markdown-envelope-contents"
 render-id="quarto-breadcrumbs-&lt;span-class='chapter-number'&gt;27&lt;/span&gt;--&lt;span-class='chapter-title'&gt;Confidence-Intervals,-Part-2:-The-Two-Approaches-to-Estimating-Confidence-Intervals&lt;/span&gt;"><span class="chapter-number">27</span> 
 <span class="chapter-title">Confidence Intervals, Part 2: The Two

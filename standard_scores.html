@@ -404,28 +404,45 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise_solutions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Exercise Solutions</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./acknowlegements.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Acknowledgements</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./technical_note.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Technical Note to the Professional Reader</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Exercise Solutions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./technical_note.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Technical Note to the Professional Reader</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowlegements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Acknowledgements</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Code topics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -450,7 +467,7 @@ window.Quarto = {
   <li><a href="#the-mean-absolute-deviation" id="toc-the-mean-absolute-deviation" class="nav-link" data-scroll-target="#the-mean-absolute-deviation"><span class="header-section-number">16.6</span> The mean absolute deviation</a></li>
   <li><a href="#sec-standard-deviation" id="toc-sec-standard-deviation" class="nav-link" data-scroll-target="#sec-standard-deviation"><span class="header-section-number">16.7</span> The standard deviation</a>
   <ul class="collapse">
-  <li><a href="#sec-squared-arrays" id="toc-sec-squared-arrays" class="nav-link" data-scroll-target="#sec-squared-arrays"><span class="header-section-number">16.7.1</span> Squares of vectors</a></li>
+  <li><a href="#sec-squared-arrays" id="toc-sec-squared-arrays" class="nav-link" data-scroll-target="#sec-squared-arrays"><span class="header-section-number">16.7.1</span> Squares of values and vectors</a></li>
   <li><a href="#calculating-the-standard-deviation" id="toc-calculating-the-standard-deviation" class="nav-link" data-scroll-target="#calculating-the-standard-deviation"><span class="header-section-number">16.7.2</span> Calculating the standard deviation</a></li>
   </ul></li>
   <li><a href="#standard-scores" id="toc-standard-scores" class="nav-link" data-scroll-target="#standard-scores"><span class="header-section-number">16.8</span> Standard scores</a></li>
@@ -490,7 +507,7 @@ window.Quarto = {
 <p>Democratic <a href="https://en.wikipedia.org/wiki/Marcy_Kaptur">congresswoman Marcy Kaptur</a> has represented the 9th district of Ohio since 1983. Ohio’s 9th district is relatively working class, and the Democratic party has, traditionally, represented people with lower income. However, Kaptur has pointed out that this pattern appears to be changing; more of the high-income congressional districts now lean Democrat, and the Republican party is now more likely to represent lower-income districts. The French economist <a href="https://en.wikipedia.org/wiki/Thomas_Piketty">Thomas Piketty</a> has described this phenomenon across several Western countries. Voters for left parties are now more likely to be highly educated and wealthy. He terms this shift “Brahmin Left Vs Merchant Right” <span class="citation" data-cites="piketty2018brahmin">(<a href="references.html#ref-piketty2018brahmin" role="doc-biblioref">Piketty 2018</a>)</span>. The data below come from a <a href="https://s3.documentcloud.org/documents/23726766/rep-kaptur-district-chart.pdf">table Kaptur prepared</a> that shows this pattern in the 2023 US congress. The table lists the top 20 districts by the median income of the households in that district, along with their representatives and their party.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-district_income" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-district_income" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-district_income-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;16.1: 20 most wealthy 2023 Congressional districts by household income
@@ -681,7 +698,7 @@ Table&nbsp;16.1: 20 most wealthy 2023 Congressional districts by household incom
 <p>In fact, if we look at all 441 congressional districts in Kaptur’s table, we find a large difference in the average median household income for Democrat and Republican districts; the Democrat districts are, on average, about 14% richer (<a href="#tbl-party_means" class="quarto-xref">Table&nbsp;<span>16.2</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-party_means" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-party_means" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-party_means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;16.2: Means for median household income by party
@@ -733,13 +750,13 @@ Table&nbsp;16.2: Means for median household income by party
 5,MS-2,37933,B. G. Thompson,Democrat</code></pre>
 </div>
 <p>In the code that follows, we will <em>read</em> the values from the CSV file directly into R.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div id="nte-download-links" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Download links with data files
+Note&nbsp;16.1: Download links with data files
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -862,7 +879,7 @@ End of R block
 <p>By scrolling through the CSV file, or (in our case) using some simple <span class="r">R</span> code that we won’t cover now, we find the rows corresponding to McCarthy (KM) and Ocasio-Cortez (AOC) — <a href="#tbl-rows-of-interest" class="quarto-xref">Table&nbsp;<span>16.3</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-rows-of-interest" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-rows-of-interest" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rows-of-interest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;16.3: Rows for Kevin McCarthy and Alexandra Ocasio-Cortez
@@ -1234,20 +1251,39 @@ Calculating quantiles using the linear method
 <p>To get such a standard measure, we would like idea of a typical or average deviation. Then we will compare KM’s and AOC’s deviations to the average deviation, to see if they are unusually far from the mean.</p>
 <p>You have just seen above that we cannot use the literal average (mean) of the deviations for this purpose because the positive and negative deviations will exactly cancel out, and the mean deviation will always be as near as the computer can calculate to zero.</p>
 <p>To stop the negatives canceling the positives, we can simply knock the minus signs off all the negative deviations.</p>
-<p>This is the job of the R <code>abs</code> function — where <code>abs</code> is short for <em>absolute</em>. The <code>abs</code> function will knock minus signs off negative values, like this:</p>
+<p>This is the job of the R <code>abs</code> function — where <code>abs</code> is short for <em>absolute</em>.</p>
+<div id="nte-abs-function" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;16.2: The <span class="r"><code>abs</code></span> function
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <span class="r"><code>abs</code></span> function will knock minus signs off negative values, like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(<span class="sc">-</span><span class="fl">3.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.1</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 0 1 2</code></pre>
 </div>
 </div>
+</div>
+</div>
 <p>To get an average of the deviations, <em>regardless of whether they are positive or negative</em>, we can take the mean of the absolute deviations, like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The Mean Absolute Deviation (MAD)</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>abs_deviations <span class="ot">&lt;-</span> <span class="fu">abs</span>(deviations)</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>mad <span class="ot">&lt;-</span> <span class="fu">mean</span>(abs_deviations)</span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result</span></span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>mad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The Mean Absolute Deviation (MAD)</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>abs_deviations <span class="ot">&lt;-</span> <span class="fu">abs</span>(deviations)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>mad <span class="ot">&lt;-</span> <span class="fu">mean</span>(abs_deviations)</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>mad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 15102</code></pre>
 </div>
@@ -1255,11 +1291,11 @@ Calculating quantiles using the linear method
 <p>This is the Mean Absolute Deviation (MAD). It is one measure of the typical spread. MAD is the average distance (regardless of positive or negative) of a value from the mean of the values.</p>
 <p>We can get an idea of how typical a particular deviation is by dividing the deviation by the MAD value, like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Deviation in MAD units for KM: '</span>, deviations[km_index] <span class="sc">/</span> mad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Deviation in MAD units for KM: '</span>, deviations[km_index] <span class="sc">/</span> mad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Deviation in MAD units for KM: 0.337581239498037</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Deviation in MAD units AOC: '</span>, deviations[aoc_index] <span class="sc">/</span> mad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Deviation in MAD units AOC: '</span>, deviations[aoc_index] <span class="sc">/</span> mad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Deviation in MAD units AOC: -1.05802714993755</code></pre>
 </div>
@@ -1270,20 +1306,20 @@ Calculating quantiles using the linear method
 <p>We are interested in the average deviation, but we find that a simple average of the deviations from the mean always gives 0 (perhaps with some tiny calculation error), because the positive and negative deviations cancel exactly.</p>
 <p>The MAD calculation solves this problem by knocking the signs off the negative values before we take the mean.</p>
 <section id="sec-squared-arrays" class="level3" data-number="16.7.1">
-<h3 data-number="16.7.1" class="anchored" data-anchor-id="sec-squared-arrays"><span class="header-section-number">16.7.1</span> Squares of vectors</h3>
+<h3 data-number="16.7.1" class="anchored" data-anchor-id="sec-squared-arrays"><span class="header-section-number">16.7.1</span> Squares of values and vectors</h3>
 <p>Another very popular way of solving the same problem is to precede the calculation by squaring all the deviations. R has an operator for the operation of taking values to the power of another value: it is <code>**</code>. For example, to square a single number, we take the number <em>to the power of</em> 2, like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 10 to the power of 2.</span></span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">**</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 10 to the power of 2.</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">**</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 100</code></pre>
 </div>
 </div>
 <p>You can also use the power of <code>**</code> operator on a vector, and, as usual, that works <em>elementwise</em>. The array you get back is the result of applying the to-the-power-of operation to all elements of the vector in turn:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>a_vector <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">12</span>)</span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co"># All the elements in the vector, to the power of 2.</span></span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>a_vector <span class="sc">**</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>a_vector <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">12</span>)</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="co"># All the elements in the vector, to the power of 2.</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>a_vector <span class="sc">**</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]   4 100 144</code></pre>
 </div>
@@ -1293,9 +1329,9 @@ Calculating quantiles using the linear method
 <h3 data-number="16.7.2" class="anchored" data-anchor-id="calculating-the-standard-deviation"><span class="header-section-number">16.7.2</span> Calculating the standard deviation</h3>
 <p>We can therefore square the deviations we calculated above, like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>squared_deviations <span class="ot">&lt;-</span> deviations <span class="sc">**</span> <span class="dv">2</span></span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first five values.</span></span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>squared_deviations[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>squared_deviations <span class="ot">&lt;-</span> deviations <span class="sc">**</span> <span class="dv">2</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first five values.</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>squared_deviations[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.49e+09 1.91e+09 1.66e+09 1.17e+09 1.17e+09</code></pre>
 </div>
@@ -1318,7 +1354,7 @@ m * 10^n
 <p><span class="math inline">\(m\)</span> is a floating point number with one digit before the decimal point — so it can be any value from 1.0 through 9.9999… <span class="math inline">\(n\)</span> is an integer (positive or negative whole number).</p>
 <p>For example, the median household income of KM’s district is 77205 (dollars). We can express that same number in E-notation as <span class="math inline">\(7.7205 * 10^4\)</span> . R writes this as <code>7.7205e4</code>, where the number before the <code>e</code> is <span class="math inline">\(m\)</span> and the number after the <code>e</code> is the exponent value <span class="math inline">\(n\)</span>. E-notation is another way of writing the number, because <span class="math inline">\(7.7205 * 10^4 = 77205\)</span>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fl">7.7205e4</span> <span class="sc">==</span> <span class="dv">77205</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fl">7.7205e4</span> <span class="sc">==</span> <span class="dv">77205</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -1330,17 +1366,17 @@ m * 10^n
 <p>The process of squaring the deviations turns all the negative values into positive values.</p>
 <p>We can then take the average (mean) of the <em>squared deviations</em> to give a measure of the typical <em>squared</em> deviation:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>mean_squared_deviation <span class="ot">&lt;-</span> <span class="fu">mean</span>(squared_deviations)</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>mean_squared_deviation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>mean_squared_deviation <span class="ot">&lt;-</span> <span class="fu">mean</span>(squared_deviations)</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>mean_squared_deviation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.86e+08</code></pre>
 </div>
 </div>
 <p>Rather confusingly, the field of statistics uses the term <em>variance</em> to refer to mean squared deviation value. Just to emphasize that naming, let’s do the same calculation but using “variance” as the variable name.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistics calls the mean squared deviation - the "variance"</span></span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>variance <span class="ot">&lt;-</span> <span class="fu">mean</span>(squared_deviations)</span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistics calls the mean squared deviation - the "variance"</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>variance <span class="ot">&lt;-</span> <span class="fu">mean</span>(squared_deviations)</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.86e+08</code></pre>
 </div>
@@ -1348,10 +1384,10 @@ m * 10^n
 <p>The variance is the typical (in the sense of the mean) <em>squared</em> deviation. The units for the variance, in our case, would be <em>squared dollars</em>. But we are more interested in the typical <em>deviation</em>, in our original units – dollars rather than squared dollars.</p>
 <p>So we take the square root of the mean squared deviation (the square root of the variance), to get the <em>standard deviation</em>. It is the <em>standard</em> deviation in the sense that it a measure of <em>typical</em> deviation, in the specific sense of the square root of the mean squared deviations.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The standard deviation is the square root of the mean squared deviation.</span></span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (and therefore, the square root of the variance).</span></span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>standard_deviation <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(mean_squared_deviation)</span>
-<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>standard_deviation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The standard deviation is the square root of the mean squared deviation.</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (and therefore, the square root of the variance).</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>standard_deviation <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(mean_squared_deviation)</span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>standard_deviation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 19646</code></pre>
 </div>
@@ -1374,15 +1410,15 @@ Figure&nbsp;16.1: Income histogram plus or minus 1 and 2 standard deviations
 </div>
 <p>Now let us return to the question of how unusual our two congressional districts are in terms of the distribution. First we calculate the number of standard deviations of each district from the mean:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>km_std_devs <span class="ot">&lt;-</span> deviations[km_index] <span class="sc">/</span> standard_deviation</span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Deviation in standard deviation units for KM: '</span>,</span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(km_std_devs, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>km_std_devs <span class="ot">&lt;-</span> deviations[km_index] <span class="sc">/</span> standard_deviation</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Deviation in standard deviation units for KM: '</span>,</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(km_std_devs, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Deviation in standard deviation units for KM: 0.26</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>aoc_std_devs <span class="ot">&lt;-</span> deviations[aoc_index] <span class="sc">/</span> standard_deviation</span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Deviation in standard deviation units for AOC: '</span>,</span>
-<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(aoc_std_devs, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>aoc_std_devs <span class="ot">&lt;-</span> deviations[aoc_index] <span class="sc">/</span> standard_deviation</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Deviation in standard deviation units for AOC: '</span>,</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(aoc_std_devs, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Deviation in standard deviation units for AOC: -0.81</code></pre>
 </div>
@@ -1400,14 +1436,14 @@ Figure&nbsp;16.1: Income histogram plus or minus 1 and 2 standard deviations
 <p>Let’s apply that procedure to all the <code>incomes</code> values.</p>
 <p>First we calculate the standard deviation:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>deviations <span class="ot">&lt;-</span> incomes <span class="sc">-</span> <span class="fu">mean</span>(incomes)</span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>income_std <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(deviations <span class="sc">**</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>deviations <span class="ot">&lt;-</span> incomes <span class="sc">-</span> <span class="fu">mean</span>(incomes)</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>income_std <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(deviations <span class="sc">**</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then we calculate standard scores:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>deviations_in_stds <span class="ot">&lt;-</span> deviations <span class="sc">/</span> income_std</span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first five values.</span></span>
-<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>deviations_in_stds[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>deviations_in_stds <span class="ot">&lt;-</span> deviations <span class="sc">/</span> income_std</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the first five values.</span></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>deviations_in_stds[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -2.54 -2.23 -2.07 -1.74 -1.74</code></pre>
 </div>
@@ -1418,20 +1454,20 @@ Figure&nbsp;16.1: Income histogram plus or minus 1 and 2 standard deviations
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-108-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-110-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>With all this information — what should we conclude about the two districts in question? KM’s district is 0.26 standard deviations <em>above</em> the mean, but that’s not enough to conclude that it is unusual. We see from the histogram that a large proportion of the districts are at least this distance from the mean. We can calculate that proportion directly.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distances (negative or positive) from the mean.</span></span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>abs_std_devs <span class="ot">&lt;-</span> <span class="fu">abs</span>(deviations_in_stds)</span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Number where distance greater than KM distance.</span></span>
-<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>n_gt_km <span class="ot">&lt;-</span> <span class="fu">sum</span>(abs_std_devs <span class="sc">&gt;</span> km_std_devs)</span>
-<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>prop_gt_km <span class="ot">&lt;-</span> n_gt_km <span class="sc">/</span> <span class="fu">length</span>(deviations_in_stds)</span>
-<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Proportion of districts further from mean than KM: "</span>,</span>
-<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(prop_gt_km, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distances (negative or positive) from the mean.</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>abs_std_devs <span class="ot">&lt;-</span> <span class="fu">abs</span>(deviations_in_stds)</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Number where distance greater than KM distance.</span></span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>n_gt_km <span class="ot">&lt;-</span> <span class="fu">sum</span>(abs_std_devs <span class="sc">&gt;</span> km_std_devs)</span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>prop_gt_km <span class="ot">&lt;-</span> n_gt_km <span class="sc">/</span> <span class="fu">length</span>(deviations_in_stds)</span>
+<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Proportion of districts further from mean than KM: "</span>,</span>
+<span id="cb94-7"><a href="#cb94-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(prop_gt_km, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Proportion of districts further from mean than KM: 0.82</code></pre>
 </div>
@@ -1439,12 +1475,12 @@ Figure&nbsp;16.1: Income histogram plus or minus 1 and 2 standard deviations
 <p>A full 82% of districts are further from the mean than is KM’s district. KM’s district is richer than average, but not unusual. The benefit of the standard deviation distance is that we can see this directly from the value, without doing the calculation of proportions, because the standard deviation is a measure of typical spread, and KM’s district is well-within this measure.</p>
 <p>AOC’s district is -0.81 standard deviations from the mean. This is a little more unusual than KM’s score.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number where distance greater than AOC distance.</span></span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make AOC's distance positive to correspond to distance from the mean.</span></span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>n_gt_aoc <span class="ot">&lt;-</span> <span class="fu">sum</span>(abs_std_devs <span class="sc">&gt;</span> <span class="fu">abs</span>(aoc_std_devs))</span>
-<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>prop_gt_aoc <span class="ot">&lt;-</span> n_gt_aoc <span class="sc">/</span> <span class="fu">length</span>(deviations_in_stds)</span>
-<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Proportion of districts further from mean than AOC's district: "</span>,</span>
-<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(prop_gt_aoc, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number where distance greater than AOC distance.</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make AOC's distance positive to correspond to distance from the mean.</span></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>n_gt_aoc <span class="ot">&lt;-</span> <span class="fu">sum</span>(abs_std_devs <span class="sc">&gt;</span> <span class="fu">abs</span>(aoc_std_devs))</span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>prop_gt_aoc <span class="ot">&lt;-</span> n_gt_aoc <span class="sc">/</span> <span class="fu">length</span>(deviations_in_stds)</span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Proportion of districts further from mean than AOC's district: "</span>,</span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(prop_gt_aoc, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Proportion of districts further from mean than AOC's district: 0.35</code></pre>
 </div>
@@ -1457,7 +1493,7 @@ Figure&nbsp;16.1: Income histogram plus or minus 1 and 2 standard deviations
 <p>Consider the values in <a href="#tbl-epl-points-wages" class="quarto-xref">Table&nbsp;<span>16.4</span></a>. Each row of the table corresponds to a team competing in the English Premier League (EPL) for the 2021-2022 season. For those of you with absolutely no interest in sports, the EPL is the league of the top 20 teams in English football, or <em>soccer</em> to our North American friends. The <code>points</code> column of the table gives the total number of points at the end of the 2021 season (from 38 games). The team gets 3 points for a win, and 1 point for a draw, so the maximum possible points from 38 games are <span class="math inline">\(3 * 38 = 114\)</span>. The <code>wages</code> column gives the estimated total wage bill in thousands of British Pounds (£1000).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="tbl-epl-points-wages" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-epl-points-wages" class="lightable-paper lightable-striped lightable-hover quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-epl-points-wages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;16.4: 2021 points and wage bills (£1000s) for EPL teams
@@ -1589,7 +1625,7 @@ Table&nbsp;16.4: 2021 points and wage bills (£1000s) for EPL teams
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-115-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-117-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -1599,54 +1635,54 @@ Table&nbsp;16.4: 2021 points and wage bills (£1000s) for EPL teams
 <p>This is a good application of standard scores. Standard scores convert the original values to values on a standard scale, where 0 corresponds to an average value, 1 to a value one standard deviation above the mean, and -1 to a value one standard deviation below the mean. If we follow the standard score process for both points and wages, the values will be in the same standard units.</p>
 <p>To do this calculation, we need the values from the table. We follow the same recipe as before, in loading the data with <span class="r">R</span>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>points_wages <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">'data/premier_league.csv'</span>)</span>
-<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>points <span class="ot">=</span> points_wages<span class="sc">$</span>points</span>
-<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>wages <span class="ot">=</span> points_wages<span class="sc">$</span>wages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>points_wages <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">'data/premier_league.csv'</span>)</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>points <span class="ot">=</span> points_wages<span class="sc">$</span>points</span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>wages <span class="ot">=</span> points_wages<span class="sc">$</span>wages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As you recall, the standard deviation is the square root of the mean squared deviation. In code:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The standard deviation is the square root of the</span></span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mean squared deviation.</span></span>
-<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>wage_deviations <span class="ot">&lt;-</span> wages <span class="sc">-</span> <span class="fu">mean</span>(wages)</span>
-<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>wage_std <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(wage_deviations <span class="sc">**</span> <span class="dv">2</span>))</span>
-<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>wage_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The standard deviation is the square root of the</span></span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mean squared deviation.</span></span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>wage_deviations <span class="ot">&lt;-</span> wages <span class="sc">-</span> <span class="fu">mean</span>(wages)</span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>wage_std <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(wage_deviations <span class="sc">**</span> <span class="dv">2</span>))</span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>wage_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 55524</code></pre>
 </div>
 </div>
 <p>Now we can apply the standard score procedure to wages. We divide the deviations by the standard deviation.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>standard_wages <span class="ot">&lt;-</span> (wages <span class="sc">-</span> <span class="fu">mean</span>(wages)) <span class="sc">/</span> wage_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>standard_wages <span class="ot">&lt;-</span> (wages <span class="sc">-</span> <span class="fu">mean</span>(wages)) <span class="sc">/</span> wage_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We apply the same procedure to the points:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>point_deviations <span class="ot">&lt;-</span> points <span class="sc">-</span> <span class="fu">mean</span>(points)</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>point_std <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(point_deviations <span class="sc">**</span> <span class="dv">2</span>))</span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>standard_points <span class="ot">=</span> point_deviations <span class="sc">/</span> point_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>point_deviations <span class="ot">&lt;-</span> points <span class="sc">-</span> <span class="fu">mean</span>(points)</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>point_std <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(point_deviations <span class="sc">**</span> <span class="dv">2</span>))</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>standard_points <span class="ot">=</span> point_deviations <span class="sc">/</span> point_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, when we plot the standard score version of the points against the standard score version of the wages, we see that they are in comparable units, each with a mean of 0, and a spread (a standard deviation) of 1.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="standard_scores_files/figure-html/unnamed-chunk-124-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="standard_scores_files/figure-html/unnamed-chunk-126-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Let us go back to our concerns as the owners of Crystal Palace. Counting down from the top in the table above, we see that Crystal Palace is the 12th row. Therefore, we can get the Crystal Palace wage value with:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>cp_index <span class="ot">&lt;-</span> <span class="dv">12</span></span>
-<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>cp_wages <span class="ot">&lt;-</span> wages[cp_index]</span>
-<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>cp_wages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>cp_index <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>cp_wages <span class="ot">&lt;-</span> wages[cp_index]</span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>cp_wages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 71910</code></pre>
 </div>
 </div>
 <p>We can get our wage bill in standard units in the same way:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>cp_standard_wages <span class="ot">&lt;-</span> standard_wages[cp_index]</span>
-<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>cp_standard_wages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>cp_standard_wages <span class="ot">&lt;-</span> standard_wages[cp_index]</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>cp_standard_wages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.347</code></pre>
 </div>
@@ -1657,9 +1693,9 @@ Table&nbsp;16.4: 2021 points and wage bills (£1000s) for EPL teams
 <p>That is question about the strength of the association between two measures — here wages and points — and we will cover that topic in much more detail in <a href="correlation_causation.html" class="quarto-xref"><span>Chapter 29</span></a>. But, racing ahead — here is the answer to the question we have just posed — the amount we expect to gain in points, in standard units, if we increase our wages by one standard deviation (and therefore, 1 in standard units).</p>
 <p>For reasons we won’t justify now, we calculate the <span class="math inline">\(r\)</span> value of association between wages and points, like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>standards_multiplied <span class="ot">&lt;-</span> standard_wages <span class="sc">*</span> standard_points</span>
-<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">=</span> <span class="fu">mean</span>(standards_multiplied)</span>
-<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>standards_multiplied <span class="ot">&lt;-</span> standard_wages <span class="sc">*</span> standard_points</span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">=</span> <span class="fu">mean</span>(standards_multiplied)</span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.708</code></pre>
 </div>

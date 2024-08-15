@@ -382,28 +382,45 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise_solutions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Exercise Solutions</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./acknowlegements.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Acknowledgements</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./technical_note.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Technical Note to the Professional Reader</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Exercise Solutions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./technical_note.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Technical Note to the Professional Reader</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowlegements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Acknowledgements</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Code topics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -415,7 +432,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7.1</span> Introduction</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7.7</span> Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7.8</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -451,8 +468,8 @@ window.Quarto = {
 <a class="interact-button" href="./interact/lab/index.html?path=sampling_tools.ipynb">Interact</a>
 </div>
 
-<section id="samples-and-labels" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="samples-and-labels"><span class="header-section-number">7.2</span> Samples and labels</h2>
+<section id="samples-and-labels-and-strings" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="samples-and-labels-and-strings"><span class="header-section-number">7.2</span> Samples and labels and strings</h2>
 <p>Thus far we have used numbers such as 1 and 0 and 10 to represent the elements we are sampling from. For example, in <a href="resampling_with_code2.html" class="quarto-xref"><span>Chapter 6</span></a>, we were simulating the chance of a particular juror being black, given that 26% of the eligible jurors in the county were black. We used <em>integers</em> for that task, where we started with all the integers from 0 through 99, and asked R to select values at random from those integers. When R selected an integer from 0 through 25, we chose to label the resulting simulated juror as black — there are 26 integers in the range 0 through 25, so there is a 26% chance that any one integer will be in that range. If the integer was from 26 through 99, the simulated juror was white (there are 74 integers in the range 26 through 99).</p>
 <p>Here is the process of simulating a single juror, adapted from <a href="resampling_with_code2.html#sec-random-zero-through-ninety-nine" class="quarto-xref"><span>Section 6.3.3</span></a>:</p>
 <div class="cell" data-layout-align="center">
@@ -476,32 +493,57 @@ window.Quarto = {
 </div>
 <p>This all works as we want it to, but it’s just a little bit difficult to remember the coding (less than 26 means “black”, greater than 25 means “white”). We had to use that coding because we committed ourselves to using random numbers to simulate the outcomes.</p>
 <p>However, R can also store bits of text, called <em>strings</em>. Values that are bits of text can be very useful because the text values can be memorable labels for the entities we are sampling from, in our simulations.</p>
+<p>Before we get to strings, let us consider the <span class="r">type of the values</span> we have seen so far.</p>
 </section>
-<section id="sec-intro-to-strings" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="sec-intro-to-strings"><span class="header-section-number">7.3</span> String values</h2>
-<p>So far, all the values you have seen in R vectors have been numbers. Now we get on to values that are bits of text. These are called <em>strings</em>.</p>
-<p>Here is a single R string value:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="st">"Resampling"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Resampling"</code></pre>
-</div>
-</div>
+<section id="sec-types-values" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="sec-types-values"><span class="header-section-number">7.3</span> Types of values in R</h2>
+<!---
+End of Python section
+-->
 <div class="r">
-<p>We can see what type of value <code>v</code> holds by using the <code>class</code> function.</p>
-<p>For example, for a number value, you will usually find the <code>class</code> is <code>numeric</code>:</p>
+<p>So far, all the values we have seen in R are <em>numeric</em> — integers or floating point values. This is an integer value:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<p>Here the variable <code>v</code> holds the value. We can see what type of value <code>v</code> holds by using the <code>class</code> function:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "numeric"</code></pre>
 </div>
 </div>
+<p>The value contained by the variable <code>v</code> is of <code>'numeric'</code> type (class). This is the type of value that can store both integer values (positive or negative whole numbers), or floating point values (values that can have digits after a decimal point. Here’s a floating point value.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fl">10.1</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+<p>Notice that R also see this as a <code>"numeric"</code> type of value. However, we are about to see that R values can be of other types, that are not numeric.</p>
+</div>
+<!---
+End of R section.
+-->
+</section>
+<section id="sec-intro-to-strings" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="sec-intro-to-strings"><span class="header-section-number">7.4</span> String values</h2>
+<p>So far, all the values you have seen in R vectors have been numbers. Now we get on to values that are bits of text. These are called <em>strings</em>.</p>
+<p>Here is a single R string value:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="st">"Resampling"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Resampling"</code></pre>
+</div>
 </div>
 <p>What is the <span class="r"><code>class</code></span> of the new bit-of-text value <code>s</code>?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
@@ -511,8 +553,8 @@ window.Quarto = {
 <div class="r">
 <p>To get the length of a string, use the <code>nchar</code> function (Number of Characters):</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of characters in s</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of characters in s</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10</code></pre>
 </div>
@@ -521,44 +563,44 @@ window.Quarto = {
 <div class="r">
 <p>R has a <code>substring</code> function that allows you to select individual characters or sequences of characters from a string. The arguments to <code>substring</code> are: first — the string; second — the index of the first character you want to select; and third — the index of the last character you want to select. For example to select the second character in the string you would specify 2 as the starting index, and 2 as the ending index, like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the second character of the string</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>second_char <span class="ot">&lt;-</span> <span class="fu">substring</span>(s, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>second_char</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the second character of the string</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>second_char <span class="ot">&lt;-</span> <span class="fu">substring</span>(s, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>second_char</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "e"</code></pre>
 </div>
 </div>
 </div>
 </section>
-<section id="strings-in-s" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="strings-in-s"><span class="header-section-number">7.4</span> Strings in vectors</h2>
+<section id="strings-in-s" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="strings-in-s"><span class="header-section-number">7.5</span> Strings in vectors</h2>
 <p>As we can store numbers as elements in vectors, we can also store strings as vector elements.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>vector_of_strings <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'Julian'</span>, <span class="st">'Lincoln'</span>, <span class="st">'Simon'</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>vector_of_strings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>vector_of_strings <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'Julian'</span>, <span class="st">'Lincoln'</span>, <span class="st">'Simon'</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>vector_of_strings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Julian"  "Lincoln" "Simon"  </code></pre>
 </div>
 </div>
 <p>As for any vector, you can select elements with <em>indexing</em>. When you select an element with a given position (index), you get the <em>string</em> at at that position:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Julian Lincoln Simon's second name</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>middle_name <span class="ot">&lt;-</span> vector_of_strings[<span class="dv">2</span>]</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>middle_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Julian Lincoln Simon's second name</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>middle_name <span class="ot">&lt;-</span> vector_of_strings[<span class="dv">2</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>middle_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Lincoln"</code></pre>
 </div>
 </div>
 <p>As for numbers, we can compare strings with, for example, the <code>==</code> operator, that asks whether the two strings are equal:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>middle_name <span class="sc">==</span> <span class="st">'Lincoln'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>middle_name <span class="sc">==</span> <span class="st">'Lincoln'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 </section>
-<section id="sec-repeating" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="sec-repeating"><span class="header-section-number">7.5</span> Repeating elements</h2>
+<section id="sec-repeating" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="sec-repeating"><span class="header-section-number">7.6</span> Repeating elements</h2>
 <p>Now let us go back to the problem of selecting black and white jurors.</p>
 <p>We started with the strategy of using numbers 0 through 25 to mean “black” jurors, and 26 through 99 to mean “white” jurors. We selected values at random from 0 through 99, and then worked out whether the number meant a “black” juror (was less than 26) or a “white” juror (was greater than 25).</p>
 <p>It would be good to use strings instead of numbers to identify the potential jurors. Then we would not have to remember our coding of 0 through 25 and 26 through 99.</p>
@@ -566,14 +608,14 @@ window.Quarto = {
 <p>Luckily, of course, we can do that, by using the <span class="r"><code>rep</code></span> function to construct the vector.</p>
 <p>Here is how that works:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The values that we will repeat to fill up the larger array.</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>juror_types <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'black'</span>, <span class="st">'white'</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The number of times we want to repeat "black" and "white".</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>repeat_nos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">74</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat "black" 26 times and "white" 74 times.</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>jury_pool <span class="ot">&lt;-</span> <span class="fu">rep</span>(juror_types, repeat_nos)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>jury_pool</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The values that we will repeat to fill up the larger array.</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>juror_types <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'black'</span>, <span class="st">'white'</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The number of times we want to repeat "black" and "white".</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>repeat_nos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">74</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat "black" 26 times and "white" 74 times.</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>jury_pool <span class="ot">&lt;-</span> <span class="fu">rep</span>(juror_types, repeat_nos)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>jury_pool</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] "black" "black" "black" "black" "black" "black" "black" "black" "black"
  [10] "black" "black" "black" "black" "black" "black" "black" "black" "black"
@@ -591,19 +633,19 @@ window.Quarto = {
 </div>
 <p>We can use this vector of repeats of strings, to sample from. The result is easier to grasp, because we are using the string labels, instead of numbers:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select one juror at random from the black / white pool.</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># replace=TRUE is redundant here, but we leave it for consistency.</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>one_juror <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_pool, <span class="dv">1</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>one_juror</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select one juror at random from the black / white pool.</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># replace=TRUE is redundant here, but we leave it for consistency.</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>one_juror <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_pool, <span class="dv">1</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>one_juror</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "black"</code></pre>
 </div>
 </div>
 <p>We can select our full jury of 12 jurors, and see the results in a more obvious form:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select one juror at random from the black / white pool.</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>one_jury <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_pool, <span class="dv">12</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>one_jury</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select one juror at random from the black / white pool.</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>one_jury <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_pool, <span class="dv">12</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>one_jury</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "white" "white" "white" "white" "white" "white" "white" "black" "black"
 [10] "white" "white" "black"</code></pre>
@@ -621,10 +663,10 @@ Using the <code>size</code> argument to <code>sample</code>
 <div class="callout-body-container callout-body">
 <p>In the code above, we have specified the <em>size</em> of the sample we want (12) with the second argument to <code>sample</code>. As you saw in <a href="resampling_with_code.html#sec-named-arguments" class="quarto-xref"><span>Section 5.8</span></a>, we can also give names to the function arguments, in this case, to make it clearer what we mean by “12” in the code above. In fact, from now on, that is what we will do; we will specify the <em>size</em> of our sample by using the <em>name</em> for the function argument to <code>sample</code> — <code>size</code> — like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select one juror at random from the black / white pool.</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the sample size using the "size" named argument.</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>one_jury <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_pool, <span class="at">size=</span><span class="dv">12</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>one_jury</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select one juror at random from the black / white pool.</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the sample size using the "size" named argument.</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>one_jury <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_pool, <span class="at">size=</span><span class="dv">12</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>one_jury</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "white" "white" "white" "white" "white" "black" "white" "white" "white"
 [10] "white" "white" "white"</code></pre>
@@ -634,43 +676,43 @@ Using the <code>size</code> argument to <code>sample</code>
 </div>
 <p>We can use <code>==</code> on the vector to get <code>TRUE</code> values where the juror was “black” and <code>FALSE</code> values otherwise:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>are_black <span class="ot">&lt;-</span> one_jury <span class="sc">==</span> <span class="st">'black'</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>are_black</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>are_black <span class="ot">&lt;-</span> one_jury <span class="sc">==</span> <span class="st">'black'</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>are_black</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 </div>
 </div>
 <p>Finally, we can <span class="r"><code>sum</code></span> to find the number of black jurors (<a href="resampling_with_code.html#sec-count-with-sum" class="quarto-xref"><span>Section 5.13</span></a>):</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of black jurors in this simulated jury.</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>n_black <span class="ot">&lt;-</span> <span class="fu">sum</span>(are_black)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>n_black</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of black jurors in this simulated jury.</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>n_black <span class="ot">&lt;-</span> <span class="fu">sum</span>(are_black)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>n_black</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
 </div>
 <p>Putting that all together, this is our new procedure to select one jury and count the number of black jurors:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>one_jury <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_pool, <span class="at">size=</span><span class="dv">12</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>are_black <span class="ot">&lt;-</span> one_jury <span class="sc">==</span> <span class="st">'black'</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>n_black <span class="ot">&lt;-</span> <span class="fu">sum</span>(are_black)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>n_black</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>one_jury <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_pool, <span class="at">size=</span><span class="dv">12</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>are_black <span class="ot">&lt;-</span> one_jury <span class="sc">==</span> <span class="st">'black'</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>n_black <span class="ot">&lt;-</span> <span class="fu">sum</span>(are_black)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>n_black</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
 <p>Or we can be even more compact by putting several statements together into one line:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The same as above, but on one line.</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>n_black <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">sample</span>(jury_pool, <span class="at">size=</span><span class="dv">12</span>, <span class="at">replace=</span><span class="cn">TRUE</span>) <span class="sc">==</span> <span class="st">'black'</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>n_black</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The same as above, but on one line.</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>n_black <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">sample</span>(jury_pool, <span class="at">size=</span><span class="dv">12</span>, <span class="at">replace=</span><span class="cn">TRUE</span>) <span class="sc">==</span> <span class="st">'black'</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>n_black</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
 </section>
-<section id="resampling-with-and-without-replacement" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="resampling-with-and-without-replacement"><span class="header-section-number">7.6</span> Resampling with and without replacement</h2>
+<section id="resampling-with-and-without-replacement" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="resampling-with-and-without-replacement"><span class="header-section-number">7.7</span> Resampling with and without replacement</h2>
 <p>Now let us return to the details of Robert Swain’s case, that you first saw in <a href="resampling_with_code2.html" class="quarto-xref"><span>Chapter 6</span></a>.</p>
 <p>We looked at the composition of Robert Swain’s 12-person jury — but in fact, by law, that does not have to be representative of the eligible jurors. The 12-person jury is drawn from a jury <em>panel</em>, of 100 people, and this should, in turn, be drawn from the population of all eligible jurors in the county, consisting, at the time, of “all male citizens in the community over 21 who are reputed to be honest, intelligent men and are esteemed for their integrity, good character and sound judgment.” So, unless there was some bias against black jurors, we might expect the 100-person jury panel to be a plausibly random sample of the eligible jurors, of whom 26% were black. See <a href="https://supreme.justia.com/cases/federal/us/380/202">the Supreme Court case judgement</a> for details.</p>
 <p>In fact, in Robert Swain’s trial, there were 8 black members in the 100-person jury panel. We will leave it to you to adapt the simulation from <a href="resampling_with_code2.html" class="quarto-xref"><span>Chapter 6</span></a> to ask the question — is 8% surprising as a random sample from a population with 26% black people?</p>
@@ -678,12 +720,12 @@ Using the <code>size</code> argument to <code>sample</code>
 <p>Let’s think about what a single simulated jury selection would look like.</p>
 <p>First we compile a representation of the actual jury panel, using the tools we have used above.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>juror_types <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'black'</span>, <span class="st">'white'</span>)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># in fact there were 8 black jurors and 92 white jurors.</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>panel_nos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">92</span>)</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>jury_panel <span class="ot">&lt;-</span> <span class="fu">rep</span>(juror_types, panel_nos)</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>jury_panel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>juror_types <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'black'</span>, <span class="st">'white'</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># in fact there were 8 black jurors and 92 white jurors.</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>panel_nos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">92</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>jury_panel <span class="ot">&lt;-</span> <span class="fu">rep</span>(juror_types, panel_nos)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the result</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>jury_panel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] "black" "black" "black" "black" "black" "black" "black" "black" "white"
  [10] "white" "white" "white" "white" "white" "white" "white" "white" "white"
@@ -705,9 +747,9 @@ Using the <code>size</code> argument to <code>sample</code>
 <p>As you can see, the chances change if you are sampling with or without replacement, and the kind of sampling you do, will dictate how you model your chances in your simulations.</p>
 <p>Because this distinction is so common, and so important, the machinery you have already seen in <span class="r"><code>sample</code></span> has simple ways for you to select your sampling type. You have already seen sampling <em>with replacement</em>, and it looks like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a sample of 12 jurors from the panel *with replacement*</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>strange_jury <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_panel, <span class="at">size=</span><span class="dv">12</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>strange_jury</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a sample of 12 jurors from the panel *with replacement*</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>strange_jury <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_panel, <span class="at">size=</span><span class="dv">12</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>strange_jury</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "white" "white" "white" "white" "black" "white" "white" "white" "white"
 [10] "white" "white" "white"</code></pre>
@@ -718,32 +760,32 @@ Using the <code>size</code> argument to <code>sample</code>
 <p>Thus far, we have always done sampling <em>with replacement</em>, and, in order to do that with <code>sample</code>, we pass the argument <code>replace=TRUE</code>. We do that because the default for <code>sample</code> is <code>replace=FALSE</code>, that is, by default, <code>sample</code> does sampling without replacement. If you want to do sampling without replacement, you can just omit the <code>replace=TRUE</code> argument to <code>sample</code>, or you can specify <code>replace=FALSE</code> explicitly, perhaps to remind yourself that this is sampling without replacement. Whether you omit the <code>replace</code> argument, or specify <code>replace=FALSE</code>, the behavior is the same.</p>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a sample of 12 jurors from the panel *with replacement*</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># replace=FALSE is the default for sample.</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>ok_jury <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_panel, <span class="at">size=</span><span class="dv">12</span>)</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>ok_jury</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a sample of 12 jurors from the panel *with replacement*</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># replace=FALSE is the default for sample.</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>ok_jury <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_panel, <span class="at">size=</span><span class="dv">12</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>ok_jury</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "white" "white" "black" "white" "black" "white" "white" "white" "black"
 [10] "white" "white" "white"</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div id="nte-eol-comments" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Comments at the end of lines
+Note&nbsp;7.1: Comments at the end of lines
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>You have already seen comment lines. These are lines beginning with <code>#</code>, to signal to R that the rest of the line is text for humans to read, but R to ignore.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a comment.  R ignores this line.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a comment.  R ignores this line.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can also put comments at the <em>end of code lines</em>, by finishing the code part of the line, and then putting a <code>#</code>, followed by more text. Again, R will ignore everything after the <code>#</code> as a text for humans, but not for R.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Hello'</span>)  <span class="co"># This is a comment at the end of the line.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">'Hello'</span>)  <span class="co"># This is a comment at the end of the line.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Hello</code></pre>
 </div>
@@ -752,27 +794,27 @@ Comments at the end of lines
 </div>
 <p>To finish the procedure for simulating a single jury selection, we count the number of black jurors:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>n_black <span class="ot">&lt;-</span> <span class="fu">sum</span>(ok_jury <span class="sc">==</span> <span class="st">'black'</span>)  <span class="co"># How many black jurors?</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>n_black</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>n_black <span class="ot">&lt;-</span> <span class="fu">sum</span>(ok_jury <span class="sc">==</span> <span class="st">'black'</span>)  <span class="co"># How many black jurors?</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>n_black</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
 </div>
 <p>Now we have the procedure for one simulated trial, here is the procedure for 10000 simulated trials.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10000</span>)</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>) {</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Single trial procedure</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    jury <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_panel, <span class="at">size=</span><span class="dv">12</span>)  <span class="co"># replace=FALSE is the default.</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    n_black <span class="ot">&lt;-</span> <span class="fu">sum</span>(jury <span class="sc">==</span> <span class="st">'black'</span>)  <span class="co"># How many black jurors?</span></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the result</span></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    counts[i] <span class="ot">&lt;-</span> n_black</span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of juries with 0 black jurors.</span></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>zero_black <span class="ot">&lt;-</span> <span class="fu">sum</span>(counts <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportion</span></span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>p_zero_black <span class="ot">&lt;-</span> zero_black <span class="sc">/</span> <span class="dv">10000</span></span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(p_zero_black)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10000</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>) {</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Single trial procedure</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    jury <span class="ot">&lt;-</span> <span class="fu">sample</span>(jury_panel, <span class="at">size=</span><span class="dv">12</span>)  <span class="co"># replace=FALSE is the default.</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    n_black <span class="ot">&lt;-</span> <span class="fu">sum</span>(jury <span class="sc">==</span> <span class="st">'black'</span>)  <span class="co"># How many black jurors?</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the result</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>    counts[i] <span class="ot">&lt;-</span> n_black</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of juries with 0 black jurors.</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>zero_black <span class="ot">&lt;-</span> <span class="fu">sum</span>(counts <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportion</span></span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>p_zero_black <span class="ot">&lt;-</span> zero_black <span class="sc">/</span> <span class="dv">10000</span></span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(p_zero_black)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>0.3375</code></pre>
 </div>
@@ -800,8 +842,8 @@ With or without replacement for the original jury selection
 </div>
 </div>
 </section>
-<section id="conclusion" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">7.7</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">7.8</span> Conclusion</h2>
 <p>This chapter introduced you to the idea of strings — values in R that store bits of text. Strings are very useful as labels for the entities we are sampling from, when we do our simulations. Strings are particularly useful when we use them with vectors, and one way we often do that is to build up vectors of strings to sample from, using the <span class="r"><code>rep</code></span> function.</p>
 <p>There is a fundamental distinction between two different types of sampling — sampling <em>with replacement</em>, where we draw an element from a larger pool, then put that element back before drawing again, and sampling <em>without replacement</em>, where we remove the element from the remaining pool when we draw it into the sample. As we will see later, it is often a judgment call which of these two types of sampling is a more reasonable model of the world you are trying to simulate.</p>
 

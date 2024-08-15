@@ -1,7 +1,7 @@
 # Sampling tools
 
 
-## 7.2 Samples and labels
+## 7.2 Samples and labels and strings
 
 Thus far we have used numbers such as 1 and 0 and 10 to represent the
 elements we are sampling from. For example, in
@@ -48,7 +48,45 @@ are bits of text can be very useful because the text values can be
 memorable labels for the entities we are sampling from, in our
 simulations.
 
-## 7.3 String values
+Before we get to strings, let us consider the type of the values we have
+seen so far.
+
+## 7.3 Types of values in R
+
+
+
+So far, all the values we have seen in R are *numeric* — integers or
+floating point values. This is an integer value:
+
+```{r}
+v <- 10
+v
+```
+
+Here the variable `v` holds the value. We can see what type of value `v`
+holds by using the `class` function:
+
+```{r}
+class(v)
+```
+
+The value contained by the variable `v` is of `'numeric'` type (class).
+This is the type of value that can store both integer values (positive
+or negative whole numbers), or floating point values (values that can
+have digits after a decimal point. Here’s a floating point value.
+
+```{r}
+f <- 10.1
+class(f)
+```
+
+Notice that R also see this as a `"numeric"` type of value. However, we
+are about to see that R values can be of other types, that are not
+numeric.
+
+
+
+## 7.4 String values
 
 So far, all the values you have seen in R vectors have been numbers. Now
 we get on to values that are bits of text. These are called *strings*.
@@ -58,16 +96,6 @@ Here is a single R string value:
 ```{r}
 s <- "Resampling"
 s
-```
-
-We can see what type of value `v` holds by using the `class` function.
-
-For example, for a number value, you will usually find the `class` is
-`numeric`:
-
-```{r}
-v <- 10
-class(v)
 ```
 
 What is the `class` of the new bit-of-text value `s`?
@@ -104,7 +132,7 @@ second_char <- substring(s, 2, 2)
 second_char
 ```
 
-## 7.4 Strings in vectors
+## 7.5 Strings in vectors
 
 As we can store numbers as elements in vectors, we can also store
 strings as vector elements.
@@ -131,7 +159,7 @@ operator, that asks whether the two strings are equal:
 middle_name == 'Lincoln'
 ```
 
-## 7.5 Repeating elements
+## 7.6 Repeating elements
 
 Now let us go back to the problem of selecting black and white jurors.
 
@@ -244,7 +272,7 @@ n_black = sum(sample(jury_pool, size=12, replace=TRUE) == 'black')
 n_black
 ```
 
-## 7.6 Resampling with and without replacement
+## 7.7 Resampling with and without replacement
 
 Now let us return to the details of Robert Swain’s case, that you first
 saw in <a href="#sec-resampling-two" class="quarto-xref"><span
@@ -361,7 +389,7 @@ ok_jury <- sample(jury_panel, size=12)
 ok_jury
 ```
 
-**Note: Comments at the end of lines**
+**Note: Note 7.1: Comments at the end of lines**
 
 You have already seen comment lines. These are lines beginning with `#`,
 to signal to R that the rest of the line is text for humans to read, but

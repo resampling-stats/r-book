@@ -45,7 +45,7 @@ if (sum(coins == 'heads') <= 2 | sum(coins == 'tails') <= 2) {
 }
 ```
 
-**Note: What is an operator?**
+**Note: Note 23.1: What is an operator?**
 
 Above, we called `|` an *operator*. An operator, for our purposes, is a
 special character that sits between two values, and that tells R how to

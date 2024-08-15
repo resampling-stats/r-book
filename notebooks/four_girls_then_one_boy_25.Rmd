@@ -78,7 +78,8 @@ Another way to ask the same question is by using the `all` function on
 `are_equal`. This returns `TRUE` if *all* the elements in `are_equal`
 are `TRUE`, and `FALSE` otherwise.
 
-**Note: Testing whether all elements of a vector are the same**
+**Note: Note 13.1: Testing whether all elements of a vector are the
+same**
 
 The `all`, applied to a Boolean vector (as here), checks whether *all*
 of the elements in the Boolean vector are `TRUE`. If so, it returns

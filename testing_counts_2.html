@@ -375,28 +375,45 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise_solutions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Exercise Solutions</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./acknowlegements.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Acknowledgements</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./technical_note.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Technical Note to the Professional Reader</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Exercise Solutions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./technical_note.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Technical Note to the Professional Reader</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowlegements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Acknowledgements</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Code topics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -492,13 +509,13 @@ div.csl-indent {
 <pre><code>Trial is of interest</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div id="nte-what-is-an-operator" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-What is an operator?
+Note&nbsp;23.1: What is an operator?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1360,7 +1377,7 @@ Table&nbsp;23.3: Results from fifty simulation trials of the paired pigs problem
 </div>
 </figure>
 </div>
-<p>Now for a R program and results. This notebook is different from the example at <a href="testing_counts_1.html#sec-pig-rations" class="quarto-xref"><span>Section 21.2.10</span></a> in that it compares the weight-gain results of <em>pairs</em> of pigs, instead of simply looking at the <em>rankings</em> for weight gains.</p>
+<p>Now for a R program and results. This notebook is different from the example at <a href="testing_counts_1.html#sec-pig-rations" class="quarto-xref"><span>Section 21.2.8</span></a> in that it compares the weight-gain results of <em>pairs</em> of pigs, instead of simply looking at the <em>rankings</em> for weight gains.</p>
 <p>The key to the pigs pair notebook is the <code>sample</code> line. If we assume that ration A does not have an effect on weight gain (which is the “benchmark” or “null” hypothesis), then the results of the actual experiment would be no different than if we randomly <code>sample</code> “A” and “B” and treat an “A” as a larger weight gain for the ration A pig, and a “B” as a larger weight gain for the ration B pig. Both events have a .5 chance of occurring for each pair of pigs because if the rations had no effect on weight gain (the null hypothesis), ration A pigs would have larger weight gains about half of the time. The next step is to count (<code>sum</code>) the number of times that the weight gains of one group (call it the group fed with ration A) were larger than the weight gains of the other (call it the group fed with ration B). The complete program follows:</p>
 <div class="notebook" name="pig_pairs" title="Paired test for pig rations">
 <p>Start of <code>pig_pairs</code> notebook</p>
@@ -1406,7 +1423,7 @@ Table&nbsp;23.3: Results from fifty simulation trials of the paired pigs problem
 <!---
 End of notebook
 -->
-<p>Notice how we proceeded in examples <a href="testing_counts_1.html#sec-pig-rations" class="quarto-xref"><span>Section 21.2.10</span></a> and <a href="#sec-pig-pairs" class="quarto-xref"><span>Section 23.3.1</span></a>. The data were originally quantitative — weight gains in pounds for each pig. But for simplicity we classified the data into simpler counted-data formats. The first format (<a href="testing_counts_1.html#sec-pig-rations" class="quarto-xref"><span>Section 21.2.10</span></a>) was a rank order, from highest to lowest. The second format (<a href="#sec-pig-pairs" class="quarto-xref"><span>Section 23.3.1</span></a>) was simply higher-lower, obtained by randomly pairing the observations (using alphabetical letter, or pig’s stall number, or whatever was the cause of the order in which the data were presented to be random). Classifying the data in either of these ways loses some information and makes the subsequent tests somewhat cruder than more refined analysis could provide (as we shall see in the following chapter), but the loss of efficiency is not crucial in many such cases. We shall see how to deal directly with the quantitative data in <a href="testing_measured.html" class="quarto-xref"><span>Chapter 24</span></a>.</p>
+<p>Notice how we proceeded in examples <a href="testing_counts_1.html#sec-pig-rations" class="quarto-xref"><span>Section 21.2.8</span></a> and <a href="#sec-pig-pairs" class="quarto-xref"><span>Section 23.3.1</span></a>. The data were originally quantitative — weight gains in pounds for each pig. But for simplicity we classified the data into simpler counted-data formats. The first format (<a href="testing_counts_1.html#sec-pig-rations" class="quarto-xref"><span>Section 21.2.8</span></a>) was a rank order, from highest to lowest. The second format (<a href="#sec-pig-pairs" class="quarto-xref"><span>Section 23.3.1</span></a>) was simply higher-lower, obtained by randomly pairing the observations (using alphabetical letter, or pig’s stall number, or whatever was the cause of the order in which the data were presented to be random). Classifying the data in either of these ways loses some information and makes the subsequent tests somewhat cruder than more refined analysis could provide (as we shall see in the following chapter), but the loss of efficiency is not crucial in many such cases. We shall see how to deal directly with the quantitative data in <a href="testing_measured.html" class="quarto-xref"><span>Chapter 24</span></a>.</p>
 </section>
 <section id="example-merged-firms-compared-to-two-non-merged-groups" class="level3" data-number="23.3.2">
 <h3 data-number="23.3.2" class="anchored" data-anchor-id="example-merged-firms-compared-to-two-non-merged-groups"><span class="header-section-number">23.3.2</span> Example: merged firms compared to two non-merged groups</h3>

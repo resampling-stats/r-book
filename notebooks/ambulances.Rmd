@@ -1,6 +1,8 @@
 # Ambulances
 
 
+**Note: Note 2.1: Comments in code**
+
 The first thing to say about the code you will see below is there are
 some lines that do not do anything; these are the lines beginning with a
 `#` character (read `#` as “hash”). Lines beginning with `#` are called
@@ -15,6 +17,8 @@ of a comment:
 Because R ignores lines beginning with `#`, the text after the `#` is
 just for us, the humans reading the code. The person writing the code
 will often use comments to explain what the code is doing.
+
+**End of note**
 
 Our next task is to use R to simulate a single day of ambulances. We
 will again represent each ambulance by a random number from 0 through 9.

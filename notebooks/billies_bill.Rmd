@@ -156,7 +156,7 @@ get `1.3875`) and then to add the result to `10.50`, giving `11.8875`.
 We need to tell R we want it to do the *addition* and *then* the
 multiplication. We do this with round brackets (parentheses):
 
-**Note: Note**
+**Note: Note 4.1: Three types of brackets in R**
 
 There are three types of brackets in R.
 
@@ -187,6 +187,8 @@ At this stage we start to feel that we are doing too much typing. Notice
 that we had to type out `10.50 + 9.25` twice there. That is a little
 boring, but it also makes it easier to make mistakes. The more we have
 to type, the greater the chance we have to make a mistake.
+
+## 4.6 Variables
 
 To make things simpler, we would like to be able to *store* the result
 of the calculation `10.50 + 9.25`, and then re-use this value, to
@@ -305,7 +307,7 @@ right to our eye. The code expresses the calculation as we mean it: the
 bill after tip is equal to the bill before the tip, plus the bill before
 the tip times 0.15.
 
-## 4.6 And so, on
+## 4.7 And so, on
 
 Now you have done some practice with the notebook, and with variables,
 you are ready for a new problem in probability and statistics, in the

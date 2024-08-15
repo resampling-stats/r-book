@@ -353,28 +353,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise_solutions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Exercise Solutions</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./acknowlegements.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Acknowledgements</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./technical_note.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Technical Note to the Professional Reader</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Exercise Solutions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./technical_note.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Technical Note to the Professional Reader</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowlegements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Acknowledgements</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Code topics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -387,9 +404,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#the-environment" id="toc-the-environment" class="nav-link active" data-scroll-target="#the-environment"><span class="header-section-number">4.1</span> The environment</a></li>
   <li><a href="#getting-started-with-the-notebook" id="toc-getting-started-with-the-notebook" class="nav-link" data-scroll-target="#getting-started-with-the-notebook"><span class="header-section-number">4.2</span> Getting started with the notebook</a></li>
-  <li><a href="#sec-running-own-computer" id="toc-sec-running-own-computer" class="nav-link" data-scroll-target="#sec-running-own-computer"><span class="header-section-number">4.7</span> Running the code on your own computer</a>
+  <li><a href="#sec-running-own-computer" id="toc-sec-running-own-computer" class="nav-link" data-scroll-target="#sec-running-own-computer"><span class="header-section-number">4.8</span> Running the code on your own computer</a>
   <ul class="collapse">
-  <li><a href="#sec-running-rstudio" id="toc-sec-running-rstudio" class="nav-link" data-scroll-target="#sec-running-rstudio"><span class="header-section-number">4.7.1</span> Running notebooks in RStudio</a></li>
+  <li><a href="#sec-running-rstudio" id="toc-sec-running-rstudio" class="nav-link" data-scroll-target="#sec-running-rstudio"><span class="header-section-number">4.8.1</span> Running notebooks in RStudio</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -432,7 +449,7 @@ Using R on the web and on your computer
 </div>
 <div class="callout-body-container callout-body">
 <p>In this chapter, we concentrate on the technology we use for the interactive version of the book. The interactive version allows you to run R code as interactive <em>notebooks</em> in your web browser.</p>
-<p>Either now, or later, you should also consider running the code on your own computer — see <a href="#sec-running-own-computer" class="quarto-xref"><span>Section 4.7</span></a>.</p>
+<p>Either now, or later, you should also consider running the code on your own computer — see <a href="#sec-running-own-computer" class="quarto-xref"><span>Section 4.8</span></a>.</p>
 </div>
 </div>
 <p>The chapter introduces <span class="r">the R language</span>, and then gives an example to introduce R and the RStudio Notebook. If you have not used R before, the example notebook will get you started. The example also shows how we will be using notebooks through the rest of the book.</p>
@@ -459,13 +476,13 @@ Using R on the web and on your computer
 </div>
 
 <div class="r">
-<p>The text in this notebook section assumes you have opened the page as an interactive notebook on the web. In that case, you are running the notebook in a version of Jupyter. We will assume you are using Jupyter in the description that follows. You can also run R in Jupyter on your own computer, although we recommend that you use RStudio to work with R notebook files (see <a href="#sec-running-own-computer" class="quarto-xref"><span>Section 4.7</span></a>). The procedure for working with notebooks in RStudio is not the same as that for Jupyter. We will cover RStudio, briefly, in another notebook tutorial after this one.</p>
+<p>The text in this notebook section assumes you have opened the page as an interactive notebook on the web. In that case, you are running the notebook in a version of Jupyter. We will assume you are using Jupyter in the description that follows. You can also run R in Jupyter on your own computer, although we recommend that you use RStudio to work with R notebook files (see <a href="#sec-running-own-computer" class="quarto-xref"><span>Section 4.8</span></a>). The procedure for working with notebooks in RStudio is not the same as that for Jupyter. We will cover RStudio, briefly, in another notebook tutorial after this one.</p>
 </div>
 <p>A notebook can contain blocks of text — like this one — as well as code, and the results from running the code.</p>
 <p>Jupyter Notebooks are made up of <em>cells</em>.</p>
 <div class="r">
 <p>We assume you are running this notebook via the interactive web pages, and therefore, that you are running the notebook with Jupyter, not RStudio.</p>
-<p>RStudio differs a little from Jupyter, because it does not have the idea of a text “cell” — instead it distinguishes between the main body of the notebook, made up of text, and <em>code chunks</em> — delimited sections in the notebook that contain code, instead of text. Jupyter would refer to these code chunks as <em>code cells</em>. We will go into more detail in <a href="#sec-running-rstudio" class="quarto-xref"><span>Section 4.7.1</span></a>.</p>
+<p>RStudio differs a little from Jupyter, because it does not have the idea of a text “cell” — instead it distinguishes between the main body of the notebook, made up of text, and <em>code chunks</em> — delimited sections in the notebook that contain code, instead of text. Jupyter would refer to these code chunks as <em>code cells</em>. We will go into more detail in <a href="#sec-running-rstudio" class="quarto-xref"><span>Section 4.8.1</span></a>.</p>
 </div>
 <p>Jupyter cells can contain text or code.</p>
 <p>Notebook text can have formatting, such as links.</p>
@@ -479,7 +496,7 @@ Using R on the web and on your computer
 <h2 data-number="4.3" class="anchored" data-anchor-id="the-meal-in-question"><span class="header-section-number">4.3</span> The meal in question</h2>
 <p>Alex and Billie are at a restaurant, getting ready to order. They do not have much money, so they are calculating the expected bill before they order.</p>
 <p>Alex is thinking of having the fish for £10.50, and Billie is leaning towards the chicken, at £9.25. First they calculate their combined bill.</p>
-<p>Below this text you see a <em>code</em> chunk. It contains the R code to calculate the total bill. Press <span class="r">Control-Shift-Enter or Cmd-Shift-Enter (on Mac)</span> in the chunk below, to see the total.<span class="r">(Remember, this is what you should do when running the code in Jupyter, via the interactive web pages. If you are using RStudio on your own computer, you should use different commands — see <a href="#sec-running-rstudio" class="quarto-xref"><span>Section 4.7.1</span></a>.)</span>.</p>
+<p>Below this text you see a <em>code</em> chunk. It contains the R code to calculate the total bill. Press <span class="r">Control-Shift-Enter or Cmd-Shift-Enter (on Mac)</span> in the chunk below, to see the total.<span class="r">(Remember, this is what you should do when running the code in Jupyter, via the interactive web pages. If you are using RStudio on your own computer, you should use different commands — see <a href="#sec-running-rstudio" class="quarto-xref"><span>Section 4.8.1</span></a>.)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">10.50</span> <span class="sc">+</span> <span class="fl">9.25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -520,13 +537,13 @@ Using R on the web and on your computer
 <p>See <a href="https://en.wikipedia.org/wiki/Order_of_operations" class="uri">https://en.wikipedia.org/wiki/Order_of_operations</a> for more detail on the standard rules.</p>
 <p>In the case above the rules tell R to first calculate <code>9.25 * 0.15</code> (to get <code>1.3875</code>) and then to add the result to <code>10.50</code>, giving <code>11.8875</code>.</p>
 <p>We need to tell R we want it to do the <em>addition</em> and <em>then</em> the multiplication. We do this with round brackets (parentheses):</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div id="nte-bracket-types" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Note&nbsp;4.1: Three types of brackets in R
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -556,6 +573,9 @@ Note
 </div>
 </div>
 <p>At this stage we start to feel that we are doing too much typing. Notice that we had to type out <code>10.50 + 9.25</code> twice there. That is a little boring, but it also makes it easier to make mistakes. The more we have to type, the greater the chance we have to make a mistake.</p>
+</section>
+<section id="sec-variables" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="sec-variables"><span class="header-section-number">4.6</span> Variables</h2>
 <p>To make things simpler, we would like to be able to <em>store</em> the result of the calculation <code>10.50 + 9.25</code>, and then re-use this value, to calculate the tip.</p>
 <p>This is the role of <em>variables</em>. A <em>variable</em> is a value with a name.</p>
 <p>Here is a variable:</p>
@@ -643,8 +663,8 @@ Note
 </div>
 <p>Now we are using variables with relevant names, the calculation looks right to our eye. The code expresses the calculation as we mean it: the bill after tip is equal to the bill before the tip, plus the bill before the tip times 0.15.</p>
 </section>
-<section id="and-so-on" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="and-so-on"><span class="header-section-number">4.6</span> And so, on</h2>
+<section id="and-so-on" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="and-so-on"><span class="header-section-number">4.7</span> And so, on</h2>
 <p>Now you have done some practice with the notebook, and with variables, you are ready for a new problem in probability and statistics, in the next chapter.</p>
 <p>End of <code>billies_bill</code> notebook</p>
 </section>
@@ -653,17 +673,17 @@ Note
 End of notebook.
 -->
 </section>
-<section id="sec-running-own-computer" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="sec-running-own-computer"><span class="header-section-number">4.7</span> Running the code on your own computer</h2>
+<section id="sec-running-own-computer" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="sec-running-own-computer"><span class="header-section-number">4.8</span> Running the code on your own computer</h2>
 <p>Many people, including your humble authors, like to be able to run code examples on their own computers. This section explains how you can set up to run the notebooks on your own computer.</p>
 <p>Once you have done this setup, you can use the “download” link that you will see for each notebook, to download the notebook to your machine. From there, you can open the notebook on RStudio.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div id="nte-basic-download-links" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Download links and data files
+Note&nbsp;4.2: Download links and data files
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -672,8 +692,8 @@ Download links and data files
 </div>
 </div>
 <p>You can run any of the code notebooks in this textbook on your own machine by downloading the notebook, via the download link at the top of each notebook section, and then opening the resulting notebook in RStudio.</p>
-<section id="sec-running-rstudio" class="level3 r" data-number="4.7.1">
-<h3 data-number="4.7.1" class="anchored" data-anchor-id="sec-running-rstudio"><span class="header-section-number">4.7.1</span> Running notebooks in RStudio</h3>
+<section id="sec-running-rstudio" class="level3 r" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="sec-running-rstudio"><span class="header-section-number">4.8.1</span> Running notebooks in RStudio</h3>
 <p>We are use a version of the Jupyter notebook for our interactive (web) examples. Although you can use the Jupyter notebook on your own computer, we recommend you use the RStudio desktop application.[^rstudio] It works in similar way to Jupyter, but with some variation. You will find many good tutorials for RStudio online; at time of writing <a href="https://www.datacamp.com/tutorial/r-studio-tutorial">this DataCamp tutorial</a> was a good place to start.</p>
 <p>As you will read on the RStudio download page, linked above, you will need two software packages on your computer to run RStudio. These are:</p>
 <ul>
@@ -683,7 +703,7 @@ Download links and data files
 <p>The base R language gives you the software to run R code and show results. You can use the base R language on its own, but RStudio gives you a richer interface to interact with the R language, including the ability to open, edit and run R notebooks, like the notebook in this chapter. RStudio uses the base R language to run R code from the notebook, and show the results.</p>
 <p>Install the base R language by going to the main R website at <a href="https://www.r-project.org" class="uri">https://www.r-project.org</a>, following the links to the package for your system (Windows, Mac, or Linux), and install according to the instructions on the website.</p>
 <p>Then install the RStudio interface by going to the RStudio download page at <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>, and navigating to the link to download RStudio Desktop. RStudio is an Integrated Development Environment for R. The RStudio IDE makes it easier to interact with, and develop, R code. You only need the free (default) version; it has all the features you will need. The free version is the only version that we, your humble authors, have used for this book, and for all our own work and teaching.</p>
-<p>See <a href="#sec-running-rstudio" class="quarto-xref"><span>Section 4.7.1</span></a> for a starter tutorial on running notebooks in RStudio.</p>
+<p>See <a href="#sec-running-rstudio" class="quarto-xref"><span>Section 4.8.1</span></a> for a starter tutorial on running notebooks in RStudio.</p>
 <p>Click the Download link below to download this notebook to your computer.</p>
 <div class="notebook" name="bill_in_rstudio" title="The Bill but in RStudio">
 <p>Start of <code>bill_in_rstudio</code> notebook</p>
