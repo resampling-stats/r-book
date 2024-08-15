@@ -60,6 +60,16 @@
     ]
   },
   {
+    "objectID": "preface_third.html#the-third-edition-is-the-directors-cut-where-simon-is-the-director",
+    "href": "preface_third.html#the-third-edition-is-the-directors-cut-where-simon-is-the-director",
+    "title": "Preface to the third edition",
+    "section": "The third edition is the director’s cut, where Simon is the director",
+    "text": "The third edition is the director’s cut, where Simon is the director\nAs you see from the section above, the largest change for this edition is to update the code sections to use R. We intend this edition to be as close as possible to the book that Simon intended, but updated to use modern tools and a standard, widely-used programming language. Read this edition as our service to Simon for his visionary work — this is Simon’s book, and we (Matthew and Stéfan) intend to serve mainly as his editors and interpreters. We release this edition so you can see Simon’s ideas updated to current technology.",
+    "crumbs": [
+      "Preface to the third edition"
+    ]
+  },
+  {
     "objectID": "preface_third.html#who-should-read-this-book-and-when",
     "href": "preface_third.html#who-should-read-this-book-and-when",
     "title": "Preface to the third edition",
