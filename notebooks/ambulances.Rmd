@@ -22,11 +22,11 @@ will often use comments to explain what the code is doing.
 
 Our next task is to use R to simulate a single day of ambulances. We
 will again represent each ambulance by a random number from 0 through 9.
-20 of these numbers represents a simulation of all 20 ambulances
+16 of these numbers represents a simulation of all 16 ambulances
 available to the contractor. We call a simulation of all ambulances for
 a specific day one *trial*.
 
-Recall that we want twenty 10-sided dice — one per ambulance. Our dice
+Recall that we want 16 10-sided dice — one per ambulance. Our dice
 should be 10-sided, because each ambulance has a 1-in-10 chance of being
 out of order.
 
@@ -34,17 +34,17 @@ The program to simulate one trial of the ambulances problem therefore
 begins with these commands:
 
 ```{r}
-# Ask R to generate 20 numbers from 0 through 9.
+# Ask R to generate 16 numbers from 0 through 9.
 
 # These are the numbers we will ask R to select from.
 numbers <- c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 
-# Get 20 values from the *numbers* sequence.
-# Store the 20 numbers with the name "a"
+# Get 16 values from the *numbers* sequence.
+# Store the 16 numbers with the name "a"
 # We will explain the replace=TRUE later.
-a <- sample(numbers, 20, replace=TRUE)
+a <- sample(numbers, 16, replace=TRUE)
 
-# The result is a sequence of 20 numbers.
+# The result is a sequence of 16 numbers.
 a
 ```
 
@@ -90,7 +90,7 @@ Don’t worry, we will go over this again in the next chapter.
 The `sum` command is a *counting* operation. It asks the computer to
 *count* the number of `9`s among the twenty numbers that are in location
 `a` following the random draw carried out by the `sample` operation. The
-result of the `sum` operation will be somewhere between 0 and 20, the
+result of the `sum` operation will be somewhere between 0 and 16, the
 number of simulated ambulances that were out-of-order on a given
 simulated day. The result is then placed in another location in the
 computer’s memory that we label `b`.
@@ -104,8 +104,8 @@ We could run the code above for one trial over and over, and write down
 the result on a piece of paper. If we did this 100 times we would have
 100 counts of the number of simulated ambulances that had broken down
 for each simulated day. To answer our question, we will then count the
-number of times the count was more than three, and divide by 100, to get
-an estimate of the proportion of days with more than three out-of-order
+number of times the count was three or more, and divide by 100, to get
+an estimate of the proportion of days with three or more out-of-order
 ambulances.
 
 One of the great things about the computer is that it is very good at
@@ -190,9 +190,9 @@ for (i in 1:1000) {
     # The stuff between the curly brackets is the code we
     # repeat 1000 times.
 
-    # Get 20 values from the *numbers* sequence.
-    # Store the 20 numbers with the name "a"
-    a <- sample(numbers, 20, replace=TRUE)
+    # Get 16 values from the *numbers* sequence.
+    # Store the 16 numbers with the name "a"
+    a <- sample(numbers, 16, replace=TRUE)
 
     # Count the number of nines in the random numbers.
     # The "a == 9" part identifies all the numbers equal to 9.
@@ -217,21 +217,23 @@ for each of our simulated days. Our last task is to calculate the
 proportion of these days for which we had more than three broken-down
 ambulances.
 
-Since our aim is to count the number of days in which more than 3 (4 or
-more) defective ambulances occur, we use another *counting* `sum`
-command at the end of the 1000 trials. This command *counts* how many
-times more than 3 defects occurred in the 1000 days recorded in our `z`
-sequence, and we place the result in another location, `k`. This gives
-us the total number of days where 4 or more defective ambulances are
+Since our aim is to count the number of days in which three or more
+defective ambulances occur, we use another *counting* `sum` command at
+the end of the 1000 trials. This command *counts* how many times three
+or more defects occurred in the 1000 days recorded in our `z` sequence,
+and we place the result in another location, `k`. The value of `k` gives
+us the total number of days where 3 or more defective ambulances are
 seen to occur. Then we divide the number in `k` by 1000, the number of
 trials. Thus we obtain an estimate of the chance, expressed as a
-probability between 0 and 1, that 4 or more ambulances will be defective
+probability between 0 and 1, that 3 or more ambulances will be defective
 on a given day. And we store that result in a location that we call
 `kk`, which R subsequently prints to the screen.
 
 ```{r}
-# How many trials resulted in more than 3 ambulances out of order?
-k <- sum(z > 3)
+# How many trials resulted in 3 or more ambulances being out of order?
+# (The test counts the number of days where the out-of-order count was greater
+# than or equal to 3, written as ">= 3").
+k <- sum(z >= 3)
 
 # Convert to a proportion.
 kk <- k / 1000
@@ -240,8 +242,8 @@ kk <- k / 1000
 message(kk)
 ```
 
-This is the estimate we wanted; the proportion of days where more than
-three ambulances were out of action.
+This is the estimate we wanted; the proportion of days where three or
+more ambulances were out of action.
 
 We have crept up on the solution, so it might not be clear to you how
 few steps you needed to do this task. Here is the whole solution to the
@@ -252,12 +254,12 @@ z <- numeric(1000)
 numbers <- 0:9
 
 for (i in 1:1000) {
-    a <- sample(numbers, 20, replace=TRUE)
+    a <- sample(numbers, 16, replace=TRUE)
     b <- sum(a == 9)
     z[i] <- b
 }
 
-k <- sum(z > 3)
+k <- sum(z >= 3)
 kk <- k / 1000
 message(kk)
 ```
